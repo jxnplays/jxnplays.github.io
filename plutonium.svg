@@ -1,6 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
-<rect width="640" height="360" fill="#12100c"/>
-<rect x="18" y="18" width="604" height="324" fill="none" stroke="#e2b657" stroke-opacity=".35"/>
-<text x="40" y="168" fill="#e2b657" font-family="Arial,sans-serif" font-size="52" font-weight="700" letter-spacing="4">PLUTONIUM</text>
-<text x="40" y="214" fill="#c4bbaa" font-family="Arial,sans-serif" font-size="22" letter-spacing="3">CUSTOM MAPS</text>
+<rect width="640" height="360" fill="#10140f"/>
+<circle cx="320" cy="150" r="58" fill="none" stroke="#7dffa1" stroke-width="3"/>
+<circle cx="320" cy="150" r="18" fill="none" stroke="#7dffa1" stroke-width="3"/>
+<circle cx="320" cy="150" r="5" fill="#7dffa1"/>
+<path d="M320 92v16M320 192v16M262 150h16M362 150h16" stroke="#7dffa1" stroke-width="3"/>
+<text x="320" y="262" text-anchor="middle" fill="#f6f1e6" font-family="Arial,sans-serif" font-size="34" font-weight="700" letter-spacing="6">PLUTONIUM</text>
 </svg>
