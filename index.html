@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>mws&box — coming soon</title>
+<title>mws&box — in development</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -14,6 +14,7 @@
   a { color: var(--gold); text-decoration: none; }
   nav { position: sticky; top: 0; z-index: 5; display: flex; justify-content: space-between; align-items: center; padding: 14px 28px; background: rgba(11,10,8,.9); border-bottom: 1px solid var(--line); }
   .mark { font-family: "Barlow Condensed", sans-serif; letter-spacing: .16em; font-weight: 700; font-size: 22px; color: var(--gold); }
+  .by { color: var(--muted); font-size: 12px; letter-spacing: .12em; }
   nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; }
   nav a { color: #e6dcc8; transition: color .25s ease; }
   nav a:hover { color: var(--gold); }
@@ -27,15 +28,15 @@
   .btn { display: inline-block; margin-top: 22px; background: var(--gold); color: #1a1408; font-weight: 600; padding: 12px 16px; border-radius: 6px; transition: transform .25s ease; }
   .btn:hover { transform: translateY(-2px); }
   .stats, .reqs, .modes, .shots { display: grid; gap: 12px; }
-  .stats { grid-template-columns: repeat(6, 1fr); border-top: 1px solid var(--line); background: #12100c; }
+  .stats { grid-template-columns: repeat(7, 1fr); border-top: 1px solid var(--line); background: #12100c; }
   .stats div { padding: 22px 8px; text-align: center; }
   .stats b { display: block; color: var(--gold); font-family: "Barlow Condensed", sans-serif; font-size: 36px; line-height: 1; }
   .stats span { color: var(--muted); font-size: 11px; letter-spacing: .1em; }
-  .note { width: min(1180px, calc(100% - 48px)); margin: 18px auto 0; color: var(--muted); }
-  .ticker { overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-top: 22px; background: #100e0b; }
-  .ticker-track { display: flex; gap: 36px; width: max-content; padding: 14px 0; animation: marquee 36s linear infinite; }
-  .ticker span { font-family: "Barlow Condensed", sans-serif; letter-spacing: .16em; color: var(--gold); font-size: 18px; white-space: nowrap; }
-  .ticker span i { color: #6d6456; font-style: normal; margin-right: 36px; }
+  .ticker { overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #100e0b; }
+  .ticker-track { display: flex; align-items: center; width: max-content; padding: 14px 0; animation: marquee 40s linear infinite; }
+  .item { display: flex; align-items: center; }
+  .item b { font-family: "Barlow Condensed", sans-serif; font-weight: 600; letter-spacing: .16em; color: var(--gold); font-size: 18px; padding: 0 28px; }
+  .item i { color: #6d6456; font-style: normal; line-height: 1; display: flex; align-items: center; }
   section { width: min(1180px, calc(100% - 48px)); margin: 0 auto; padding: 72px 0 8px; }
   .kicker { color: var(--gold); letter-spacing: .16em; font-size: 12px; }
   .kicker::before { content: ""; display: inline-block; width: 28px; height: 2px; background: var(--gold); margin-right: 10px; vertical-align: middle; }
@@ -58,49 +59,52 @@
   .num { position: absolute; right: 14px; top: 8px; font-family: "Barlow Condensed", sans-serif; font-size: 92px; color: rgba(226,182,87,.12); line-height: 1; }
   .badge { display: inline-block; border: 1px solid var(--gold); color: var(--gold); font-size: 11px; letter-spacing: .12em; padding: 3px 7px; }
   .path { display: inline-block; background: #070604; border: 1px solid var(--line); color: #f6f1e6; font-family: "IBM Plex Mono", monospace; font-size: 12px; padding: 8px 10px; }
-  .close { margin-top: 28px; padding: 28px; border-left: 3px solid var(--gold); background: #14120e; }
-  footer { border-top: 1px solid var(--line); margin-top: 70px; padding: 28px; color: var(--muted); font-size: 14px; }
+  .legal { margin: 70px 0 0; padding: 28px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; line-height: 1.55; }
+  .legal strong { color: var(--ink); font-weight: 500; }
   @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
-  @media (max-width: 900px) { .stats, .reqs, .modes, .shots { grid-template-columns: 1fr; } nav ul { display: none; } }
+  @media (max-width: 900px) { .stats, .reqs, .modes, .shots { grid-template-columns: 1fr; } nav ul, .by { display: none; } }
 </style>
 </head>
 <body>
-<nav><div class="mark">MWS&BOX</div><ul><li><a href="#counts">The line</a></li><li><a href="#base">The base</a></li><li><a href="#yours">Games</a></li><li><a href="#list">Modes</a></li><li><a href="#custom">Custom</a></li></ul></nav>
+<nav><div class="mark">MWS&BOX</div><div class="by">MADE BY JXNPLAYS</div><ul><li><a href="#counts">The line</a></li><li><a href="#base">The base</a></li><li><a href="#modeshow">Modes</a></li><li><a href="#yours">Games</a></li><li><a href="#list">Match types</a></li></ul></nav>
 <header class="hero"><div class="in">
 <div class="word">MWS&BOX</div>
-<div class="pill">COMING SOON · RUST · BEVY</div>
+<div class="pill">IN DEVELOPMENT · RUST · BEVY 0.19 · PYTHON</div>
 <h1>FOURTEEN GAMES.<br>ONE LOBBY.<br><em>YOURS.</em></h1>
-<p class="lede">A fan client for the line from Call of Duty 1 through WWII. Modern Warfare 2 is the base. Every other game is optional, and adds only what that install contains.</p>
-<a class="btn" href="#yours">Your games</a>
+<p class="lede">A fan client for the line from Call of Duty 1 through WWII. Modern Warfare 2 is the base. Every other game is optional, and adds only what that install contains. Reads the latest Steam build you already own.</p>
+<a class="btn" href="#yours">Welcome to the Sandbox</a>
 </div></header>
 <div class="stats" id="counts">
 <div><b>300+</b><span>MAPS</span></div>
 <div><b>400+</b><span>GUNS</span></div>
 <div><b>250+</b><span>ATTACHMENTS</span></div>
 <div><b>150+</b><span>PERKS</span></div>
+<div><b>200+</b><span>CAMOS</span></div>
 <div><b>1,000+</b><span>EMBLEMS</span></div>
 <div><b>1,000+</b><span>CALLING CARDS</span></div>
 </div>
-<p class="note">Retail sets across the fourteen games, including DLC. Not a finished scan of your folders. Camos sit beside them, about 200. Custom maps are extra, and stay labeled custom.</p>
 <div class="ticker" aria-label="Games"><div class="ticker-track">
-<span>CALL OF DUTY <i>/</i></span><span>CALL OF DUTY 2 <i>/</i></span><span>CALL OF DUTY 3 <i>/</i></span><span>CALL OF DUTY 4 <i>/</i></span><span>WORLD AT WAR <i>/</i></span><span>MODERN WARFARE 2 <i>/</i></span><span>BLACK OPS <i>/</i></span><span>MODERN WARFARE 3 <i>/</i></span><span>BLACK OPS 2 <i>/</i></span><span>GHOSTS <i>/</i></span><span>ADVANCED WARFARE <i>/</i></span><span>BLACK OPS 3 <i>/</i></span><span>INFINITE WARFARE <i>/</i></span><span>WWII <i>/</i></span>
-<span>CALL OF DUTY <i>/</i></span><span>CALL OF DUTY 2 <i>/</i></span><span>CALL OF DUTY 3 <i>/</i></span><span>CALL OF DUTY 4 <i>/</i></span><span>WORLD AT WAR <i>/</i></span><span>MODERN WARFARE 2 <i>/</i></span><span>BLACK OPS <i>/</i></span><span>MODERN WARFARE 3 <i>/</i></span><span>BLACK OPS 2 <i>/</i></span><span>GHOSTS <i>/</i></span><span>ADVANCED WARFARE <i>/</i></span><span>BLACK OPS 3 <i>/</i></span><span>INFINITE WARFARE <i>/</i></span><span>WWII <i>/</i></span>
+<div class="item"><b>CALL OF DUTY</b><i>/</i></div><div class="item"><b>CALL OF DUTY 2</b><i>/</i></div><div class="item"><b>CALL OF DUTY 3</b><i>/</i></div><div class="item"><b>CALL OF DUTY 4</b><i>/</i></div><div class="item"><b>WORLD AT WAR</b><i>/</i></div><div class="item"><b>MODERN WARFARE 2</b><i>/</i></div><div class="item"><b>BLACK OPS</b><i>/</i></div><div class="item"><b>MODERN WARFARE 3</b><i>/</i></div><div class="item"><b>BLACK OPS 2</b><i>/</i></div><div class="item"><b>GHOSTS</b><i>/</i></div><div class="item"><b>ADVANCED WARFARE</b><i>/</i></div><div class="item"><b>BLACK OPS 3</b><i>/</i></div><div class="item"><b>INFINITE WARFARE</b><i>/</i></div><div class="item"><b>WWII</b><i>/</i></div>
+<div class="item"><b>CALL OF DUTY</b><i>/</i></div><div class="item"><b>CALL OF DUTY 2</b><i>/</i></div><div class="item"><b>CALL OF DUTY 3</b><i>/</i></div><div class="item"><b>CALL OF DUTY 4</b><i>/</i></div><div class="item"><b>WORLD AT WAR</b><i>/</i></div><div class="item"><b>MODERN WARFARE 2</b><i>/</i></div><div class="item"><b>BLACK OPS</b><i>/</i></div><div class="item"><b>MODERN WARFARE 3</b><i>/</i></div><div class="item"><b>BLACK OPS 2</b><i>/</i></div><div class="item"><b>GHOSTS</b><i>/</i></div><div class="item"><b>ADVANCED WARFARE</b><i>/</i></div><div class="item"><b>BLACK OPS 3</b><i>/</i></div><div class="item"><b>INFINITE WARFARE</b><i>/</i></div><div class="item"><b>WWII</b><i>/</i></div>
 </div></div>
-<section id="base"><div class="kicker">THE BASE</div><h2>WHAT ALREADY LOADS.</h2><p class="sub">These shots are from the IW4L author, vladtrc. That is the runtime this client is built on. They show Modern Warfare 2 maps and a match already running. They are not a screenshot of this page's build, and no game files are hosted here.</p>
+<section id="base"><div class="kicker">THE BASE</div><h2>WHAT ALREADY LOADS.</h2><p class="sub">IW4L, the runtime this client is built on, has published Modern Warfare 2 shots only. Readers for Modern Warfare 3 and Black Ops exist in that project. It has not published shots of them. The first row is his. The second row is retail reference, so you can see the modes. None of these files are hosted here.</p>
 <div class="shots">
-<figure><img src="https://raw.githubusercontent.com/vladtrc/iw4L/master/docs/screenshots/terminal-sniper.jpg" alt="Terminal, from the IW4L author"><figcaption>Terminal. Sniper lane.</figcaption></figure>
-<figure><img src="https://raw.githubusercontent.com/vladtrc/iw4L/master/docs/screenshots/domination-capture.jpg" alt="Domination, from the IW4L author"><figcaption>Domination. A flag capture.</figcaption></figure>
-<figure><img src="https://raw.githubusercontent.com/vladtrc/iw4L/master/docs/screenshots/jungle-crossbow.jpg" alt="A jungle map, from the IW4L author"><figcaption>Jungle. Crossbow in hand.</figcaption></figure>
-<figure><img src="https://raw.githubusercontent.com/vladtrc/iw4L/master/docs/screenshots/industrial-daylight.jpg" alt="Industrial daylight, from the IW4L author"><figcaption>Industrial. Daylight.</figcaption></figure>
-<figure><img src="https://raw.githubusercontent.com/vladtrc/iw4L/master/docs/screenshots/tanker-explosion.jpg" alt="Tanker explosion, from the IW4L author"><figcaption>Tanker. An explosion.</figcaption></figure>
-<figure><img src="https://raw.githubusercontent.com/vladtrc/iw4L/master/docs/screenshots/bomb-plant.jpg" alt="Bomb plant, from the IW4L author"><figcaption>Search. A bomb plant.</figcaption></figure>
+<figure><img src="https://raw.githubusercontent.com/vladtrc/iw4L/master/docs/screenshots/terminal-sniper.jpg" alt="Terminal in IW4L"><figcaption>Modern Warfare 2. Terminal. IW4L.</figcaption></figure>
+<figure><img src="https://raw.githubusercontent.com/vladtrc/iw4L/master/docs/screenshots/domination-capture.jpg" alt="Domination in IW4L"><figcaption>Modern Warfare 2. Domination. IW4L.</figcaption></figure>
+<figure><img src="https://raw.githubusercontent.com/vladtrc/iw4L/master/docs/screenshots/bomb-plant.jpg" alt="Search in IW4L"><figcaption>Modern Warfare 2. Search. IW4L.</figcaption></figure>
 </div></section>
-<section id="yours"><div class="kicker">REQUIREMENTS</div><h2>BRING YOUR OWN GAMES.</h2><p class="sub">No game data is distributed here. Modern Warfare 2 is required. The others are optional. A line is listed only if that game shipped it. Private match first. Live servers later.</p>
+<section id="modeshow"><div class="kicker">THE OTHER MODES</div><h2>ZOMBIES. SPEC OPS. EXTINCTION.</h2><p class="sub">Retail reference only. Spec Ops is Modern Warfare 2 and 3. Survival is Modern Warfare 3. Zombies runs from World at War through Infinite Warfare, where that game had it. Extinction is Ghosts.</p>
+<div class="shots">
+<figure><img src="https://raw.githubusercontent.com/vladtrc/iw4L/master/docs/screenshots/jungle-crossbow.jpg" alt="Jungle in IW4L"><figcaption>Modern Warfare 2. Spec Ops maps share this client. IW4L.</figcaption></figure>
+<figure><img src="https://raw.githubusercontent.com/vladtrc/iw4L/master/docs/screenshots/industrial-daylight.jpg" alt="Industrial in IW4L"><figcaption>Modern Warfare 2. The multiplayer base. IW4L.</figcaption></figure>
+<figure><img src="https://en.wikipedia.org/wiki/Special:FilePath/Call_of_Duty_Black_Ops_III_Zombies_screenshot.png" alt="Black Ops 3 Zombies retail reference"><figcaption>Zombies. Retail reference, Black Ops 3. Not our build.</figcaption></figure>
+</div></section>
+<section id="yours"><div class="kicker">REQUIREMENTS</div><h2>BRING YOUR OWN GAMES.</h2><p class="sub">Only a legally owned Steam install. The client reads that folder. It does not download, patch, or replace the game. Modern Warfare 2 is required. The others are optional.</p>
 <div class="reqs">
 <article class="req"><span class="num">1</span><span class="badge">REQUIRED</span><h3>MODERN WARFARE 2</h3><ul><li>Maps, DLC, campaign, spec ops</li><li>Guns, attachments, perks, camos, emblems, titles, killstreaks</li><li>TDM, FFA, Domination, Search, Headquarters, CTF, Sabotage, Demolition, Third Person</li></ul><span class="path">folder with iw4mp.exe</span></article>
-<article class="req"><span class="num">2</span><span class="badge">OPTIONAL</span><h3>CALL OF DUTY</h3><ul><li>Campaign, maps, guns</li><li>TDM, FFA, Search, CTF</li><li>No perks, attachments, emblems, or calling cards</li></ul><span class="path">folder with CoDMP.exe</span></article>
+<article class="req"><span class="num">2</span><span class="badge">OPTIONAL</span><h3>CALL OF DUTY</h3><ul><li>Campaign, maps, guns</li><li>TDM, FFA, Search, CTF</li></ul><span class="path">folder with CoDMP.exe</span></article>
 <article class="req"><span class="num">3</span><span class="badge">OPTIONAL</span><h3>CALL OF DUTY 2</h3><ul><li>Campaign, maps, guns</li><li>TDM, FFA, Domination, Search, CTF</li></ul><span class="path">folder with CoD2MP_s.exe</span></article>
 <article class="req"><span class="num">4</span><span class="badge">OPTIONAL</span><h3>CALL OF DUTY 3</h3><ul><li>Campaign, maps, guns</li><li>TDM, FFA, Domination, Search, CTF</li></ul><span class="path">its own install</span></article>
 <article class="req"><span class="num">5</span><span class="badge">OPTIONAL</span><h3>CALL OF DUTY 4</h3><ul><li>Attachments, perks, killstreaks, Create a Class</li><li>TDM, FFA, Domination, Search, Headquarters, Sabotage, CTF</li></ul><span class="path">folder with iw3mp.exe</span></article>
@@ -114,44 +118,25 @@
 <article class="req"><span class="num">13</span><span class="badge">OPTIONAL</span><h3>INFINITE WARFARE</h3><ul><li>Rigs, attachments, variants, perks, calling cards, emblems, Zombies</li><li>TDM, FFA, Domination, Search, Hardpoint, Defender, Frontline</li></ul><span class="path">folder with iw7_ship.exe</span></article>
 <article class="req"><span class="num">14</span><span class="badge">OPTIONAL</span><h3>WWII</h3><ul><li>Divisions, attachments, camos, emblems, calling cards, headquarters</li><li>TDM, FFA, Domination, Search, Hardpoint, Gridiron, War</li></ul><span class="path">folder with s2_mp64_ship.exe</span></article>
 </div></section>
-<section id="list"><div class="kicker">UNDER THE GAMES</div><h2>THE MATCH TYPES.</h2><p class="sub">A mode is listed only if that game shipped it, except Third Person. That is the SOCOM-style camera. Modern Warfare 2 shipped it. The aim is the same camera on the other match types. Hardcore and Old School are rules, not modes.</p>
+<section id="list"><div class="kicker">UNDER THE GAMES</div><h2>THE MATCH TYPES.</h2><p class="sub">A mode is listed only if that game shipped it, except Third Person. That is the SOCOM-style camera. Modern Warfare 2 shipped it. Hardcore and Old School are rules, not modes. Private match first. Live servers later.</p>
 <div class="modes">
 <article class="mode"><h3>TEAM DEATHMATCH</h3><p>The whole line.</p></article>
 <article class="mode"><h3>FREE-FOR-ALL</h3><p>The whole line.</p></article>
-<article class="mode"><h3>THIRD PERSON</h3><p>SOCOM-style camera. Over the shoulder, not first person.</p></article>
+<article class="mode"><h3>THIRD PERSON</h3><p>SOCOM-style camera.</p></article>
 <article class="mode"><h3>DOMINATION</h3><p>Call of Duty 2 through WWII.</p></article>
 <article class="mode"><h3>SEARCH AND DESTROY</h3><p>The whole line.</p></article>
-<article class="mode"><h3>HEADQUARTERS</h3><p>Call of Duty 4, World at War, Modern Warfare 2, Black Ops.</p></article>
+<article class="mode"><h3>HEADQUARTERS</h3><p>Call of Duty 4 through Black Ops.</p></article>
 <article class="mode"><h3>CAPTURE THE FLAG</h3><p>Call of Duty through Black Ops.</p></article>
-<article class="mode"><h3>SABOTAGE</h3><p>Call of Duty 4, World at War, Modern Warfare 2, Black Ops.</p></article>
+<article class="mode"><h3>SABOTAGE</h3><p>Call of Duty 4 through Black Ops.</p></article>
 <article class="mode"><h3>DEMOLITION</h3><p>World at War, Modern Warfare 2, Black Ops.</p></article>
 <article class="mode"><h3>KILL CONFIRMED</h3><p>Modern Warfare 3 through WWII.</p></article>
 <article class="mode"><h3>HARDPOINT</h3><p>Black Ops 2 through WWII.</p></article>
-<article class="mode"><h3>GROUND WAR</h3><p>Modern Warfare 2 and 3.</p></article>
-<article class="mode"><h3>FACE OFF</h3><p>Modern Warfare 3.</p></article>
-<article class="mode"><h3>INFECTED</h3><p>Modern Warfare 3, Ghosts, Advanced Warfare, Black Ops 3.</p></article>
-<article class="mode"><h3>BLITZ</h3><p>Ghosts.</p></article>
-<article class="mode"><h3>CRANKED</h3><p>Ghosts.</p></article>
-<article class="mode"><h3>SEARCH AND RESCUE</h3><p>Ghosts.</p></article>
-<article class="mode"><h3>UPLINK</h3><p>Advanced Warfare and Black Ops 3.</p></article>
-<article class="mode"><h3>GRIDIRON</h3><p>WWII.</p></article>
-<article class="mode"><h3>WAR</h3><p>WWII.</p></article>
-<article class="mode"><h3>GUN GAME</h3><p>Black Ops, Modern Warfare 3, and the later party lists.</p></article>
-<article class="mode"><h3>CAMPAIGN</h3><p>Every game's story missions.</p></article>
 <article class="mode"><h3>SPEC OPS</h3><p>Modern Warfare 2 and 3.</p></article>
 <article class="mode"><h3>SURVIVAL</h3><p>Modern Warfare 3.</p></article>
-<article class="mode"><h3>ZOMBIES</h3><p>World at War, Black Ops, Black Ops 2, Black Ops 3, Infinite Warfare.</p></article>
+<article class="mode"><h3>ZOMBIES</h3><p>World at War through Infinite Warfare.</p></article>
 <article class="mode"><h3>EXTINCTION</h3><p>Ghosts.</p></article>
-<article class="mode"><h3>HEADQUARTERS</h3><p>WWII social space. Not the Headquarters match type.</p></article>
+<article class="mode"><h3>CUSTOM MAPS</h3><p>IW4x, Plutonium, usermaps. Labeled custom. Not filed as a retail game.</p></article>
 </div></section>
-<section id="custom"><div class="kicker">AFTER THE RETAIL LINE</div><h2>CUSTOM MAPS.</h2><p class="sub">IW4x, Plutonium, and the usermaps folders. They stay in their own list. They do not get filed as Modern Warfare 2, Modern Warfare 3, or Black Ops.</p>
-<div class="reqs">
-<article class="req"><h3>IW4X</h3><p>User maps and the DLC-style packs that live in that client. Labeled custom.</p></article>
-<article class="req"><h3>PLUTONIUM</h3><p>Its maps, guns, and camos, kept in that folder. Labeled custom.</p></article>
-<article class="req"><h3>USERMAPS</h3><p>A map you dropped in. It shows as a custom map, with its own image if the pack has one.</p></article>
-</div>
-<div class="close"><h2>COMING SOON.</h2><p class="sub">Fan project. Not affiliated with Activision, Infinity Ward, Treyarch, Sledgehammer, or the IW4L authors. Shots above are theirs. No maps, models, textures, sounds, or fonts are included. Call of Duty is a trademark of its owners.</p></div>
-</section>
-<footer>This page is the aim, not a client.</footer>
+<footer class="legal"><strong>Made by jxnplays.</strong> This page is the aim, not a client. The address stays jxnplays.github.io. A hostname cannot contain &, so mws&box.github.io is not a valid address.<br><br><strong>Only legally owned games are supported.</strong> The client is aimed at the latest Steam build of each game you already own. It reads that install in place. It does not ship maps, models, textures, sounds, or fonts, and it does not replace the Steam files. That is why this is not a copy of the games. Call of Duty is a trademark of its owners. This project is not affiliated with Activision, Infinity Ward, Treyarch, Sledgehammer, Steam, or the IW4L authors. Do not point it at a copy you do not own.</footer>
 </body>
 </html>
