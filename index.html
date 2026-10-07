@@ -44,6 +44,7 @@
   .shots { grid-template-columns: repeat(5, 1fr); margin-top: 22px; }
   .shots figure { margin: 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #100e0b; }
   .shots img { width: 100%; height: 132px; object-fit: cover; display: block; background: #12100c; }
+  .shots img.badge { object-fit: contain; }
   .shots figcaption { padding: 10px 12px; color: var(--muted); font-size: 13px; }
   .reqs { grid-template-columns: repeat(3, 1fr); margin-top: 26px; }
   .modes { grid-template-columns: repeat(4, 1fr); margin-top: 26px; }
@@ -52,10 +53,9 @@
   .req h3, .mode h3 { margin: 12px 0 8px; font-family: "Barlow Condensed", sans-serif; letter-spacing: .04em; }
   .mode h3 { margin-top: 0; font-size: 18px; }
   .req h3 { font-size: 22px; }
-  .req li, .mode p, .req p { color: var(--muted); margin: 0; }
-  .req ul { margin: 8px 0 16px; padding-left: 18px; }
+  .req p, .mode p { color: var(--muted); margin: 0 0 16px; }
   .num { position: absolute; right: 14px; top: 8px; font-family: "Barlow Condensed", sans-serif; font-size: 92px; color: rgba(226,182,87,.12); line-height: 1; }
-  .badge { display: inline-block; border: 1px solid var(--gold); color: var(--gold); font-size: 11px; letter-spacing: .12em; padding: 3px 7px; }
+  .badge-tag { display: inline-block; border: 1px solid var(--gold); color: var(--gold); font-size: 11px; letter-spacing: .12em; padding: 3px 7px; }
   .path { display: inline-block; background: #070604; border: 1px solid var(--line); color: #f6f1e6; font-family: "IBM Plex Mono", monospace; font-size: 12px; padding: 8px 10px; }
   .legal { margin: 70px 0 0; padding: 28px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; line-height: 1.55; }
   .legal strong { color: var(--ink); font-weight: 500; }
@@ -102,25 +102,25 @@
 <figure><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/311210/ss_ca7376d838d5714f916936f0070824c27c4c5641.1920x1080.jpg" alt="Black Ops 3"><figcaption>Black Ops 3</figcaption></figure>
 <figure><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/292730/ss_06a937d7ec971add2992fe89db4aa8ee1ac1ae30.1920x1080.jpg" alt="Infinite Warfare"><figcaption>Infinite Warfare</figcaption></figure>
 <figure><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/476600/ss_5e5727fc0974a154f69dc1d2e53ca8e63453022f.1920x1080.jpg" alt="WWII"><figcaption>WWII</figcaption></figure>
-<figure><img src="iw4x.svg" alt="IW4x custom maps"><figcaption>IW4x. Custom maps.</figcaption></figure>
-<figure><img src="plutonium.svg" alt="Plutonium custom maps"><figcaption>Plutonium. Custom maps.</figcaption></figure>
+<figure><img class="badge" src="iw4x.svg" alt="IW4x"><figcaption>IW4x. Custom maps.</figcaption></figure>
+<figure><img class="badge" src="plutonium.svg" alt="Plutonium"><figcaption>Plutonium. Custom maps.</figcaption></figure>
 </div></section>
-<section id="yours"><div class="kicker">REQUIREMENTS</div><h2>BRING YOUR OWN GAMES.</h2><p class="sub">A legally owned Steam install. The client reads that folder. It does not download or replace the game. Modern Warfare 2 is required. The others are optional. Call of Duty 3 joins from its own install.</p>
+<section id="yours"><div class="kicker">REQUIREMENTS</div><h2>BRING YOUR OWN GAMES.</h2><p class="sub">A legally owned Steam install. The client reads that folder. It does not download or replace the game. Modern Warfare 2 is required. The others are optional.</p>
 <div class="reqs">
-<article class="req"><span class="num">1</span><span class="badge">REQUIRED</span><h3>MODERN WARFARE 2</h3><ul><li>Maps, DLC, campaign, spec ops</li><li>Guns, attachments, perks, camos, emblems, titles, killstreaks</li><li>TDM, FFA, Domination, Search, Headquarters, CTF, Sabotage, Demolition, Third Person</li></ul><span class="path">folder with iw4mp.exe</span></article>
-<article class="req"><span class="num">2</span><span class="badge">OPTIONAL</span><h3>CALL OF DUTY</h3><ul><li>Campaign, maps, guns</li><li>TDM, FFA, Search, CTF</li></ul><span class="path">folder with CoDMP.exe</span></article>
-<article class="req"><span class="num">3</span><span class="badge">OPTIONAL</span><h3>CALL OF DUTY 2</h3><ul><li>Campaign, maps, guns</li><li>TDM, FFA, Domination, Search, CTF</li></ul><span class="path">folder with CoD2MP_s.exe</span></article>
-<article class="req"><span class="num">4</span><span class="badge">OPTIONAL</span><h3>CALL OF DUTY 3</h3><ul><li>Campaign, maps, guns</li><li>TDM, FFA, Domination, Search, CTF</li></ul><span class="path">its own install</span></article>
-<article class="req"><span class="num">5</span><span class="badge">OPTIONAL</span><h3>CALL OF DUTY 4</h3><ul><li>Attachments, perks, killstreaks, Create a Class</li><li>TDM, FFA, Domination, Search, Headquarters, Sabotage, CTF</li></ul><span class="path">folder with iw3mp.exe</span></article>
-<article class="req"><span class="num">6</span><span class="badge">OPTIONAL</span><h3>WORLD AT WAR</h3><ul><li>Attachments, camos, perks, killstreaks, Zombies</li><li>TDM, FFA, Domination, Search, Headquarters, CTF, Demolition</li></ul><span class="path">folder with CoDWaWmp.exe</span></article>
-<article class="req"><span class="num">7</span><span class="badge">OPTIONAL</span><h3>BLACK OPS</h3><ul><li>Attachments, camos, perks, emblems, calling cards, Zombies</li><li>TDM, FFA, Domination, Search, Gun Game, One in the Chamber</li></ul><span class="path">folder with BlackOps.exe</span></article>
-<article class="req"><span class="num">8</span><span class="badge">OPTIONAL</span><h3>MODERN WARFARE 3</h3><ul><li>Attachments, camos, perks, pointstreaks, emblems, spec ops, Survival</li><li>TDM, FFA, Domination, Search, Kill Confirmed, Face Off, Third Person</li></ul><span class="path">folder with iw5mp.exe</span></article>
-<article class="req"><span class="num">9</span><span class="badge">OPTIONAL</span><h3>BLACK OPS 2</h3><ul><li>Pick Ten, attachments, camos, perks, emblems, calling cards, Zombies</li><li>TDM, FFA, Domination, Search, Hardpoint, Kill Confirmed</li></ul><span class="path">folder with t6mp.exe</span></article>
-<article class="req"><span class="num">10</span><span class="badge">OPTIONAL</span><h3>GHOSTS</h3><ul><li>Squad points, attachments, perks, patches, Extinction</li><li>TDM, FFA, Domination, Search, Blitz, Cranked, Search and Rescue</li></ul><span class="path">folder with iw6mp.exe</span></article>
-<article class="req"><span class="num">11</span><span class="badge">OPTIONAL</span><h3>ADVANCED WARFARE</h3><ul><li>Attachments, variants, perks, exo abilities, calling cards, emblems</li><li>TDM, FFA, Domination, Search, Hardpoint, Uplink, Momentum</li></ul><span class="path">folder with s1_mp64_ship.exe</span></article>
-<article class="req"><span class="num">12</span><span class="badge">OPTIONAL</span><h3>BLACK OPS 3</h3><ul><li>Gunsmith, specialists, attachments, camos, emblems, calling cards, Zombies</li><li>TDM, FFA, Domination, Search, Hardpoint, Safeguard, Uplink</li></ul><span class="path">folder with BlackOps3.exe</span></article>
-<article class="req"><span class="num">13</span><span class="badge">OPTIONAL</span><h3>INFINITE WARFARE</h3><ul><li>Rigs, attachments, variants, perks, calling cards, emblems, Zombies</li><li>TDM, FFA, Domination, Search, Hardpoint, Defender, Frontline</li></ul><span class="path">folder with iw7_ship.exe</span></article>
-<article class="req"><span class="num">14</span><span class="badge">OPTIONAL</span><h3>WWII</h3><ul><li>Divisions, attachments, camos, emblems, calling cards, headquarters</li><li>TDM, FFA, Domination, Search, Hardpoint, Gridiron, War</li></ul><span class="path">folder with s2_mp64_ship.exe</span></article>
+<article class="req"><span class="num">1</span><span class="badge-tag">REQUIRED</span><h3>MODERN WARFARE 2</h3><p>All maps, DLC, campaign, and Spec Ops. All guns, attachments, perks, camos, emblems, and killstreaks. All match types.</p><span class="path">folder with iw4mp.exe</span></article>
+<article class="req"><span class="num">2</span><span class="badge-tag">OPTIONAL</span><h3>CALL OF DUTY</h3><p>All maps. All guns. All match types.</p><span class="path">folder with CoDMP.exe</span></article>
+<article class="req"><span class="num">3</span><span class="badge-tag">OPTIONAL</span><h3>CALL OF DUTY 2</h3><p>All maps. All guns. All match types.</p><span class="path">folder with CoD2MP_s.exe</span></article>
+<article class="req"><span class="num">4</span><span class="badge-tag">OPTIONAL</span><h3>CALL OF DUTY 3</h3><p>All maps. All guns. All match types.</p><span class="path">its own install</span></article>
+<article class="req"><span class="num">5</span><span class="badge-tag">OPTIONAL</span><h3>CALL OF DUTY 4</h3><p>All maps. All guns, attachments, perks, and killstreaks. All match types.</p><span class="path">folder with iw3mp.exe</span></article>
+<article class="req"><span class="num">6</span><span class="badge-tag">OPTIONAL</span><h3>WORLD AT WAR</h3><p>All maps. All guns, attachments, perks, and camos. Zombies. All match types.</p><span class="path">folder with CoDWaWmp.exe</span></article>
+<article class="req"><span class="num">7</span><span class="badge-tag">OPTIONAL</span><h3>BLACK OPS</h3><p>All maps. All guns, attachments, perks, camos, emblems, and calling cards. Zombies. All match types.</p><span class="path">folder with BlackOps.exe</span></article>
+<article class="req"><span class="num">8</span><span class="badge-tag">OPTIONAL</span><h3>MODERN WARFARE 3</h3><p>All maps. All guns, attachments, perks, and camos. Spec Ops and Survival. All match types.</p><span class="path">folder with iw5mp.exe</span></article>
+<article class="req"><span class="num">9</span><span class="badge-tag">OPTIONAL</span><h3>BLACK OPS 2</h3><p>All maps. All guns, attachments, perks, camos, emblems, and calling cards. Zombies. All match types.</p><span class="path">folder with t6mp.exe</span></article>
+<article class="req"><span class="num">10</span><span class="badge-tag">OPTIONAL</span><h3>GHOSTS</h3><p>All maps. All guns, attachments, and perks. Extinction. All match types.</p><span class="path">folder with iw6mp.exe</span></article>
+<article class="req"><span class="num">11</span><span class="badge-tag">OPTIONAL</span><h3>ADVANCED WARFARE</h3><p>All maps. All guns, attachments, variants, and exo abilities. All match types.</p><span class="path">folder with s1_mp64_ship.exe</span></article>
+<article class="req"><span class="num">12</span><span class="badge-tag">OPTIONAL</span><h3>BLACK OPS 3</h3><p>All maps. Gunsmith, specialists, all guns, attachments, and camos. Zombies. All match types.</p><span class="path">folder with BlackOps3.exe</span></article>
+<article class="req"><span class="num">13</span><span class="badge-tag">OPTIONAL</span><h3>INFINITE WARFARE</h3><p>All maps. Rigs, all guns, attachments, and variants. Zombies. All match types.</p><span class="path">folder with iw7_ship.exe</span></article>
+<article class="req"><span class="num">14</span><span class="badge-tag">OPTIONAL</span><h3>WWII</h3><p>All maps. Divisions, all guns, attachments, and camos. Headquarters. All match types.</p><span class="path">folder with s2_mp64_ship.exe</span></article>
 </div></section>
 <section id="list"><div class="kicker">UNDER THE GAMES</div><h2>THE MATCH TYPES.</h2><p class="sub">A mode is listed only if that game shipped it, except Third Person. That is the SOCOM-style camera. Modern Warfare 2 shipped it. Hardcore and Old School are rules, not modes.</p>
 <div class="modes">
