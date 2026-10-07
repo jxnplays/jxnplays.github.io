@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>mws&box</title>
 <meta name="description" content="One client for Call of Duty through WWII. Modern Warfare 2 is required. Every other game is optional.">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://jxnplays.github.io/mws-box/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -30,7 +31,7 @@
   .lede { max-width: 640px; margin: 0 auto; color: #e4dccb; font-size: 18px; }
   .btn { display: inline-block; margin-top: 22px; background: var(--gold); color: #1a1408; font-weight: 600; padding: 12px 16px; border-radius: 6px; transition: transform .2s ease, box-shadow .2s ease; }
   .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(226,182,87,.25); }
-  .stats, .reqs, .modes, .shots, .steps { display: grid; gap: 12px; }
+  .stats, .reqs, .modes, .shots, .steps, .feats { display: grid; gap: 12px; }
   .stats { grid-template-columns: repeat(7, 1fr); border-top: 1px solid var(--line); background: #12100c; }
   .stats div { padding: 22px 8px; text-align: center; }
   .stats b { display: block; color: var(--gold); font-family: "Barlow Condensed", sans-serif; font-size: 36px; line-height: 1; }
@@ -54,6 +55,15 @@
   .shots figure:hover img.badge { transform: none; }
   .shots figcaption { padding: 12px 8px; color: var(--muted); font-size: 13px; text-align: center; min-height: 52px; display: flex; align-items: center; justify-content: center; }
   .steps { grid-template-columns: repeat(3, 1fr); margin-top: 22px; }
+
+  .feats { grid-template-columns: repeat(4, 1fr); margin-top: 22px; }
+  .feat { background: rgba(16,14,11,.92); border: 1px solid var(--line); border-radius: 8px; padding: 20px 18px 16px; min-height: 220px; transition: transform .25s ease, border-color .25s ease; }
+  .feat:hover { transform: translateY(-4px); border-color: var(--gold); }
+  .feat svg { display: block; margin-bottom: 14px; }
+  .feat h3 { margin: 0 0 8px; font-family: "Barlow Condensed", sans-serif; letter-spacing: .04em; font-size: 20px; }
+  .feat p { color: var(--muted); margin: 0; font-size: 14px; line-height: 1.45; }
+  .tag { display: inline-block; margin-left: 8px; border: 1px solid var(--gold); color: var(--gold); font-size: 10px; letter-spacing: .12em; padding: 2px 6px; vertical-align: middle; }
+
   .step, .req, .mode { background: rgba(16,14,11,.92); border: 1px solid var(--line); border-radius: 8px; padding: 18px; position: relative; overflow: hidden; transition: transform .25s ease, border-color .25s ease; }
   .step:hover, .req:hover, .mode:hover { transform: translateY(-4px); border-color: var(--gold); }
   .reqs { grid-template-columns: repeat(3, 1fr); margin-top: 26px; }
@@ -72,11 +82,11 @@
   @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
-  @media (max-width: 900px) { .stats, .reqs, .modes, .shots, .steps { grid-template-columns: 1fr; } nav ul, .by { display: none; } nav { grid-template-columns: 1fr; } }
+  @media (max-width: 900px) { .stats, .reqs, .modes, .shots, .steps, .feats { grid-template-columns: 1fr; } nav ul, .by { display: none; } nav { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
-<nav><div class="mark">MWS&BOX</div><div class="by">MADE BY JXNPLAYS</div><ul><li><a href="#games">Games</a></li><li><a href="#how">How it works</a></li><li><a href="#yours">Your copies</a></li><li><a href="#list">Match types</a></li></ul></nav>
+<nav><div class="mark">MWS&BOX</div><div class="by">MADE BY JXNPLAYS</div><ul><li><a href="#games">Games</a></li><li><a href="#board">Features</a></li><li><a href="#how">How it works</a></li><li><a href="#yours">Your copies</a></li><li><a href="#list">Match types</a></li></ul></nav>
 <header class="hero"><div class="reveal">
 <div class="word">MWS&BOX</div>
 <div class="pill">IN DEVELOPMENT · RUST · BEVY 0.19 · PYTHON</div>
@@ -114,6 +124,18 @@
 <figure><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/476600/ss_5e5727fc0974a154f69dc1d2e53ca8e63453022f.1920x1080.jpg" alt="WWII"><figcaption>WWII</figcaption></figure>
 <figure><img class="badge" src="https://avatars.githubusercontent.com/u/134955640?v=4" alt="IW4x"><figcaption>IW4x</figcaption></figure>
 <figure><img class="badge" src="https://avatars.githubusercontent.com/u/38587099?v=4" alt="Plutonium"><figcaption>Plutonium</figcaption></figure>
+</div></section>
+
+<section id="board"><div class="kicker">FEATURES</div><h2>THE SANDBOX.</h2><p class="sub">A Rust and Bevy client. It reads the games you own. It does not ship them. Graphics marked planned are on the board, not in a match yet.</p>
+<div class="feats">
+<article class="feat"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#e2b657" stroke-width="1.6"><path d="M4 10l10-6 10 6v10l-10 6-10-6V10z"/><path d="M4 10l10 6 10-6M14 16v10"/></svg><h3>YOUR FILES</h3><p>Point it at the Steam folder. It reads the fastfiles there. It does not download or replace them.</p></article>
+<article class="feat"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#e2b657" stroke-width="1.6"><rect x="3" y="5" width="22" height="16" rx="2"/><path d="M8 25h12M14 21v4"/></svg><h3>ONE LOBBY</h3><p>Fourteen games in one client. Modern Warfare 2 is the base. The rest add only what that install contains.</p></article>
+<article class="feat"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#e2b657" stroke-width="1.6"><path d="M6 8h16M6 14h16M6 20h10"/><rect x="3" y="4" width="22" height="20" rx="2"/></svg><h3>CREATE A CLASS</h3><p>Guns, equipment, perks, and deathstreaks, split by game, plus an All list. Modern Warfare 2, 3, and Black Ops are the first three.</p></article>
+<article class="feat"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#e2b657" stroke-width="1.6"><circle cx="14" cy="14" r="9"/><path d="M14 8v6l4 2"/></svg><h3>MATCH TYPES</h3><p>Only the modes that game shipped. Third Person is the SOCOM-style camera. Hardcore and Old School are rules.</p></article>
+<article class="feat"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#e2b657" stroke-width="1.6"><circle cx="14" cy="14" r="4"/><path d="M14 3v4M14 21v4M3 14h4M21 14h4M6 6l3 3M19 19l3 3M22 6l-3 3M9 19l-3 3"/></svg><h3>AMBIENT OCCLUSION <span class="tag">PLANNED</span></h3><p>Contact shadow in corners and under cover. A video setting, not a baked look.</p></article>
+<article class="feat"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#e2b657" stroke-width="1.6"><path d="M3 16c3-4 6 4 9 0s6 4 9 0 4-2 4 0v6H3v-6z"/></svg><h3>WATER <span class="tag">PLANNED</span></h3><p>A new water shader for maps that have it. Reflection and motion, not the flat retail sheet.</p></article>
+<article class="feat"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#e2b657" stroke-width="1.6"><path d="M14 4v4M8 7l2 3M20 7l-2 3M6 14h3M19 14h3"/><path d="M8 20c2 3 10 3 12 0"/><circle cx="14" cy="14" r="3"/></svg><h3>WEATHER <span class="tag">PLANNED</span></h3><p>Rain, fog, and clear. The options menu can list them. The world effect is still to be wired.</p></article>
+<article class="feat"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#e2b657" stroke-width="1.6"><path d="M5 22l8-16 8 16H5z"/><path d="M10 22l4-8 4 8"/></svg><h3>LIGHT AND SHADOW <span class="tag">PLANNED</span></h3><p>Sun direction, shadow quality, and a night pass. Per map, not one global grade.</p></article>
 </div></section>
 <section id="how"><div class="kicker">HOW IT WORKS</div><h2>POINT IT AT WHAT YOU OWN.</h2><p class="sub">No installer for the games. The client reads the folder you already have.</p>
 <div class="steps">
