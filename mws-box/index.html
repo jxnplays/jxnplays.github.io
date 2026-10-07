@@ -77,8 +77,14 @@
   .need { border-color: #e24b4b; color: #e24b4b; }
   .badge-tag.need { border-color: #e23b3b; color: #e23b3b; }
   .path { display: inline-block; background: #070604; border: 1px solid var(--line); color: #f6f1e6; font-family: "IBM Plex Mono", monospace; font-size: 12px; padding: 8px 10px; }
-  .legal { margin: 70px 0 0; padding: 28px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; line-height: 1.55; }
-  .legal strong { color: var(--ink); font-weight: 500; }
+
+  .legal { margin: 72px auto 0; width: min(1180px, calc(100% - 48px)); padding: 64px 0 48px; border-top: 1px solid var(--line); color: var(--muted); font-size: 15px; line-height: 1.6; }
+  .legal h2 { margin-bottom: 18px; }
+  .legal-card { border: 1px solid var(--line); border-left: 3px solid var(--gold); background: rgba(16,14,11,.92); padding: 22px 24px; max-width: 760px; }
+  .legal-card p { margin: 0 0 14px; }
+  .legal-card p:last-child { margin: 0; }
+  .legal strong { color: var(--ink); font-weight: 600; }
+
   .reveal { animation: rise .7s ease both; }
   .reveal:nth-child(2) { animation-delay: .08s; }
   @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
@@ -181,6 +187,8 @@
 <article class="mode"><h3>EXTINCTION</h3><p>Ghosts.</p></article>
 <article class="mode"><h3>CUSTOM MAPS</h3><p>All custom maps and mods.</p></article>
 </div></section>
-<footer class="legal"><strong>Made by jxnplays.</strong><br><br>Only legally owned games are supported. Point it at the latest Steam build you already own. The client reads that install. It does not ship maps, models, textures, sounds, or fonts, and it does not replace the Steam files. Call of Duty is a trademark of its owners. Not affiliated with Activision, Infinity Ward, Treyarch, Sledgehammer, or Steam.</footer>
+<footer class="legal"><div class="kicker">LEGAL</div><h2>FAN PROJECT.</h2>
+<div class="legal-card"><p>mws&box is an independent fan project by jxnplays. It is not affiliated with, endorsed by, or sponsored by Activision, Infinity Ward, Treyarch, Sledgehammer, or Steam. Call of Duty is a trademark of its owners.</p>
+<p>This site contains <strong>no game data</strong>. No maps, models, textures, sounds, or fonts. You must own a legitimate copy. The client reads that install. It does not download or replace the Steam files.</p></div></footer>
 </body>
 </html>
