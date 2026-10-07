@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>mws&box — coming soon</title>
+<meta name="description" content="Modern Warfare Sandbox. Fourteen games. One lobby. Coming soon.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#f6f1e6; --muted:#c4bbaa; --gold:#e2b657; --line:rgba(226,182,87,.22); }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #0b0a08; color: var(--ink); font-family: "IBM Plex Sans", sans-serif; background-image: linear-gradient(rgba(226,182,87,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(226,182,87,.04) 1px, transparent 1px); background-size: 48px 48px; }
+  a { color: var(--gold); text-decoration: none; }
+  nav { position: sticky; top: 0; z-index: 5; display: flex; justify-content: space-between; align-items: center; padding: 16px 28px; background: rgba(11,10,8,.9); border-bottom: 1px solid var(--line); }
+  .mark { font-family: "Barlow Condensed", sans-serif; letter-spacing: .18em; font-weight: 700; }
+  .mark i { color: var(--gold); font-style: normal; }
+  nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; }
+  nav a { color: #e6dcc8; }
+  .hero { position: relative; min-height: 88vh; display: flex; align-items: flex-end; overflow: hidden; }
+  .hero svg { position: absolute; right: -2%; bottom: 0; width: min(720px, 58vw); opacity: .75; }
+  .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, #0b0a08 0%, rgba(11,10,8,.82) 46%, rgba(11,10,8,.2) 100%); }
+  .hero .in { position: relative; z-index: 1; width: min(1180px, calc(100% - 48px)); margin: 0 auto 64px; }
+  .pill { display: inline-flex; border: 1px solid rgba(226,182,87,.55); color: var(--gold); border-radius: 999px; padding: 6px 12px; font-size: 12px; letter-spacing: .14em; }
+  h1 { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: clamp(64px, 9vw, 112px); line-height: .84; margin: 18px 0 14px; }
+  h1 em { font-style: normal; color: var(--gold); }
+  .lede { max-width: 580px; color: #e4dccb; font-size: 18px; }
+  .btn { display: inline-block; margin-top: 22px; background: var(--gold); color: #1a1408; font-weight: 600; padding: 12px 16px; border-radius: 6px; }
+  .stats { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--line); background: #12100c; }
+  .stats div { padding: 22px 8px; text-align: center; }
+  .stats b { display: block; color: var(--gold); font-family: "Barlow Condensed", sans-serif; font-size: 42px; line-height: 1; }
+  .stats span { color: var(--muted); font-size: 12px; letter-spacing: .12em; }
+  section { width: min(1180px, calc(100% - 48px)); margin: 0 auto; padding: 78px 0 10px; }
+  .kicker { color: var(--gold); letter-spacing: .16em; font-size: 12px; }
+  .kicker::before { content: ""; display: inline-block; width: 28px; height: 2px; background: var(--gold); margin-right: 10px; vertical-align: middle; }
+  h2 { font-family: "Barlow Condensed", sans-serif; font-size: clamp(40px, 6vw, 64px); line-height: .9; margin: 8px 0 12px; }
+  .sub { color: var(--muted); max-width: 720px; }
+  .reqs { display: grid; gap: 12px; margin-top: 26px; grid-template-columns: repeat(3, 1fr); }
+  .req { background: rgba(16,14,11,.92); border: 1px solid var(--line); border-radius: 8px; padding: 18px; position: relative; overflow: hidden; }
+  .req h3 { margin: 12px 0 8px; letter-spacing: .04em; font-size: 22px; font-family: "Barlow Condensed", sans-serif; }
+  .req li { color: var(--muted); }
+  .req ul { margin: 8px 0 16px; padding-left: 18px; }
+  .num { position: absolute; right: 14px; top: 8px; font-family: "Barlow Condensed", sans-serif; font-size: 92px; color: rgba(226,182,87,.12); line-height: 1; }
+  .badge { display: inline-block; border: 1px solid var(--gold); color: var(--gold); font-size: 11px; letter-spacing: .12em; padding: 3px 7px; }
+  .path { display: inline-block; background: #070604; border: 1px solid var(--line); color: #f6f1e6; font-family: "IBM Plex Mono", monospace; font-size: 12px; padding: 8px 10px; }
+  .close { margin-top: 28px; padding: 28px; border-left: 3px solid var(--gold); background: #14120e; }
+  footer { border-top: 1px solid var(--line); margin-top: 70px; padding: 28px; color: var(--muted); font-size: 14px; }
+  @media (max-width: 900px) { .stats, .reqs { grid-template-columns: 1fr; } nav ul { display: none; } }
+</style>
+</head>
+<body>
+<nav><div class="mark"><i>◆</i> MWS&BOX</div><ul><li><a href="#class">Class</a></li><li><a href="#modes">Modes</a></li><li><a href="#yours">Your games</a></li></ul></nav>
+<header class="hero">
+<svg viewBox="0 0 800 520" fill="none" aria-hidden="true"><path d="M80 420 L160 250 L240 420" stroke="#e2b657" stroke-width="1.2"/><path d="M200 420 L280 180 L390 420" stroke="#e2b657" stroke-width="1.2"/><path d="M360 420 L470 120 L620 420" stroke="#e2b657" stroke-width="1.2"/><path d="M470 120 L470 60 L500 40 L530 60 L530 120" stroke="#e2b657" stroke-width="1.2"/><circle cx="430" cy="210" r="46" stroke="#e2b657" stroke-width="1"/><path d="M430 164 V256 M384 210 H476" stroke="#e2b657" stroke-width="1"/></svg>
+<div class="in"><div class="pill">COMING SOON · RUST · BEVY</div><h1>FOURTEEN GAMES.<br>ONE LOBBY.<br><em>YOURS.</em></h1><p class="lede">Modern Warfare Sandbox is a fan client for the line from Call of Duty 1 through WWII. Modern Warfare 2 is the base. Every other game is optional, and adds only what that install contains.</p><a class="btn" href="#yours">Your games</a></div>
+</header>
+<div class="stats"><div><b>14</b><span>GAMES</span></div><div><b>1</b><span>REQUIRED</span></div><div><b>13</b><span>OPTIONAL</span></div><div><b>2017</b><span>THROUGH WWII</span></div><div><b>0</b><span>BYTES OF GAME DATA</span></div></div>
+<section id="class"><div class="kicker">CREATE A CLASS</div><h2>EVERYTHING YOU BROUGHT IN.</h2><p class="sub">Guns, attachments, perks, camos, emblems, calling cards, titles, and clan tags, where that game had them. Early games did not have a class screen. Those stay maps and guns.</p></section>
+<section id="modes"><div class="kicker">MODES</div><h2>PICK A FIGHT.</h2><div class="reqs"><article class="req"><h3>MULTIPLAYER</h3><p>A private match on the map you picked, from the game you picked.</p></article><article class="req"><h3>CAMPAIGN</h3><p>Each game's story, kept as its own mode.</p></article><article class="req"><h3>ZOMBIES</h3><p>World at War, Black Ops, Black Ops 2, Black Ops 3, Infinite Warfare.</p></article><article class="req"><h3>SPEC OPS</h3><p>Modern Warfare 2 and 3. Survival beside them.</p></article><article class="req"><h3>EXTINCTION</h3><p>Ghosts, as its own mode.</p></article><article class="req"><h3>HEADQUARTERS</h3><p>A room between matches. The WWII headquarters, and the rooms like it.</p></article></div></section>
+<section id="yours"><div class="kicker">REQUIREMENTS</div><h2>BRING YOUR OWN GAMES.</h2><p class="sub">No game data is distributed here. Modern Warfare 2 is required. The others are optional. A line is listed only if that game shipped it.</p>
+<div class="reqs">
+<article class="req"><span class="num">1</span><span class="badge">REQUIRED</span><h3>MODERN WARFARE 2</h3><ul><li>Maps, DLC maps, campaign, spec ops</li><li>Guns, attachments, akimbo, tac knife, riot shield</li><li>Perks, deathstreaks, killstreaks</li><li>Camos, emblems, titles, clan tags</li><li>Create a Class</li></ul><span class="path">folder with iw4mp.exe</span></article>
+<article class="req"><span class="num">2</span><span class="badge">OPTIONAL</span><h3>CALL OF DUTY</h3><ul><li>Campaign and multiplayer maps</li><li>Guns</li><li>No perks, attachments, emblems, or calling cards</li></ul><span class="path">folder with CoDMP.exe</span></article>
+<article class="req"><span class="num">3</span><span class="badge">OPTIONAL</span><h3>CALL OF DUTY 2</h3><ul><li>Campaign and multiplayer maps</li><li>Guns</li><li>No perks, attachments, emblems, or calling cards</li></ul><span class="path">folder with CoD2MP_s.exe</span></article>
+<article class="req"><span class="num">4</span><span class="badge">OPTIONAL</span><h3>CALL OF DUTY 3</h3><ul><li>Campaign and multiplayer</li><li>Maps and guns</li><li>No perks, attachments, emblems, or calling cards</li></ul><span class="path">its own install</span></article>
+<article class="req"><span class="num">5</span><span class="badge">OPTIONAL</span><h3>CALL OF DUTY 4</h3><ul><li>Maps, guns, attachments</li><li>Perks, killstreaks, challenges</li><li>Create a Class, clan tags</li><li>No emblems or calling cards</li></ul><span class="path">folder with iw3mp.exe</span></article>
+<article class="req"><span class="num">6</span><span class="badge">OPTIONAL</span><h3>WORLD AT WAR</h3><ul><li>Maps, guns, attachments, camos</li><li>Perks, killstreaks</li><li>Nazi Zombies</li><li>No calling cards</li></ul><span class="path">folder with CoDWaWmp.exe</span></article>
+<article class="req"><span class="num">7</span><span class="badge">OPTIONAL</span><h3>BLACK OPS</h3><ul><li>Maps, guns, attachments, camos</li><li>Perks, killstreaks, contracts</li><li>Emblems, calling cards, titles, clan tags</li><li>Zombies</li></ul><span class="path">folder with BlackOps.exe</span></article>
+<article class="req"><span class="num">8</span><span class="badge">OPTIONAL</span><h3>MODERN WARFARE 3</h3><ul><li>Maps, face-off maps, guns, attachments, camos</li><li>Perks, pointstreaks, deathstreaks, strike packages</li><li>Emblems, titles, clan tags</li><li>Survival and spec ops</li></ul><span class="path">folder with iw5mp.exe</span></article>
+<article class="req"><span class="num">9</span><span class="badge">OPTIONAL</span><h3>BLACK OPS 2</h3><ul><li>Maps, guns, attachments, camos</li><li>Pick Ten, perks, wildcards, scorestreaks</li><li>Emblems, calling cards, clan tags</li><li>Zombies</li></ul><span class="path">folder with t6mp.exe</span></article>
+<article class="req"><span class="num">10</span><span class="badge">OPTIONAL</span><h3>GHOSTS</h3><ul><li>Maps, guns, attachments</li><li>Squad points, its own create a class, squads</li><li>Perks, strike packages, soldier customization</li><li>Patches, clan tags, Extinction</li></ul><span class="path">folder with iw6mp.exe</span></article>
+<article class="req"><span class="num">11</span><span class="badge">OPTIONAL</span><h3>ADVANCED WARFARE</h3><ul><li>Maps, guns, attachments, weapon variants</li><li>Perks, exo abilities, scorestreaks</li><li>Calling cards, emblems, supply drops</li></ul><span class="path">folder with s1_mp64_ship.exe</span></article>
+<article class="req"><span class="num">12</span><span class="badge">OPTIONAL</span><h3>BLACK OPS 3</h3><ul><li>Maps, guns, attachments, Gunsmith, camos</li><li>Specialists, perks, scorestreaks</li><li>Emblems, calling cards, paintjobs</li><li>Zombies</li></ul><span class="path">folder with BlackOps3.exe</span></article>
+<article class="req"><span class="num">13</span><span class="badge">OPTIONAL</span><h3>INFINITE WARFARE</h3><ul><li>Maps, guns, attachments, weapon variants</li><li>Combat rigs, perks, scorestreaks</li><li>Calling cards, emblems</li><li>Zombies</li></ul><span class="path">folder with iw7_ship.exe</span></article>
+<article class="req"><span class="num">14</span><span class="badge">OPTIONAL</span><h3>WWII</h3><ul><li>Maps, guns, attachments, camos</li><li>Divisions, basic training, orders</li><li>Emblems, calling cards, headquarters</li><li>War</li></ul><span class="path">folder with s2_mp64_ship.exe</span></article>
+</div>
+<div class="close"><h2>COMING SOON.</h2><p class="sub">Fan project. Not affiliated with Activision, Infinity Ward, Treyarch, Sledgehammer, or the IW4L authors. No maps, models, textures, sounds, or fonts are included. Call of Duty is a trademark of its owners.</p></div>
+</section>
+<footer>This page is the aim, not a client.</footer>
+</body>
+</html>
