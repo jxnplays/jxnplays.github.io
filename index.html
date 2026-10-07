@@ -41,11 +41,11 @@
   .kicker::before { content: ""; display: inline-block; width: 28px; height: 2px; background: var(--gold); margin-right: 10px; vertical-align: middle; }
   h2 { font-family: "Barlow Condensed", sans-serif; font-size: clamp(40px, 6vw, 64px); line-height: .9; margin: 8px 0 12px; }
   .sub { color: var(--muted); max-width: 740px; }
-  .shots { grid-template-columns: repeat(5, 1fr); margin-top: 22px; }
-  .shots figure { margin: 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #100e0b; }
-  .shots img { width: 100%; height: 132px; object-fit: cover; display: block; background: #12100c; }
-  .shots img.badge { object-fit: contain; height: 118px; padding: 8px; }
-  .shots figcaption { padding: 10px 12px; color: var(--muted); font-size: 13px; }
+  .shots { grid-template-columns: repeat(5, 1fr); margin-top: 22px; align-items: stretch; }
+  .shots figure { margin: 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #100e0b; display: flex; flex-direction: column; height: 100%; }
+  .shots img { width: 100%; height: 148px; object-fit: cover; display: block; background: #12100c; flex: 0 0 148px; }
+  .shots img.badge { object-fit: contain; padding: 18px; }
+  .shots figcaption { padding: 12px 8px; color: var(--muted); font-size: 13px; text-align: center; min-height: 52px; display: flex; align-items: center; justify-content: center; }
   .reqs { grid-template-columns: repeat(3, 1fr); margin-top: 26px; }
   .modes { grid-template-columns: repeat(4, 1fr); margin-top: 26px; }
   .req, .mode { background: rgba(16,14,11,.92); border: 1px solid var(--line); border-radius: 8px; padding: 18px; position: relative; overflow: hidden; }
@@ -102,8 +102,8 @@
 <figure><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/311210/ss_ca7376d838d5714f916936f0070824c27c4c5641.1920x1080.jpg" alt="Black Ops 3"><figcaption>Black Ops 3</figcaption></figure>
 <figure><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/292730/ss_06a937d7ec971add2992fe89db4aa8ee1ac1ae30.1920x1080.jpg" alt="Infinite Warfare"><figcaption>Infinite Warfare</figcaption></figure>
 <figure><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/476600/ss_5e5727fc0974a154f69dc1d2e53ca8e63453022f.1920x1080.jpg" alt="WWII"><figcaption>WWII</figcaption></figure>
-<figure><img class="badge" src="https://avatars.githubusercontent.com/u/134955640?v=4" alt="IW4x"><figcaption>All custom maps and mods.</figcaption></figure>
-<figure><img class="badge" src="https://avatars.githubusercontent.com/u/38587099?v=4" alt="Plutonium"><figcaption>All custom maps and mods.</figcaption></figure>
+<figure><img class="badge" src="https://avatars.githubusercontent.com/u/134955640?v=4" alt="IW4x"><figcaption>IW4x</figcaption></figure>
+<figure><img class="badge" src="https://avatars.githubusercontent.com/u/38587099?v=4" alt="Plutonium"><figcaption>Plutonium</figcaption></figure>
 </div></section>
 <section id="yours"><div class="kicker">YOUR COPIES</div><h2>BRING YOUR OWN GAMES.</h2><p class="sub">A legally owned Steam install. The client reads that folder. It does not download or replace the game. Modern Warfare 2 is required. The others are optional.</p>
 <div class="reqs">
@@ -139,7 +139,7 @@
 <article class="mode"><h3>SURVIVAL</h3><p>Modern Warfare 3.</p></article>
 <article class="mode"><h3>ZOMBIES</h3><p>World at War through Infinite Warfare.</p></article>
 <article class="mode"><h3>EXTINCTION</h3><p>Ghosts.</p></article>
-<article class="mode"><h3>CUSTOM MAPS</h3><p>IW4x, Plutonium, usermaps. Labeled custom.</p></article>
+<article class="mode"><h3>CUSTOM MAPS</h3><p>All custom maps and mods.</p></article>
 </div></section>
 <footer class="legal"><strong>Made by jxnplays.</strong><br><br>Only legally owned games are supported. Point it at the latest Steam build you already own. The client reads that install. It does not ship maps, models, textures, sounds, or fonts, and it does not replace the Steam files. Call of Duty is a trademark of its owners. Not affiliated with Activision, Infinity Ward, Treyarch, Sledgehammer, or Steam.</footer>
 </body>
