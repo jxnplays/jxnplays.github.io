@@ -14,7 +14,7 @@
   a { color: var(--gold); text-decoration: none; }
   nav { position: sticky; top: 0; z-index: 5; display: flex; justify-content: space-between; align-items: center; padding: 14px 28px; background: rgba(11,10,8,.9); border-bottom: 1px solid var(--line); }
   .mark { font-family: "Barlow Condensed", sans-serif; letter-spacing: .16em; font-weight: 700; font-size: 22px; color: var(--gold); }
-  .by { color: var(--muted); font-size: 12px; letter-spacing: .12em; }
+  .by { position: absolute; left: 50%; transform: translateX(-50%); color: var(--muted); font-size: 12px; letter-spacing: .12em; white-space: nowrap; }
   nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; }
   nav a { color: #e6dcc8; }
   nav a:hover { color: var(--gold); }
@@ -24,7 +24,7 @@
   .pill { display: inline-flex; border: 1px solid rgba(226,182,87,.55); color: var(--gold); border-radius: 999px; padding: 6px 12px; font-size: 12px; letter-spacing: .14em; }
   h1 { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: clamp(56px, 8vw, 96px); line-height: .86; margin: 16px 0 12px; }
   h1 em { font-style: normal; color: var(--gold); }
-  .lede { max-width: 620px; margin: 0 auto; color: #e4dccb; font-size: 18px; }
+  .lede { max-width: 640px; margin: 0 auto; color: #e4dccb; font-size: 18px; }
   .btn { display: inline-block; margin-top: 22px; background: var(--gold); color: #1a1408; font-weight: 600; padding: 12px 16px; border-radius: 6px; }
   .stats, .reqs, .modes, .shots { display: grid; gap: 12px; }
   .stats { grid-template-columns: repeat(7, 1fr); border-top: 1px solid var(--line); background: #12100c; }
@@ -44,7 +44,7 @@
   .shots { grid-template-columns: repeat(5, 1fr); margin-top: 22px; }
   .shots figure { margin: 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #100e0b; }
   .shots img { width: 100%; height: 132px; object-fit: cover; display: block; background: #12100c; }
-  .shots img.badge { object-fit: contain; }
+  .shots img.badge { object-fit: contain; height: 118px; padding: 8px; }
   .shots figcaption { padding: 10px 12px; color: var(--muted); font-size: 13px; }
   .reqs { grid-template-columns: repeat(3, 1fr); margin-top: 26px; }
   .modes { grid-template-columns: repeat(4, 1fr); margin-top: 26px; }
@@ -62,16 +62,16 @@
   @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
-  @media (max-width: 900px) { .stats, .reqs, .modes, .shots { grid-template-columns: 1fr; } nav ul { display: none; } }
+  @media (max-width: 900px) { .stats, .reqs, .modes, .shots { grid-template-columns: 1fr; } nav ul, .by { display: none; } }
 </style>
 </head>
 <body>
-<nav><div class="mark">MWS&BOX</div><div class="by">MADE BY JXNPLAYS</div><ul><li><a href="#line">The line</a></li><li><a href="#yours">Games</a></li><li><a href="#list">Match types</a></li></ul></nav>
+<nav><div class="mark">MWS&BOX</div><div class="by">MADE BY JXNPLAYS</div><ul><li><a href="#games">Games</a></li><li><a href="#yours">Your copies</a></li><li><a href="#list">Match types</a></li></ul></nav>
 <header class="hero"><div class="in">
 <div class="word">MWS&BOX</div>
 <div class="pill">IN DEVELOPMENT · RUST · BEVY 0.19 · PYTHON</div>
 <h1>FOURTEEN GAMES.<br>ONE LOBBY.<br><em>YOURS.</em></h1>
-<p class="lede">A fan client for the line from Call of Duty 1 through WWII. Modern Warfare 2 is the base. Every other game is optional, and adds only what that install contains.</p>
+<p class="lede">One client for Call of Duty through WWII. Modern Warfare 2 is required. Every other game is optional, and only adds what that install already has.</p>
 <a class="btn" href="#yours">Welcome to the Sandbox</a>
 </div></header>
 <div class="stats" id="counts">
@@ -87,7 +87,7 @@
 <div class="item"><b>CALL OF DUTY</b><i>/</i></div><div class="item"><b>CALL OF DUTY 2</b><i>/</i></div><div class="item"><b>CALL OF DUTY 3</b><i>/</i></div><div class="item"><b>CALL OF DUTY 4</b><i>/</i></div><div class="item"><b>WORLD AT WAR</b><i>/</i></div><div class="item"><b>MODERN WARFARE 2</b><i>/</i></div><div class="item"><b>BLACK OPS</b><i>/</i></div><div class="item"><b>MODERN WARFARE 3</b><i>/</i></div><div class="item"><b>BLACK OPS 2</b><i>/</i></div><div class="item"><b>GHOSTS</b><i>/</i></div><div class="item"><b>ADVANCED WARFARE</b><i>/</i></div><div class="item"><b>BLACK OPS 3</b><i>/</i></div><div class="item"><b>INFINITE WARFARE</b><i>/</i></div><div class="item"><b>WWII</b><i>/</i></div>
 <div class="item"><b>CALL OF DUTY</b><i>/</i></div><div class="item"><b>CALL OF DUTY 2</b><i>/</i></div><div class="item"><b>CALL OF DUTY 3</b><i>/</i></div><div class="item"><b>CALL OF DUTY 4</b><i>/</i></div><div class="item"><b>WORLD AT WAR</b><i>/</i></div><div class="item"><b>MODERN WARFARE 2</b><i>/</i></div><div class="item"><b>BLACK OPS</b><i>/</i></div><div class="item"><b>MODERN WARFARE 3</b><i>/</i></div><div class="item"><b>BLACK OPS 2</b><i>/</i></div><div class="item"><b>GHOSTS</b><i>/</i></div><div class="item"><b>ADVANCED WARFARE</b><i>/</i></div><div class="item"><b>BLACK OPS 3</b><i>/</i></div><div class="item"><b>INFINITE WARFARE</b><i>/</i></div><div class="item"><b>WWII</b><i>/</i></div>
 </div></div>
-<section id="line"><div class="kicker">THE LINE</div><h2>FOURTEEN GAMES.</h2><p class="sub">One in-game shot each. IW4x and Plutonium sit with them, labeled custom. Call of Duty 3 has no Steam page, so it stays in the list below.</p>
+<section id="games"><div class="kicker">GAMES</div><h2>FOURTEEN GAMES.</h2><p class="sub">One in-game shot each. IW4x and Plutonium are the custom maps and mods. Call of Duty 3 has no Steam page, so it stays in the list below.</p>
 <div class="shots">
 <figure><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2620/0000000686.1920x1080.jpg" alt="Call of Duty"><figcaption>Call of Duty</figcaption></figure>
 <figure><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2630/0000000696.1920x1080.jpg" alt="Call of Duty 2"><figcaption>Call of Duty 2</figcaption></figure>
@@ -102,10 +102,10 @@
 <figure><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/311210/ss_ca7376d838d5714f916936f0070824c27c4c5641.1920x1080.jpg" alt="Black Ops 3"><figcaption>Black Ops 3</figcaption></figure>
 <figure><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/292730/ss_06a937d7ec971add2992fe89db4aa8ee1ac1ae30.1920x1080.jpg" alt="Infinite Warfare"><figcaption>Infinite Warfare</figcaption></figure>
 <figure><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/476600/ss_5e5727fc0974a154f69dc1d2e53ca8e63453022f.1920x1080.jpg" alt="WWII"><figcaption>WWII</figcaption></figure>
-<figure><img class="badge" src="iw4x.svg" alt="IW4x"><figcaption>IW4x. Custom maps.</figcaption></figure>
-<figure><img class="badge" src="plutonium.svg" alt="Plutonium"><figcaption>Plutonium. Custom maps.</figcaption></figure>
+<figure><img class="badge" src="https://avatars.githubusercontent.com/u/134955640?v=4" alt="IW4x"><figcaption>All custom maps and mods.</figcaption></figure>
+<figure><img class="badge" src="https://avatars.githubusercontent.com/u/38587099?v=4" alt="Plutonium"><figcaption>All custom maps and mods.</figcaption></figure>
 </div></section>
-<section id="yours"><div class="kicker">REQUIREMENTS</div><h2>BRING YOUR OWN GAMES.</h2><p class="sub">A legally owned Steam install. The client reads that folder. It does not download or replace the game. Modern Warfare 2 is required. The others are optional.</p>
+<section id="yours"><div class="kicker">YOUR COPIES</div><h2>BRING YOUR OWN GAMES.</h2><p class="sub">A legally owned Steam install. The client reads that folder. It does not download or replace the game. Modern Warfare 2 is required. The others are optional.</p>
 <div class="reqs">
 <article class="req"><span class="num">1</span><span class="badge-tag">REQUIRED</span><h3>MODERN WARFARE 2</h3><p>All maps, DLC, campaign, and Spec Ops. All guns, attachments, perks, camos, emblems, and killstreaks. All match types.</p><span class="path">folder with iw4mp.exe</span></article>
 <article class="req"><span class="num">2</span><span class="badge-tag">OPTIONAL</span><h3>CALL OF DUTY</h3><p>All maps. All guns. All match types.</p><span class="path">folder with CoDMP.exe</span></article>
@@ -122,13 +122,13 @@
 <article class="req"><span class="num">13</span><span class="badge-tag">OPTIONAL</span><h3>INFINITE WARFARE</h3><p>All maps. Rigs, all guns, attachments, and variants. Zombies. All match types.</p><span class="path">folder with iw7_ship.exe</span></article>
 <article class="req"><span class="num">14</span><span class="badge-tag">OPTIONAL</span><h3>WWII</h3><p>All maps. Divisions, all guns, attachments, and camos. Headquarters. All match types.</p><span class="path">folder with s2_mp64_ship.exe</span></article>
 </div></section>
-<section id="list"><div class="kicker">UNDER THE GAMES</div><h2>THE MATCH TYPES.</h2><p class="sub">A mode is listed only if that game shipped it, except Third Person. That is the SOCOM-style camera. Modern Warfare 2 shipped it. Hardcore and Old School are rules, not modes.</p>
+<section id="list"><div class="kicker">MATCH TYPES</div><h2>THE MATCH TYPES.</h2><p class="sub">A mode is listed only if that game shipped it, except Third Person. That is the SOCOM-style camera. Modern Warfare 2 shipped it. Hardcore and Old School are rules, not modes.</p>
 <div class="modes">
-<article class="mode"><h3>TEAM DEATHMATCH</h3><p>The whole line.</p></article>
-<article class="mode"><h3>FREE-FOR-ALL</h3><p>The whole line.</p></article>
+<article class="mode"><h3>TEAM DEATHMATCH</h3><p>The whole set.</p></article>
+<article class="mode"><h3>FREE-FOR-ALL</h3><p>The whole set.</p></article>
 <article class="mode"><h3>THIRD PERSON</h3><p>SOCOM-style camera.</p></article>
 <article class="mode"><h3>DOMINATION</h3><p>Call of Duty 2 through WWII.</p></article>
-<article class="mode"><h3>SEARCH AND DESTROY</h3><p>The whole line.</p></article>
+<article class="mode"><h3>SEARCH AND DESTROY</h3><p>The whole set.</p></article>
 <article class="mode"><h3>HEADQUARTERS</h3><p>Call of Duty 4 through Black Ops.</p></article>
 <article class="mode"><h3>CAPTURE THE FLAG</h3><p>Call of Duty through Black Ops.</p></article>
 <article class="mode"><h3>SABOTAGE</h3><p>Call of Duty 4 through Black Ops.</p></article>
