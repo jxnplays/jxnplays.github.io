@@ -35,44 +35,87 @@
   .kicker::before { content: ""; display: inline-block; width: 28px; height: 2px; background: var(--gold); margin-right: 10px; vertical-align: middle; }
   h2 { font-family: "Barlow Condensed", sans-serif; font-size: clamp(40px, 6vw, 64px); line-height: .9; margin: 8px 0 12px; }
   .sub { color: var(--muted); max-width: 720px; }
-  .reqs { display: grid; gap: 12px; margin-top: 26px; grid-template-columns: repeat(3, 1fr); }
-  .req { background: rgba(16,14,11,.92); border: 1px solid var(--line); border-radius: 8px; padding: 18px; position: relative; overflow: hidden; }
-  .req h3 { margin: 12px 0 8px; letter-spacing: .04em; font-size: 22px; font-family: "Barlow Condensed", sans-serif; }
-  .req li { color: var(--muted); }
+  .reqs, .modes { display: grid; gap: 12px; margin-top: 26px; }
+  .reqs { grid-template-columns: repeat(3, 1fr); }
+  .modes { grid-template-columns: repeat(4, 1fr); }
+  .req, .mode { background: rgba(16,14,11,.92); border: 1px solid var(--line); border-radius: 8px; padding: 18px; position: relative; overflow: hidden; }
+  .req h3, .mode h3 { margin: 0 0 8px; letter-spacing: .04em; font-size: 18px; font-family: "Barlow Condensed", sans-serif; }
+  .req li, .mode p, .req p { color: var(--muted); margin: 0; }
   .req ul { margin: 8px 0 16px; padding-left: 18px; }
+  .req h3 { margin-top: 12px; font-size: 22px; }
   .num { position: absolute; right: 14px; top: 8px; font-family: "Barlow Condensed", sans-serif; font-size: 92px; color: rgba(226,182,87,.12); line-height: 1; }
   .badge { display: inline-block; border: 1px solid var(--gold); color: var(--gold); font-size: 11px; letter-spacing: .12em; padding: 3px 7px; }
   .path { display: inline-block; background: #070604; border: 1px solid var(--line); color: #f6f1e6; font-family: "IBM Plex Mono", monospace; font-size: 12px; padding: 8px 10px; }
   .close { margin-top: 28px; padding: 28px; border-left: 3px solid var(--gold); background: #14120e; }
   footer { border-top: 1px solid var(--line); margin-top: 70px; padding: 28px; color: var(--muted); font-size: 14px; }
-  @media (max-width: 900px) { .stats, .reqs { grid-template-columns: 1fr; } nav ul { display: none; } }
+  @media (max-width: 900px) { .stats, .reqs, .modes { grid-template-columns: 1fr; } nav ul { display: none; } }
 </style>
 </head>
 <body>
-<nav><div class="mark"><i>◆</i> MWS&BOX</div><ul><li><a href="#class">Class</a></li><li><a href="#modes">Modes</a></li><li><a href="#yours">Your games</a></li></ul></nav>
+<nav><div class="mark"><i>◆</i> MWS&BOX</div><ul><li><a href="#modes">Modes</a></li><li><a href="#list">Every mode</a></li><li><a href="#yours">Your games</a></li></ul></nav>
 <header class="hero">
-<svg viewBox="0 0 800 520" fill="none" aria-hidden="true"><path d="M80 420 L160 250 L240 420" stroke="#e2b657" stroke-width="1.2"/><path d="M200 420 L280 180 L390 420" stroke="#e2b657" stroke-width="1.2"/><path d="M360 420 L470 120 L620 420" stroke="#e2b657" stroke-width="1.2"/><path d="M470 120 L470 60 L500 40 L530 60 L530 120" stroke="#e2b657" stroke-width="1.2"/><circle cx="430" cy="210" r="46" stroke="#e2b657" stroke-width="1"/><path d="M430 164 V256 M384 210 H476" stroke="#e2b657" stroke-width="1"/></svg>
-<div class="in"><div class="pill">COMING SOON · RUST · BEVY</div><h1>FOURTEEN GAMES.<br>ONE LOBBY.<br><em>YOURS.</em></h1><p class="lede">Modern Warfare Sandbox is a fan client for the line from Call of Duty 1 through WWII. Modern Warfare 2 is the base. Every other game is optional, and adds only what that install contains.</p><a class="btn" href="#yours">Your games</a></div>
+<svg viewBox="0 0 800 520" fill="none" aria-hidden="true"><path d="M80 420 L160 250 L240 420" stroke="#e2b657" stroke-width="1.2"/><path d="M200 420 L280 180 L390 420" stroke="#e2b657" stroke-width="1.2"/><path d="M360 420 L470 120 L620 420" stroke="#e2b657" stroke-width="1.2"/><circle cx="430" cy="210" r="46" stroke="#e2b657" stroke-width="1"/><path d="M430 164 V256 M384 210 H476" stroke="#e2b657" stroke-width="1"/></svg>
+<div class="in"><div class="pill">COMING SOON · RUST · BEVY</div><h1>FOURTEEN GAMES.<br>ONE LOBBY.<br><em>YOURS.</em></h1><p class="lede">Modern Warfare Sandbox is a fan client for the line from Call of Duty 1 through WWII. Modern Warfare 2 is the base. Every other game is optional, and adds only what that install contains.</p><a class="btn" href="#list">Every mode</a></div>
 </header>
 <div class="stats"><div><b>14</b><span>GAMES</span></div><div><b>1</b><span>REQUIRED</span></div><div><b>13</b><span>OPTIONAL</span></div><div><b>2017</b><span>THROUGH WWII</span></div><div><b>0</b><span>BYTES OF GAME DATA</span></div></div>
-<section id="class"><div class="kicker">CREATE A CLASS</div><h2>EVERYTHING YOU BROUGHT IN.</h2><p class="sub">Guns, attachments, perks, camos, emblems, calling cards, titles, and clan tags, where that game had them. Early games did not have a class screen. Those stay maps and guns.</p></section>
-<section id="modes"><div class="kicker">MODES</div><h2>PICK A FIGHT.</h2><div class="reqs"><article class="req"><h3>MULTIPLAYER</h3><p>A private match on the map you picked, from the game you picked.</p></article><article class="req"><h3>CAMPAIGN</h3><p>Each game's story, kept as its own mode.</p></article><article class="req"><h3>ZOMBIES</h3><p>World at War, Black Ops, Black Ops 2, Black Ops 3, Infinite Warfare.</p></article><article class="req"><h3>SPEC OPS</h3><p>Modern Warfare 2 and 3. Survival beside them.</p></article><article class="req"><h3>EXTINCTION</h3><p>Ghosts, as its own mode.</p></article><article class="req"><h3>HEADQUARTERS</h3><p>A room between matches. The WWII headquarters, and the rooms like it.</p></article></div></section>
+<section id="modes"><div class="kicker">ROOMS</div><h2>PICK A FIGHT.</h2><p class="sub">These are the rooms. The match types are under them. A mode is listed only if that game shipped it. Private match first. Live servers later.</p><div class="reqs"><article class="req"><h3>MULTIPLAYER</h3><p>The match types below, on the map you picked, from the game you picked.</p></article><article class="req"><h3>CAMPAIGN</h3><p>Each game's story missions, kept as that game's campaign.</p></article><article class="req"><h3>ZOMBIES</h3><p>World at War, Black Ops, Black Ops 2, Black Ops 3, Infinite Warfare.</p></article><article class="req"><h3>SPEC OPS</h3><p>Modern Warfare 2 missions. Modern Warfare 3 missions and Survival.</p></article><article class="req"><h3>EXTINCTION</h3><p>Ghosts, as its own mode.</p></article><article class="req"><h3>HEADQUARTERS</h3><p>The WWII social headquarters, and the rooms between matches.</p></article></div></section>
+<section id="list"><div class="kicker">EVERY MODE</div><h2>THE MATCH TYPES.</h2><p class="sub">Hardcore and Old School are rules on a mode, not modes of their own. Third-person is the same.</p><div class="modes">
+<article class="mode"><h3>TEAM DEATHMATCH</h3><p>The whole line.</p></article>
+<article class="mode"><h3>FREE-FOR-ALL</h3><p>The whole line.</p></article>
+<article class="mode"><h3>DOMINATION</h3><p>Call of Duty 2 through WWII.</p></article>
+<article class="mode"><h3>SEARCH AND DESTROY</h3><p>The whole line.</p></article>
+<article class="mode"><h3>HEADQUARTERS</h3><p>Call of Duty 4, World at War, Modern Warfare 2, Black Ops.</p></article>
+<article class="mode"><h3>CAPTURE THE FLAG</h3><p>Call of Duty through Black Ops.</p></article>
+<article class="mode"><h3>SABOTAGE</h3><p>Call of Duty 4, World at War, Modern Warfare 2, Black Ops.</p></article>
+<article class="mode"><h3>DEMOLITION</h3><p>World at War, Modern Warfare 2, Black Ops.</p></article>
+<article class="mode"><h3>KILL CONFIRMED</h3><p>Modern Warfare 3 through WWII.</p></article>
+<article class="mode"><h3>HARDPOINT</h3><p>Black Ops 2, Ghosts, Advanced Warfare, Black Ops 3, Infinite Warfare, WWII.</p></article>
+<article class="mode"><h3>GROUND WAR</h3><p>Modern Warfare 2 and 3. Larger teams, same rules.</p></article>
+<article class="mode"><h3>FACE OFF</h3><p>Modern Warfare 3. The 1v1 and 2v2 maps.</p></article>
+<article class="mode"><h3>TEAM DEFENDER</h3><p>Modern Warfare 3.</p></article>
+<article class="mode"><h3>DROP ZONE</h3><p>Modern Warfare 3 and Ghosts.</p></article>
+<article class="mode"><h3>GRIND</h3><p>Modern Warfare 3 and Ghosts.</p></article>
+<article class="mode"><h3>INFECTED</h3><p>Modern Warfare 3, Ghosts, Advanced Warfare, Black Ops 3.</p></article>
+<article class="mode"><h3>REINFORCE</h3><p>Modern Warfare 3.</p></article>
+<article class="mode"><h3>JUGGERNAUT</h3><p>Modern Warfare 3.</p></article>
+<article class="mode"><h3>SEARCH AND RESCUE</h3><p>Ghosts.</p></article>
+<article class="mode"><h3>BLITZ</h3><p>Ghosts.</p></article>
+<article class="mode"><h3>CRANKED</h3><p>Ghosts.</p></article>
+<article class="mode"><h3>HUNTED</h3><p>Ghosts.</p></article>
+<article class="mode"><h3>SAFEGUARD</h3><p>Ghosts and Black Ops 3.</p></article>
+<article class="mode"><h3>UPLINK</h3><p>Advanced Warfare and Black Ops 3.</p></article>
+<article class="mode"><h3>MOMENTUM</h3><p>Advanced Warfare.</p></article>
+<article class="mode"><h3>DEFENDER</h3><p>Infinite Warfare.</p></article>
+<article class="mode"><h3>FRONTLINE</h3><p>Infinite Warfare.</p></article>
+<article class="mode"><h3>GRIDIRON</h3><p>WWII.</p></article>
+<article class="mode"><h3>WAR</h3><p>WWII. Objective assaults, not a deathmatch.</p></article>
+<article class="mode"><h3>GUN GAME</h3><p>Black Ops, Modern Warfare 3, Black Ops 2, and the later party lists.</p></article>
+<article class="mode"><h3>ONE IN THE CHAMBER</h3><p>Black Ops and Modern Warfare 3.</p></article>
+<article class="mode"><h3>STICKS AND STONES</h3><p>Black Ops wager match.</p></article>
+<article class="mode"><h3>SHARPSHOOTER</h3><p>Black Ops wager match.</p></article>
+<article class="mode"><h3>CAMPAIGN</h3><p>Every game's story missions.</p></article>
+<article class="mode"><h3>SPEC OPS</h3><p>Modern Warfare 2 and 3 mission lists.</p></article>
+<article class="mode"><h3>SURVIVAL</h3><p>Modern Warfare 3.</p></article>
+<article class="mode"><h3>ZOMBIES</h3><p>World at War, Black Ops, Black Ops 2, Black Ops 3, Infinite Warfare.</p></article>
+<article class="mode"><h3>EXTINCTION</h3><p>Ghosts.</p></article>
+<article class="mode"><h3>HEADQUARTERS</h3><p>WWII social space. Not the Headquarters match type.</p></article>
+</div></section>
 <section id="yours"><div class="kicker">REQUIREMENTS</div><h2>BRING YOUR OWN GAMES.</h2><p class="sub">No game data is distributed here. Modern Warfare 2 is required. The others are optional. A line is listed only if that game shipped it.</p>
 <div class="reqs">
-<article class="req"><span class="num">1</span><span class="badge">REQUIRED</span><h3>MODERN WARFARE 2</h3><ul><li>Maps, DLC maps, campaign, spec ops</li><li>Guns, attachments, akimbo, tac knife, riot shield</li><li>Perks, deathstreaks, killstreaks</li><li>Camos, emblems, titles, clan tags</li><li>Create a Class</li></ul><span class="path">folder with iw4mp.exe</span></article>
-<article class="req"><span class="num">2</span><span class="badge">OPTIONAL</span><h3>CALL OF DUTY</h3><ul><li>Campaign and multiplayer maps</li><li>Guns</li><li>No perks, attachments, emblems, or calling cards</li></ul><span class="path">folder with CoDMP.exe</span></article>
-<article class="req"><span class="num">3</span><span class="badge">OPTIONAL</span><h3>CALL OF DUTY 2</h3><ul><li>Campaign and multiplayer maps</li><li>Guns</li><li>No perks, attachments, emblems, or calling cards</li></ul><span class="path">folder with CoD2MP_s.exe</span></article>
-<article class="req"><span class="num">4</span><span class="badge">OPTIONAL</span><h3>CALL OF DUTY 3</h3><ul><li>Campaign and multiplayer</li><li>Maps and guns</li><li>No perks, attachments, emblems, or calling cards</li></ul><span class="path">its own install</span></article>
-<article class="req"><span class="num">5</span><span class="badge">OPTIONAL</span><h3>CALL OF DUTY 4</h3><ul><li>Maps, guns, attachments</li><li>Perks, killstreaks, challenges</li><li>Create a Class, clan tags</li><li>No emblems or calling cards</li></ul><span class="path">folder with iw3mp.exe</span></article>
-<article class="req"><span class="num">6</span><span class="badge">OPTIONAL</span><h3>WORLD AT WAR</h3><ul><li>Maps, guns, attachments, camos</li><li>Perks, killstreaks</li><li>Nazi Zombies</li><li>No calling cards</li></ul><span class="path">folder with CoDWaWmp.exe</span></article>
-<article class="req"><span class="num">7</span><span class="badge">OPTIONAL</span><h3>BLACK OPS</h3><ul><li>Maps, guns, attachments, camos</li><li>Perks, killstreaks, contracts</li><li>Emblems, calling cards, titles, clan tags</li><li>Zombies</li></ul><span class="path">folder with BlackOps.exe</span></article>
-<article class="req"><span class="num">8</span><span class="badge">OPTIONAL</span><h3>MODERN WARFARE 3</h3><ul><li>Maps, face-off maps, guns, attachments, camos</li><li>Perks, pointstreaks, deathstreaks, strike packages</li><li>Emblems, titles, clan tags</li><li>Survival and spec ops</li></ul><span class="path">folder with iw5mp.exe</span></article>
-<article class="req"><span class="num">9</span><span class="badge">OPTIONAL</span><h3>BLACK OPS 2</h3><ul><li>Maps, guns, attachments, camos</li><li>Pick Ten, perks, wildcards, scorestreaks</li><li>Emblems, calling cards, clan tags</li><li>Zombies</li></ul><span class="path">folder with t6mp.exe</span></article>
-<article class="req"><span class="num">10</span><span class="badge">OPTIONAL</span><h3>GHOSTS</h3><ul><li>Maps, guns, attachments</li><li>Squad points, its own create a class, squads</li><li>Perks, strike packages, soldier customization</li><li>Patches, clan tags, Extinction</li></ul><span class="path">folder with iw6mp.exe</span></article>
-<article class="req"><span class="num">11</span><span class="badge">OPTIONAL</span><h3>ADVANCED WARFARE</h3><ul><li>Maps, guns, attachments, weapon variants</li><li>Perks, exo abilities, scorestreaks</li><li>Calling cards, emblems, supply drops</li></ul><span class="path">folder with s1_mp64_ship.exe</span></article>
-<article class="req"><span class="num">12</span><span class="badge">OPTIONAL</span><h3>BLACK OPS 3</h3><ul><li>Maps, guns, attachments, Gunsmith, camos</li><li>Specialists, perks, scorestreaks</li><li>Emblems, calling cards, paintjobs</li><li>Zombies</li></ul><span class="path">folder with BlackOps3.exe</span></article>
-<article class="req"><span class="num">13</span><span class="badge">OPTIONAL</span><h3>INFINITE WARFARE</h3><ul><li>Maps, guns, attachments, weapon variants</li><li>Combat rigs, perks, scorestreaks</li><li>Calling cards, emblems</li><li>Zombies</li></ul><span class="path">folder with iw7_ship.exe</span></article>
-<article class="req"><span class="num">14</span><span class="badge">OPTIONAL</span><h3>WWII</h3><ul><li>Maps, guns, attachments, camos</li><li>Divisions, basic training, orders</li><li>Emblems, calling cards, headquarters</li><li>War</li></ul><span class="path">folder with s2_mp64_ship.exe</span></article>
+<article class="req"><span class="num">1</span><span class="badge">REQUIRED</span><h3>MODERN WARFARE 2</h3><ul><li>Maps, DLC maps, campaign, spec ops</li><li>Guns, attachments, akimbo, tac knife, riot shield</li><li>Perks, deathstreaks, killstreaks</li><li>Camos, emblems, titles, clan tags, Create a Class</li><li>TDM, FFA, Domination, Search, Headquarters, CTF, Sabotage, Demolition</li></ul><span class="path">folder with iw4mp.exe</span></article>
+<article class="req"><span class="num">2</span><span class="badge">OPTIONAL</span><h3>CALL OF DUTY</h3><ul><li>Campaign, maps, guns</li><li>TDM, FFA, Search, CTF</li><li>No perks, attachments, emblems, or calling cards</li></ul><span class="path">folder with CoDMP.exe</span></article>
+<article class="req"><span class="num">3</span><span class="badge">OPTIONAL</span><h3>CALL OF DUTY 2</h3><ul><li>Campaign, maps, guns</li><li>TDM, FFA, Domination, Search, CTF</li><li>No perks, attachments, emblems, or calling cards</li></ul><span class="path">folder with CoD2MP_s.exe</span></article>
+<article class="req"><span class="num">4</span><span class="badge">OPTIONAL</span><h3>CALL OF DUTY 3</h3><ul><li>Campaign, maps, guns</li><li>TDM, FFA, Domination, Search, CTF</li><li>No perks, attachments, emblems, or calling cards</li></ul><span class="path">its own install</span></article>
+<article class="req"><span class="num">5</span><span class="badge">OPTIONAL</span><h3>CALL OF DUTY 4</h3><ul><li>Attachments, perks, killstreaks, Create a Class, clan tags</li><li>TDM, FFA, Domination, Search, Headquarters, Sabotage, CTF</li><li>No emblems or calling cards</li></ul><span class="path">folder with iw3mp.exe</span></article>
+<article class="req"><span class="num">6</span><span class="badge">OPTIONAL</span><h3>WORLD AT WAR</h3><ul><li>Attachments, camos, perks, killstreaks, Zombies</li><li>TDM, FFA, Domination, Search, Headquarters, Sabotage, CTF, Demolition</li></ul><span class="path">folder with CoDWaWmp.exe</span></article>
+<article class="req"><span class="num">7</span><span class="badge">OPTIONAL</span><h3>BLACK OPS</h3><ul><li>Attachments, camos, perks, contracts, emblems, calling cards, Zombies</li><li>TDM, FFA, Domination, Search, Headquarters, CTF, Sabotage, Demolition</li><li>Gun Game, One in the Chamber, Sticks and Stones, Sharpshooter</li></ul><span class="path">folder with BlackOps.exe</span></article>
+<article class="req"><span class="num">8</span><span class="badge">OPTIONAL</span><h3>MODERN WARFARE 3</h3><ul><li>Attachments, camos, perks, pointstreaks, emblems, titles, spec ops, Survival</li><li>TDM, FFA, Domination, Search, Kill Confirmed, Face Off, Drop Zone, Grind, Infected</li></ul><span class="path">folder with iw5mp.exe</span></article>
+<article class="req"><span class="num">9</span><span class="badge">OPTIONAL</span><h3>BLACK OPS 2</h3><ul><li>Pick Ten, attachments, camos, perks, wildcards, scorestreaks, emblems, calling cards, Zombies</li><li>TDM, FFA, Domination, Search, Hardpoint, Kill Confirmed, Gun Game</li></ul><span class="path">folder with t6mp.exe</span></article>
+<article class="req"><span class="num">10</span><span class="badge">OPTIONAL</span><h3>GHOSTS</h3><ul><li>Squad points, attachments, perks, squads, patches, Extinction</li><li>TDM, FFA, Domination, Search, Blitz, Cranked, Search and Rescue, Hunted, Infected</li></ul><span class="path">folder with iw6mp.exe</span></article>
+<article class="req"><span class="num">11</span><span class="badge">OPTIONAL</span><h3>ADVANCED WARFARE</h3><ul><li>Attachments, variants, perks, exo abilities, calling cards, emblems</li><li>TDM, FFA, Domination, Search, Hardpoint, Uplink, Momentum, Infected</li></ul><span class="path">folder with s1_mp64_ship.exe</span></article>
+<article class="req"><span class="num">12</span><span class="badge">OPTIONAL</span><h3>BLACK OPS 3</h3><ul><li>Gunsmith, specialists, attachments, camos, emblems, calling cards, Zombies</li><li>TDM, FFA, Domination, Search, Hardpoint, Safeguard, Uplink</li></ul><span class="path">folder with BlackOps3.exe</span></article>
+<article class="req"><span class="num">13</span><span class="badge">OPTIONAL</span><h3>INFINITE WARFARE</h3><ul><li>Rigs, attachments, variants, perks, calling cards, emblems, Zombies</li><li>TDM, FFA, Domination, Search, Hardpoint, Defender, Frontline</li></ul><span class="path">folder with iw7_ship.exe</span></article>
+<article class="req"><span class="num">14</span><span class="badge">OPTIONAL</span><h3>WWII</h3><ul><li>Divisions, attachments, camos, emblems, calling cards, headquarters</li><li>TDM, FFA, Domination, Search, Hardpoint, Kill Confirmed, Gridiron, War</li></ul><span class="path">folder with s2_mp64_ship.exe</span></article>
 </div>
 <div class="close"><h2>COMING SOON.</h2><p class="sub">Fan project. Not affiliated with Activision, Infinity Ward, Treyarch, Sledgehammer, or the IW4L authors. No maps, models, textures, sounds, or fonts are included. Call of Duty is a trademark of its owners.</p></div>
 </section>
