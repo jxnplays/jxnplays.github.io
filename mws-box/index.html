@@ -78,6 +78,17 @@
   .badge-tag.need { border-color: #e23b3b; color: #e23b3b; }
   .path { display: inline-block; background: #070604; border: 1px solid var(--line); color: #f6f1e6; font-family: "IBM Plex Mono", monospace; font-size: 12px; padding: 8px 10px; }
 
+
+  .road { width: 100%; border-collapse: collapse; margin-top: 22px; font-size: 14px; }
+  .road th, .road td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .road th { color: var(--gold); font-family: "Barlow Condensed", sans-serif; letter-spacing: .08em; font-size: 15px; font-weight: 600; }
+  .road td { color: var(--muted); }
+  .st { display: inline-block; font-size: 11px; letter-spacing: .08em; padding: 2px 7px; border: 1px solid var(--line); }
+  .in { color: #b7d39a; border-color: rgba(183,211,154,.45); }
+  .wire { color: var(--gold); border-color: rgba(226,182,87,.45); }
+  .miss { color: #e7b3b3; border-color: rgba(226,75,75,.4); }
+  .note { margin-top: 22px; border: 1px solid var(--line); border-left: 3px solid var(--gold); background: rgba(16,14,11,.92); padding: 16px 18px; color: var(--muted); max-width: 760px; }
+  .note strong { color: var(--ink); }
   .legal { margin: 72px auto 0; width: min(1180px, calc(100% - 48px)); padding: 64px 0 48px; border-top: 1px solid var(--line); color: var(--muted); font-size: 15px; line-height: 1.6; }
   .legal h2 { margin-bottom: 18px; }
   .legal-card { border: 1px solid var(--line); border-left: 3px solid var(--gold); background: rgba(16,14,11,.92); padding: 22px 24px; max-width: 760px; }
@@ -94,7 +105,7 @@
 </style>
 </head>
 <body>
-<nav><div class="mark">MWS&BOX</div><div class="by">MADE BY JXNPLAYS</div><ul><li><a href="#games">Games</a></li><li><a href="#board">Features</a></li><li><a href="#how">How it works</a></li><li><a href="#yours">Your copies</a></li><li><a href="#list">Match types</a></li></ul></nav>
+<nav><div class="mark">MWS&BOX</div><div class="by">MADE BY JXNPLAYS</div><ul><li><a href="#games">Games</a></li><li><a href="#board">Features</a></li><li><a href="#how">How it works</a></li><li><a href="#yours">Your copies</a></li><li><a href="#roadmap">Roadmap</a></li><li><a href="#list">Match types</a></li></ul></nav>
 <header class="hero"><div class="reveal">
 <div class="word">MWS&BOX</div>
 <div class="pill">IN DEVELOPMENT · RUST · BEVY 0.19 · PYTHON</div>
@@ -192,6 +203,25 @@
 <article class="mode"><h3>EXTINCTION</h3><p>Ghosts.</p></article>
 <article class="mode"><h3>CUSTOM MAPS</h3><p>All custom maps and mods.</p></article>
 </div></section>
+
+<section id="roadmap"><div class="kicker">ROADMAP</div><h2>WHAT IS IN A MATCH.</h2><p class="sub">Status from playtests, not from the install. In game means it loaded and rendered. Wiring means the asset is known and the menu path is not finished. Not in source means the table or image list is not in the readable files. Needs a reader means that game cannot be opened yet.</p>
+<table class="road">
+<thead><tr><th>Game</th><th>Maps</th><th>Primaries</th><th>Camos</th><th>Emblems</th><th>Calling cards</th></tr></thead>
+<tbody>
+<tr><td>Modern Warfare 2</td><td><span class="st in">In game</span></td><td><span class="st in">In game</span></td><td><span class="st in">In game</span></td><td><span class="st in">In game</span></td><td><span class="st in">In game</span></td></tr>
+<tr><td>Modern Warfare 3</td><td><span class="st in">In game</span></td><td><span class="st in">In game</span></td><td><span class="st in">In game</span></td><td><span class="st miss">Not in source</span></td><td><span class="st miss">Not in source</span></td></tr>
+<tr><td>Black Ops</td><td><span class="st in">In game</span></td><td><span class="st in">In game</span></td><td><span class="st in">In game</span></td><td><span class="st wire">Wiring</span></td><td><span class="st miss">Not in source</span></td></tr>
+<tr><td>Black Ops 2</td><td><span class="st in">In game</span></td><td><span class="st in">In game</span></td><td><span class="st in">In game</span></td><td><span class="st miss">Not in source</span></td><td><span class="st miss">Not in source</span></td></tr>
+<tr><td>Ghosts</td><td><span class="st miss">Needs a reader</span></td><td><span class="st miss">Needs a reader</span></td><td><span class="st miss">Needs a reader</span></td><td><span class="st miss">Needs a reader</span></td><td><span class="st miss">Needs a reader</span></td></tr>
+<tr><td>Advanced Warfare</td><td><span class="st miss">Needs a reader</span></td><td><span class="st miss">Needs a reader</span></td><td><span class="st miss">Needs a reader</span></td><td><span class="st miss">Needs a reader</span></td><td><span class="st miss">Needs a reader</span></td></tr>
+<tr><td>Black Ops 3</td><td><span class="st miss">Needs a reader</span></td><td><span class="st miss">Needs a reader</span></td><td><span class="st miss">Needs a reader</span></td><td><span class="st miss">Needs a reader</span></td><td><span class="st miss">Needs a reader</span></td></tr>
+<tr><td>Infinite Warfare</td><td><span class="st miss">Needs a reader</span></td><td><span class="st miss">Needs a reader</span></td><td><span class="st miss">Needs a reader</span></td><td><span class="st miss">Needs a reader</span></td><td><span class="st miss">Needs a reader</span></td></tr>
+<tr><td>WWII</td><td><span class="st miss">Needs a reader</span></td><td><span class="st miss">Needs a reader</span></td><td><span class="st miss">Needs a reader</span></td><td><span class="st miss">Needs a reader</span></td><td><span class="st miss">Needs a reader</span></td></tr>
+</tbody>
+</table>
+<p class="sub" style="margin-top:18px">Black Ops 2 confirmed in a match: Detour, Cove, Rush, Uplink. Class select, weapon preview, and camo rendered. Zero crashes on that pass. Emblems and calling cards are Modern Warfare 2 only. The other three games reference the card tables, but the table body is not in the readable files.</p>
+<div class="note"><strong>Call of Duty 4 headquarters.</strong> A separate client mod is building a social headquarters in the WWII style: a hangar you walk through, loadouts, combat record, character select. That is not this client. It is in development on that project.</div>
+</section>
 <footer class="legal"><div class="kicker">LEGAL</div><h2>FAN PROJECT.</h2>
 <div class="legal-card"><p>mws&box is an independent fan project by jxnplays. It is not affiliated with, endorsed by, or sponsored by Activision, Infinity Ward, Treyarch, Sledgehammer, or Steam. Call of Duty is a trademark of its owners.</p>
 <p>This site contains <strong>no game data</strong>. No maps, models, textures, sounds, or fonts. You must own a legitimate copy. The client reads that install. It does not download or replace the Steam files.</p></div></footer>
