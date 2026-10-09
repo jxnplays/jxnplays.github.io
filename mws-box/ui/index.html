@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>mws&box — UI demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #07080a;
+    --bg-2: #101216;
+    --line: rgba(255,255,255,.08);
+    --text: #f4f1ea;
+    --muted: #9aa0a6;
+    --dim: #6d737a;
+    --green: #b6e84a;
+    --green-2: #8fbf32;
+    --green-dim: rgba(182,232,74,.16);
+    --amber: #e7a23a;
+    --danger: #d4543c;
+    --card: rgba(12,14,16,.72);
+    --shadow: 0 30px 80px rgba(0,0,0,.45);
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; background: var(--bg); color: var(--text); }
+  body {
+    font-family: Barlow, system-ui, sans-serif;
+    overflow: hidden;
+    background:
+      radial-gradient(1200px 700px at 70% 40%, rgba(80,90,70,.18), transparent 60%),
+      linear-gradient(180deg, #0c0e11 0%, #07080a 100%);
+  }
+  button, select { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+  .shell { height: 100%; display: grid; grid-template-rows: 72px 1fr 54px; }
+  .top {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 28px; border-bottom: 1px solid var(--line);
+    background: linear-gradient(180deg, rgba(0,0,0,.35), transparent);
+  }
+  .brand { display: flex; align-items: baseline; gap: 10px; letter-spacing: .08em; }
+  .brand b { font-family: Oswald, sans-serif; font-weight: 500; font-size: 18px; }
+  .brand span { color: var(--green); font-family: "Barlow Condensed", sans-serif; letter-spacing: .22em; font-size: 13px; }
+  .top-right { display: flex; align-items: center; gap: 18px; }
+  .chip {
+    display: flex; align-items: center; gap: 8px;
+    border: 1px solid var(--line); background: rgba(255,255,255,.03);
+    padding: 6px 10px 6px 8px; border-radius: 4px;
+  }
+  .chip select { outline: none; }
+  .rank { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 13px; }
+  .rank .badge {
+    width: 34px; height: 34px; border-radius: 50%;
+    border: 1px solid var(--green);
+    display: grid; place-items: center;
+    color: var(--green); font-family: Oswald, sans-serif; font-size: 12px;
+  }
+  .body { display: grid; grid-template-columns: 280px 1fr; min-height: 0; }
+  .nav { padding: 22px 18px; border-right: 1px solid var(--line); overflow: auto; }
+  .nav h4 {
+    margin: 18px 8px 8px; color: var(--dim); font-size: 11px; letter-spacing: .22em;
+    font-weight: 600;
+  }
+  .nav h4:first-child { margin-top: 4px; }
+  .nav button {
+    width: 100%; text-align: left; padding: 11px 14px; border-radius: 3px;
+    color: #d7d4cc; display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 2px;
+  }
+  .nav button:hover { background: rgba(255,255,255,.04); }
+  .nav button.active {
+    background: linear-gradient(90deg, var(--green) 0%, #6f9a28 100%);
+    color: #10140a; font-weight: 600;
+  }
+  .nav .tag {
+    font-size: 10px; letter-spacing: .14em; border: 1px solid currentColor;
+    padding: 1px 5px; border-radius: 2px;
+  }
+  .stage { position: relative; min-width: 0; overflow: hidden; }
+  .screen { display: none; height: 100%; }
+  .screen.on { display: block; }
+  .foot {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 22px; border-top: 1px solid var(--line); color: var(--dim); font-size: 12px;
+  }
+  .keys { display: flex; gap: 16px; }
+  .keys b {
+    display: inline-block; border: 1px solid var(--line); padding: 2px 6px; margin-right: 6px;
+    color: var(--text); border-radius: 2px; font-weight: 500;
+  }
+
+  /* PLAY */
+  .play {
+    height: 100%; display: grid; grid-template-columns: 1.4fr .9fr; gap: 14px; padding: 22px;
+  }
+  .hero, .stack .card {
+    position: relative; overflow: hidden; border: 1px solid var(--line); background: #111;
+    box-shadow: var(--shadow);
+  }
+  .hero { min-height: 0; }
+  .hero img, .card img, .lobby-hero img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(.85) contrast(1.05); }
+  .veil {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,.05) 20%, rgba(0,0,0,.78) 100%);
+  }
+  .hero .copy, .card .copy { position: absolute; left: 22px; right: 22px; bottom: 20px; }
+  .kicker { color: var(--green); letter-spacing: .2em; font-size: 11px; font-weight: 600; }
+  .hero h1, .card h2 {
+    margin: 6px 0 4px; font-family: Oswald, sans-serif; font-weight: 500; letter-spacing: .04em;
+  }
+  .hero h1 { font-size: 54px; line-height: .9; }
+  .card h2 { font-size: 26px; }
+  .sub { color: #d5d2cb; font-size: 14px; max-width: 460px; }
+  .stack { display: grid; grid-template-rows: 1fr 1fr; gap: 14px; }
+  .stack .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .card { cursor: pointer; }
+  .card:hover { outline: 1px solid var(--green); }
+  .continue {
+    position: absolute; left: 22px; right: 22px; bottom: 18px;
+    display: none;
+  }
+  .play-wrap { position: relative; height: 100%; }
+  .play-wrap .continue {
+    display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 10px;
+    bottom: 18px; left: 22px; right: 22px;
+  }
+  .play { padding-bottom: 108px; }
+  .stat {
+    background: rgba(8,10,12,.78); border: 1px solid var(--line); padding: 12px 14px;
+    backdrop-filter: blur(6px);
+  }
+  .stat .label { color: var(--dim); font-size: 11px; letter-spacing: .16em; }
+  .stat strong { display: block; margin-top: 3px; font-weight: 600; }
+  .stat em { color: var(--green); font-style: normal; font-size: 12px; }
+
+  /* PRIVATE */
+  .private { height: 100%; display: grid; grid-template-columns: 340px 1fr; }
+  .settings { padding: 26px 22px; border-right: 1px solid var(--line); }
+  .settings h1 { font-family: Oswald, sans-serif; font-weight: 500; letter-spacing: .08em; margin: 0 0 18px; }
+  .rowline {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 10px; border-bottom: 1px solid var(--line); color: var(--muted);
+  }
+  .rowline.on { background: var(--green); color: #12160c; font-weight: 600; }
+  .rowline .val { color: var(--text); }
+  .rowline.on .val { color: #12160c; }
+  .start {
+    margin-top: 22px; width: 100%; background: var(--green); color: #12160c;
+    font-family: Oswald, sans-serif; letter-spacing: .12em; padding: 14px; font-size: 18px;
+  }
+  .start:hover { filter: brightness(1.05); }
+  .lobby { padding: 22px; display: grid; grid-template-rows: 180px 1fr; gap: 12px; }
+  .lobby-hero { position: relative; overflow: hidden; border: 1px solid var(--line); }
+  .lobby-hero .copy { position: absolute; left: 18px; bottom: 14px; }
+  .code { position: absolute; right: 16px; top: 16px; letter-spacing: .18em; font-family: Oswald, sans-serif; }
+  .teams { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; min-height: 0; }
+  .team { border: 1px solid var(--line); background: rgba(255,255,255,.02); overflow: auto; }
+  .team header {
+    display: flex; justify-content: space-between; padding: 10px 12px;
+    border-bottom: 1px solid var(--line); font-family: Oswald, sans-serif; letter-spacing: .12em;
+  }
+  .team.marines header { color: #8eb4d8; }
+  .team.opfor header { color: #d48a72; }
+  .slot { display: flex; justify-content: space-between; padding: 9px 12px; color: var(--muted); font-size: 14px; }
+  .slot.you { color: var(--text); background: rgba(182,232,74,.08); }
+  .slot i { font-style: normal; color: var(--dim); font-size: 11px; letter-spacing: .12em; }
+
+  /* CLASS */
+  .classy { height: 100%; display: grid; grid-template-columns: 240px 1fr 280px; }
+  .slots, .perks { padding: 22px 16px; }
+  .slots { border-right: 1px solid var(--line); }
+  .perks { border-left: 1px solid var(--line); }
+  .slots h1, .class-main h1 { font-family: Oswald, sans-serif; font-weight: 500; letter-spacing: .06em; margin: 0 0 14px; }
+  .slotbtn {
+    width: 100%; text-align: left; padding: 12px 12px; margin-bottom: 4px; color: var(--muted);
+    display: flex; justify-content: space-between;
+  }
+  .slotbtn.on { background: var(--green); color: #12160c; font-weight: 600; }
+  .class-main { padding: 22px; }
+  .weapon {
+    border: 1px solid var(--line); background:
+      linear-gradient(180deg, rgba(20,22,18,.4), rgba(8,9,10,.8)),
+      url("https://jxnplays.github.io/mws-box/shots/mw2.jpg") center/cover;
+    min-height: 280px; padding: 18px; position: relative;
+  }
+  .weapon h2 { font-family: Oswald, sans-serif; font-size: 32px; margin: 8px 0 12px; letter-spacing: .04em; }
+  .atts { display: flex; gap: 8px; margin-bottom: 16px; }
+  .atts span { border: 1px solid var(--line); padding: 4px 8px; font-size: 12px; color: var(--muted); background: rgba(0,0,0,.35); }
+  .bars { display: grid; gap: 7px; max-width: 280px; }
+  .bars div { display: grid; grid-template-columns: 90px 1fr; gap: 8px; align-items: center; font-size: 11px; letter-spacing: .12em; color: var(--dim); }
+  .bars i { display: block; height: 4px; background: rgba(255,255,255,.12); }
+  .bars i b { display: block; height: 100%; background: var(--green); }
+  .camo { margin-top: 16px; color: var(--muted); font-size: 13px; }
+  .camo b { color: var(--amber); font-weight: 600; }
+  .meter { margin-top: 6px; height: 4px; background: rgba(255,255,255,.12); }
+  .meter b { display: block; height: 100%; width: 58%; background: var(--amber); }
+  .perk {
+    display: flex; gap: 10px; align-items: center; padding: 10px 8px; border-bottom: 1px solid var(--line);
+  }
+  .swatch { width: 36px; height: 36px; border-radius: 4px; }
+  .perk small { display: block; color: var(--dim); }
+
+  /* HUD */
+  .hud { height: 100%; position: relative; background: #111; }
+  .hud img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.9); }
+  .hud .overlay { position: absolute; inset: 0; }
+  .minimap {
+    position: absolute; top: 16px; left: 16px; width: 168px; height: 168px;
+    border: 1px solid rgba(255,255,255,.25); background: rgba(0,0,0,.35);
+    display: grid; place-items: center; color: var(--green); font-size: 11px; letter-spacing: .14em;
+  }
+  .score {
+    position: absolute; top: 16px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 18px; align-items: center; font-family: Oswald, sans-serif; font-size: 22px;
+  }
+  .score .u { color: #8eb4d8; } .score .e { color: #d48a72; }
+  .killfeed { position: absolute; top: 16px; right: 16px; text-align: right; font-size: 13px; }
+  .killfeed div { margin-bottom: 4px; text-shadow: 0 1px 2px #000; }
+  .killfeed .you { color: var(--green); }
+  .ammo {
+    position: absolute; right: 22px; bottom: 18px; text-align: right;
+    font-family: Oswald, sans-serif;
+  }
+  .ammo .gun { color: var(--muted); letter-spacing: .12em; font-size: 13px; }
+  .ammo .n { font-size: 42px; line-height: 1; }
+  .ammo .n span { color: var(--muted); font-size: 20px; }
+  .streaks { position: absolute; left: 18px; bottom: 18px; display: flex; gap: 8px; }
+  .streaks span { border: 1px solid var(--line); background: rgba(0,0,0,.45); padding: 8px 10px; font-size: 11px; letter-spacing: .12em; }
+  .compass {
+    position: absolute; top: 64px; left: 50%; transform: translateX(-50%);
+    color: var(--muted); letter-spacing: .3em; font-size: 12px;
+  }
+  .demo-note {
+    position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%);
+    color: var(--dim); font-size: 12px; letter-spacing: .08em;
+  }
+  .back { color: var(--dim); font-size: 12px; letter-spacing: .14em; margin-bottom: 8px; display: inline-block; }
+</style>
+</head>
+<body>
+<div class="shell">
+  <header class="top">
+    <div class="brand"><b>CALL OF DUTY</b><span id="brandGame">MODERN WARFARE 2</span></div>
+    <div class="top-right">
+      <div class="chip">
+        <span style="color:var(--dim);font-size:11px;letter-spacing:.14em">GAME</span>
+        <select id="game">
+          <option value="mw2">Modern Warfare 2</option>
+          <option value="cod4">Call of Duty 4</option>
+          <option value="fw">Future Warfare</option>
+          <option value="bo1">Black Ops</option>
+          <option value="mw3">Modern Warfare 3</option>
+        </select>
+      </div>
+      <div class="rank"><span>[hi] call of duty</span><span>STAFF SERGEANT · LV 13</span><div class="badge">13</div></div>
+    </div>
+  </header>
+
+  <div class="body">
+    <nav class="nav" id="nav">
+      <h4>PLAY</h4>
+      <button data-screen="play" class="active">Headquarters <span>›</span></button>
+      <button data-screen="private">Private Match</button>
+      <button data-screen="hud">Join Game</button>
+      <h4>PLAYER</h4>
+      <button data-screen="class">Create a Class <span class="tag">NEW</span></button>
+      <button data-screen="play">Character</button>
+      <button data-screen="play">Combat Record</button>
+      <h4>SYSTEM</h4>
+      <button data-screen="play">Options</button>
+      <button id="quit">Quit</button>
+    </nav>
+
+    <main class="stage">
+      <section class="screen on" id="play">
+        <div class="play-wrap">
+          <div class="play">
+            <article class="hero">
+              <img id="heroImg" src="https://jxnplays.github.io/mws-box/shots/mw2.jpg" alt="" />
+              <div class="veil"></div>
+              <div class="copy">
+                <div class="kicker">SOCIAL HUB</div>
+                <h1>HEADQUARTERS</h1>
+                <div class="sub">Make classes, open supply drops, and warm up before a match.</div>
+              </div>
+            </article>
+            <div class="stack">
+              <article class="card" data-go="private">
+                <img id="cardA" src="https://jxnplays.github.io/mws-box/shots/cod4.jpg" alt="" />
+                <div class="veil"></div>
+                <div class="copy"><div class="kicker">HOST</div><h2>PRIVATE MATCH</h2><div class="sub">Bots, splitscreen, invite friends.</div></div>
+              </article>
+              <div class="row">
+                <article class="card" data-go="class">
+                  <img src="https://jxnplays.github.io/mws-box/shots/bo1.jpg" alt="" />
+                  <div class="veil"></div>
+                  <div class="copy"><div class="kicker">LOADOUT</div><h2>CREATE A CLASS</h2></div>
+                </article>
+                <article class="card" data-go="hud">
+                  <img id="cardB" src="https://jxnplays.github.io/mws-box/shots/fw.jpg" alt="" />
+                  <div class="veil"></div>
+                  <div class="copy"><div class="kicker">ONLINE</div><h2>JOIN GAME</h2></div>
+                </article>
+              </div>
+            </div>
+          </div>
+          <div class="continue">
+            <div class="stat"><div class="label">LAST MATCH</div><strong>Victory · Crash · TDM</strong><em>23 kills · 7 deaths · +2,350 XP</em></div>
+            <div class="stat"><div class="label">CHALLENGE</div><strong id="chal">Marksman: M4 Carbine</strong><em id="chalSub">87 / 150 kills</em></div>
+            <div class="stat"><div class="label">NEXT UNLOCK</div><strong>Level 36 · Barrett .50cal</strong><em>4,120 XP to go</em></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="private">
+        <div class="private">
+          <div class="settings">
+            <button class="back" data-go="play">‹ PLAY</button>
+            <h1>PRIVATE MATCH</h1>
+            <div class="rowline"><span>Game Mode</span><span class="val">Team Deathmatch</span></div>
+            <div class="rowline on"><span>Map</span><span class="val" id="mapName">‹ Crash ›</span></div>
+            <div class="rowline"><span>Time Limit</span><span class="val">10 min</span></div>
+            <div class="rowline"><span>Score Limit</span><span class="val">750</span></div>
+            <div class="rowline"><span>Bots</span><span class="val">5 v 5</span></div>
+            <div class="rowline"><span>Bot Difficulty</span><span class="val">Regular</span></div>
+            <div class="rowline"><span>Hardcore</span><span class="val">Off</span></div>
+            <button class="start" data-go="hud">START MATCH</button>
+          </div>
+          <div class="lobby">
+            <div class="lobby-hero">
+              <img id="lobbyImg" src="https://jxnplays.github.io/mws-box/shots/mw2.jpg" alt="" />
+              <div class="veil"></div>
+              <div class="code">K7QX 9P2M</div>
+              <div class="copy"><div class="kicker">TEAM DEATHMATCH · 10 MIN</div><h2 id="lobbyTitle" style="font-family:Oswald,sans-serif;font-size:40px;margin:4px 0">CRASH</h2><div class="sub">Two teams. First to the score limit wins.</div></div>
+            </div>
+            <div class="teams">
+              <div class="team marines">
+                <header><span>MARINES</span><span>6/9</span></header>
+                <div class="slot you"><span>[hi] call of duty</span><i>HOST</i></div>
+                <div class="slot"><span>Ghost</span><i>BOT</i></div>
+                <div class="slot"><span>Gaz</span><i>BOT</i></div>
+                <div class="slot"><span>Griggs</span><i>BOT</i></div>
+                <div class="slot"><span>Soap</span><i>BOT</i></div>
+                <div class="slot"><span>Open</span><i></i></div>
+              </div>
+              <div class="team opfor">
+                <header><span>OPFOR</span><span>5/9</span></header>
+                <div class="slot"><span>Zakhaev</span><i>BOT</i></div>
+                <div class="slot"><span>Al-Asad</span><i>BOT</i></div>
+                <div class="slot"><span>Viktor</span><i>BOT</i></div>
+                <div class="slot"><span>Yuri</span><i>BOT</i></div>
+                <div class="slot"><span>Kamarov</span><i>BOT</i></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="class">
+        <div class="classy">
+          <div class="slots">
+            <button class="back" data-go="play">‹ LOADOUT</button>
+            <h1>CREATE A CLASS</h1>
+            <button class="slotbtn on">Custom Slot 1</button>
+            <button class="slotbtn">Custom Slot 2</button>
+            <button class="slotbtn">Custom Slot 3</button>
+            <button class="slotbtn">Custom Slot 4</button>
+            <button class="slotbtn">Custom Slot 5</button>
+            <h4 style="color:var(--dim);letter-spacing:.16em;font-size:11px;margin:16px 8px 8px">DEFAULT</h4>
+            <button class="slotbtn">Assault</button>
+            <button class="slotbtn">Spec Ops</button>
+            <button class="slotbtn">Demolitions</button>
+            <button class="slotbtn">Sniper</button>
+          </div>
+          <div class="class-main">
+            <div class="weapon">
+              <div class="kicker">PRIMARY</div>
+              <h2 id="gunName">M4 CARBINE</h2>
+              <div class="atts"><span id="att1">ACOG Scope</span><span id="att2">Suppressor</span><span>Camo</span></div>
+              <div class="bars">
+                <div>ACCURACY <i><b style="width:72%"></b></i></div>
+                <div>DAMAGE <i><b style="width:64%"></b></i></div>
+                <div>RANGE <i><b style="width:58%"></b></i></div>
+                <div>FIRE RATE <i><b style="width:70%"></b></i></div>
+                <div>MOBILITY <i><b style="width:61%"></b></i></div>
+              </div>
+              <div class="camo"><b>Gold camo</b> · <span id="camoProg">87 / 150 headshots</span><div class="meter"><b></b></div></div>
+            </div>
+            <div style="margin-top:14px;color:var(--muted)">SECONDARY · <strong id="sidearm" style="color:var(--text)">USP .45</strong> · Suppressor</div>
+          </div>
+          <div class="perks">
+            <h1 style="font-family:Oswald,sans-serif;font-weight:500">PERKS</h1>
+            <div class="perk"><div class="swatch" style="background:#3d6ea8"></div><div>Perk 1<strong style="display:block">Bandolier</strong><small>Extra magazines</small></div></div>
+            <div class="perk"><div class="swatch" style="background:#a8483c"></div><div>Perk 2<strong style="display:block">Stopping Power</strong><small>Increased bullet damage</small></div></div>
+            <div class="perk"><div class="swatch" style="background:#7f8c45"></div><div>Perk 3<strong style="display:block">Extreme Conditioning</strong><small>Sprint longer</small></div></div>
+            <div class="perk"><div class="swatch" style="background:#666"></div><div>Equipment<strong style="display:block">Stun Grenade</strong></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="hud">
+        <div class="hud">
+          <img id="hudImg" src="https://jxnplays.github.io/mws-box/shots/mw2.jpg" alt="" />
+          <div class="overlay">
+            <div class="minimap">MINIMAP</div>
+            <div class="score"><span class="u">45</span><span>1:42</span><span class="e">32</span></div>
+            <div class="compass">NW · N · NE</div>
+            <div class="killfeed">
+              <div><span class="you">[hi]</span> [M4] Ghost</div>
+              <div>Viktor [AK] Gaz</div>
+              <div><span class="you">[hi]</span> [M4] Al-Asad</div>
+            </div>
+            <div class="streaks"><span>UAV</span><span>AIRSTRIKE</span><span>HELICOPTER</span></div>
+            <div class="ammo"><div class="gun" id="hudGun">M4 CARBINE · SUPPRESSOR</div><div class="n">30 <span>90</span></div></div>
+            <div class="demo-note">DEMO HUD · ESC BACK</div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="foot">
+    <div>UI demo · not the client · game files stay on your machine</div>
+    <div class="keys"><span><b>ENTER</b>Select</span><span><b>TAB</b>Options</span><span><b>ESC</b>Back</span></div>
+  </footer>
+</div>
+<script>
+  const games = {
+    mw2: { label: "MODERN WARFARE 2", shot: "mw2.jpg", map: "Crash", gun: "M4 CARBINE", side: "USP .45", att: ["ACOG Scope", "Suppressor"], chal: "Marksman: M4 Carbine" },
+    cod4: { label: "MODERN WARFARE", shot: "cod4.jpg", map: "Crash", gun: "M4 CARBINE", side: "M9", att: ["Red Dot", "Silencer"], chal: "Marksman: M4 Carbine" },
+    fw:  { label: "FUTURE WARFARE", shot: "fw.jpg", map: "Whiteout", gun: "SCAR MOD 2", side: "M9", att: ["Reflex", "Suppressor"], chal: "Marksman: SCAR Mod 2" },
+    bo1: { label: "BLACK OPS", shot: "bo1.jpg", map: "Nuketown", gun: "FAMAS", side: "M1911", att: ["Reflex", "Grip"], chal: "Marksman: FAMAS" },
+    mw3: { label: "MODERN WARFARE 3", shot: "mw3.jpg", map: "Dome", gun: "ACR 6.8", side: "USP .45", att: ["Red Dot", "Silencer"], chal: "Marksman: ACR" }
+  };
+  const base = "https://jxnplays.github.io/mws-box/shots/";
+  const $ = (s) => document.querySelector(s);
+
+  function show(id) {
+    document.querySelectorAll(".screen").forEach(s => s.classList.remove("on"));
+    document.getElementById(id).classList.add("on");
+    document.querySelectorAll("#nav button").forEach(b => b.classList.toggle("active", b.dataset.screen === id && b.textContent.trim().length));
+  }
+  document.getElementById("nav").addEventListener("click", (e) => {
+    const b = e.target.closest("button");
+    if (!b || b.id === "quit") return;
+    show(b.dataset.screen);
+  });
+  document.body.addEventListener("click", (e) => {
+    const go = e.target.closest("[data-go]");
+    if (go) show(go.dataset.go);
+  });
+  document.getElementById("quit").addEventListener("click", () => show("play"));
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") show("play"); });
+
+  function apply(key) {
+    const g = games[key];
+    $("#brandGame").textContent = g.label;
+    $("#heroImg").src = base + g.shot;
+    $("#cardB").src = base + (key === "fw" ? "mw2.jpg" : "fw.jpg");
+    $("#lobbyImg").src = base + g.shot;
+    $("#hudImg").src = base + g.shot;
+    $("#mapName").textContent = "‹ " + g.map + " ›";
+    $("#lobbyTitle").textContent = g.map.toUpperCase();
+    $("#gunName").textContent = g.gun;
+    $("#hudGun").textContent = g.gun + " · " + g.att[1].toUpperCase();
+    $("#att1").textContent = g.att[0];
+    $("#att2").textContent = g.att[1];
+    $("#sidearm").textContent = g.side;
+    $("#chal").textContent = g.chal;
+  }
+  $("#game").addEventListener("change", (e) => apply(e.target.value));
+  apply("mw2");
+</script>
+</body>
+</html>
