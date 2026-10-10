@@ -105,7 +105,7 @@
 </style>
 </head>
 <body>
-<nav><div class="mark">MWS&BOX</div><div class="by">MADE BY JXNPLAYS</div><ul><li><a href="#games">Games</a></li><li><a href="#board">Features</a></li><li><a href="#how">How it works</a></li><li><a href="#yours">Your copies</a></li><li><a href="#roadmap">Roadmap</a></li><li><a href="#list">Match types</a></li></ul></nav>
+<nav><div class="mark">MWS&BOX</div><div class="by">MADE BY JXNPLAYS</div><ul><li><a href="#games">Games</a></li><li><a href="#board">Features</a></li><li><a href="#how">How it works</a></li><li><a href="#yours">Your copies</a></li><li><a href="#roadmap">Roadmap</a></li><li><a href="#tools">Tools</a></li><li><a href="#list">Match types</a></li></ul></nav>
 <header class="hero"><div class="reveal">
 <div class="word">MWS&BOX</div>
 <div class="pill">IN DEVELOPMENT · RUST · BEVY 0.19 · PYTHON</div>
@@ -162,41 +162,29 @@
 </div></section>
 <section id="how"><div class="kicker">HOW IT WORKS</div><h2>POINT IT AT WHAT YOU OWN.</h2><p class="sub">No installer for the games. The client reads the folder you already have.</p>
 <div class="steps">
-<article class="step"><h3>1. Own the game.</h3><p>A legal Steam install. Modern Warfare 2 is the one the client needs.</p></article>
-<article class="step"><h3>2. Point at the folder.</h3><p>The client reads that install. It does not download or replace the game files.</p></article>
-<article class="step"><h3>3. Add the rest.</h3><p>Each other game is optional. It adds only the maps, guns, and modes that install contains.</p></article>
+<article class="step"><div class="num">1</div><h3>Own the game.</h3><p>A legal Steam install. Modern Warfare 2 is the one the client needs.</p></article>
+<article class="step"><div class="num">2</div><h3>Point at the folder.</h3><p>The client reads that install. It does not download or replace the game files.</p></article>
+<article class="step"><div class="num">3</div><h3>Add the rest.</h3><p>Each other game is optional. It adds only the maps, guns, and modes that install contains.</p></article>
 </div></section>
-<section id="yours"><div class="kicker">YOUR COPIES</div><h2>BRING YOUR OWN GAMES.</h2><p class="sub">Modern Warfare 2 is required. The others are optional.</p>
+<section id="yours"><div class="kicker">YOUR COPIES</div><h2>WHAT YOU POINT IT AT.</h2><p class="sub">The client needs Modern Warfare 2. The other games are optional. Each one only adds what that install already has.</p>
 <div class="reqs">
-<article class="req"><span class="num">1</span><span class="badge-tag need">REQUIRED</span><h3>MODERN WARFARE 2</h3><p>All maps, DLC, campaign, and Spec Ops. All guns, attachments, perks, camos, emblems, and killstreaks. All match types.</p><span class="path">folder with iw4mp.exe</span></article>
-<article class="req"><span class="num">2</span><span class="badge-tag">OPTIONAL</span><h3>CALL OF DUTY</h3><p>All maps. All guns. All match types.</p><span class="path">folder with CoDMP.exe</span></article>
-<article class="req"><span class="num">3</span><span class="badge-tag">OPTIONAL</span><h3>CALL OF DUTY 2</h3><p>All maps. All guns. All match types.</p><span class="path">folder with CoD2MP_s.exe</span></article>
-<article class="req"><span class="num">4</span><span class="badge-tag">OPTIONAL</span><h3>CALL OF DUTY 3</h3><p>All maps. All guns. All match types.</p><span class="path">its own install</span></article>
-<article class="req"><span class="num">5</span><span class="badge-tag">OPTIONAL</span><h3>CALL OF DUTY 4</h3><p>All maps. All guns, attachments, perks, and killstreaks. All match types.</p><span class="path">folder with iw3mp.exe</span></article>
-<article class="req"><span class="num">6</span><span class="badge-tag">OPTIONAL</span><h3>WORLD AT WAR</h3><p>All maps. All guns, attachments, perks, and camos. Zombies. All match types.</p><span class="path">folder with CoDWaWmp.exe</span></article>
-<article class="req"><span class="num">7</span><span class="badge-tag">OPTIONAL</span><h3>BLACK OPS</h3><p>All maps. All guns, attachments, perks, camos, emblems, and calling cards. Zombies. All match types.</p><span class="path">folder with BlackOps.exe</span></article>
-<article class="req"><span class="num">8</span><span class="badge-tag">OPTIONAL</span><h3>MODERN WARFARE 3</h3><p>All maps. All guns, attachments, perks, and camos. Spec Ops and Survival. All match types.</p><span class="path">folder with iw5mp.exe</span></article>
-<article class="req"><span class="num">9</span><span class="badge-tag">OPTIONAL</span><h3>BLACK OPS 2</h3><p>All maps. All guns, attachments, perks, camos, emblems, and calling cards. Zombies. All match types.</p><span class="path">folder with t6mp.exe</span></article>
-<article class="req"><span class="num">10</span><span class="badge-tag">OPTIONAL</span><h3>GHOSTS</h3><p>All maps. All guns, attachments, and perks. Extinction. All match types.</p><span class="path">folder with iw6mp.exe</span></article>
-<article class="req"><span class="num">11</span><span class="badge-tag">OPTIONAL</span><h3>ADVANCED WARFARE</h3><p>All maps. All guns, attachments, variants, and exo abilities. All match types.</p><span class="path">folder with s1_mp64_ship.exe</span></article>
-<article class="req"><span class="num">12</span><span class="badge-tag">OPTIONAL</span><h3>BLACK OPS 3</h3><p>All maps. Gunsmith, specialists, all guns, attachments, and camos. Zombies. All match types.</p><span class="path">folder with BlackOps3.exe</span></article>
-<article class="req"><span class="num">13</span><span class="badge-tag">OPTIONAL</span><h3>INFINITE WARFARE</h3><p>All maps. Rigs, all guns, attachments, and variants. Zombies. All match types.</p><span class="path">folder with iw7_ship.exe</span></article>
-<article class="req"><span class="num">14</span><span class="badge-tag">OPTIONAL</span><h3>WWII</h3><p>All maps. Divisions, all guns, attachments, and camos. Headquarters. All match types.</p><span class="path">folder with s2_mp64_ship.exe</span></article>
-<article class="req"><span class="num">15</span><span class="badge-tag">OPTIONAL</span><h3>FUTURE WARFARE</h3><p>Cancelled Neversoft game, NX1. Campaign and multiplayer from the leaked builds. No DMZ. That mode is Modern Warfare 4.</p><span class="path">its own install</span></article>
+<article class="req"><span class="badge-tag need">REQUIRED</span><h3>Modern Warfare 2</h3><p>The base. The client needs this install.</p><code class="path">Steam\steamapps\common\Call of Duty Modern Warfare 2</code></article>
+<article class="req"><span class="badge-tag">OPTIONAL</span><h3>Modern Warfare 3</h3><p>Adds its maps, guns, and modes.</p><code class="path">Steam\steamapps\common\Call of Duty MW3</code></article>
+<article class="req"><span class="badge-tag">OPTIONAL</span><h3>Black Ops</h3><p>Adds its maps, guns, and modes.</p><code class="path">Steam\steamapps\common\Call of Duty Black Ops</code></article>
 </div></section>
-<section id="list"><div class="kicker">MATCH TYPES</div><h2>THE MATCH TYPES.</h2><p class="sub">A mode is listed only if that game shipped it, except Third Person. That is the SOCOM-style camera. Modern Warfare 2 shipped it. Hardcore and Old School are rules, not modes.</p>
+<section id="list"><div class="kicker">MATCH TYPES</div><h2>ONLY WHAT THAT GAME SHIPPED.</h2><p class="sub">The list is the modes that game has. Third Person is the SOCOM-style camera. Hardcore and Old School are rules.</p>
 <div class="modes">
-<article class="mode"><h3>TEAM DEATHMATCH</h3><p>The whole set.</p></article>
-<article class="mode"><h3>FREE-FOR-ALL</h3><p>The whole set.</p></article>
+<article class="mode"><h3>TEAM DEATHMATCH</h3><p>Modern Warfare 2 and 3, Black Ops.</p></article>
+<article class="mode"><h3>FREE FOR ALL</h3><p>Modern Warfare 2 and 3, Black Ops.</p></article>
+<article class="mode"><h3>DOMINATION</h3><p>Modern Warfare 2 and 3, Black Ops.</p></article>
+<article class="mode"><h3>SEARCH AND DESTROY</h3><p>Modern Warfare 2 and 3, Black Ops.</p></article>
+<article class="mode"><h3>HEADQUARTERS</h3><p>Modern Warfare 2.</p></article>
+<article class="mode"><h3>CAPTURE THE FLAG</h3><p>Modern Warfare 2 and 3, Black Ops.</p></article>
+<article class="mode"><h3>SABOTAGE</h3><p>Modern Warfare 2.</p></article>
+<article class="mode"><h3>DEMOLITION</h3><p>Modern Warfare 2 and 3.</p></article>
+<article class="mode"><h3>HARDCORE</h3><p>Rules overlay.</p></article>
+<article class="mode"><h3>OLD SCHOOL</h3><p>Rules overlay.</p></article>
 <article class="mode"><h3>THIRD PERSON</h3><p>SOCOM-style camera.</p></article>
-<article class="mode"><h3>DOMINATION</h3><p>Call of Duty 2 through WWII.</p></article>
-<article class="mode"><h3>SEARCH AND DESTROY</h3><p>The whole set.</p></article>
-<article class="mode"><h3>HEADQUARTERS</h3><p>Call of Duty 4 through Black Ops.</p></article>
-<article class="mode"><h3>CAPTURE THE FLAG</h3><p>Call of Duty through Black Ops.</p></article>
-<article class="mode"><h3>SABOTAGE</h3><p>Call of Duty 4 through Black Ops.</p></article>
-<article class="mode"><h3>DEMOLITION</h3><p>World at War, Modern Warfare 2, Black Ops.</p></article>
-<article class="mode"><h3>KILL CONFIRMED</h3><p>Modern Warfare 3 through WWII.</p></article>
-<article class="mode"><h3>HARDPOINT</h3><p>Black Ops 2 through WWII.</p></article>
 <article class="mode"><h3>SPEC OPS</h3><p>Modern Warfare 2 and 3.</p></article>
 <article class="mode"><h3>SURVIVAL</h3><p>Modern Warfare 3.</p></article>
 <article class="mode"><h3>ZOMBIES</h3><p>World at War through Infinite Warfare.</p></article>
@@ -221,6 +209,22 @@
 </table>
 <p class="sub" style="margin-top:18px">Black Ops 2 confirmed in a match: Detour, Cove, Rush, Uplink. Class select, weapon preview, and camo rendered. Zero crashes on that pass. Emblems and calling cards are Modern Warfare 2 only. The other three games reference the card tables, but the table body is not in the readable files.</p>
 <div class="note"><strong>Call of Duty 4 headquarters.</strong> A separate client mod is building a social headquarters in the WWII style: a hangar you walk through, loadouts, combat record, character select. That is not this client. It is in development on that project.</div>
+</section>
+
+<section id="tools"><div class="kicker">TOOLS</div><h2>IN DEVELOPMENT.</h2><p class="sub">Readers and converters for the games the client does not yet open. Private until they are reliable. Nothing here is public yet.</p>
+<div class="feats">
+<article class="feat"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#e2b657" stroke-width="1.6"><path d="M6 6h16v16H6z"/><path d="M10 10h8M10 14h8M10 18h5"/></svg><h3>NX1 READER <span class="tag">PRIVATE</span></h3><p>Future Warfare fastfile reader. Early progress. Asset extraction is the goal. Not released.</p></article>
+<article class="feat"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#e2b657" stroke-width="1.6"><path d="M4 8h20v12H4z"/><path d="M8 12h4M8 16h8"/></svg><h3>NX1 CONVERTER <span class="tag">PLANNED</span></h3><p>Turns extracted Future Warfare assets into formats the client can use. Follows the reader.</p></article>
+</div>
+<table class="road" style="margin-top:28px">
+<thead><tr><th>Tool</th><th>Status</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td>NX1 Reader</td><td><span class="st wire">In development</span></td><td>Private. Format work ongoing. No public release planned yet.</td></tr>
+<tr><td>NX1 Converter</td><td><span class="st miss">Planned</span></td><td>Depends on the reader. Private.</td></tr>
+<tr><td>Other game readers</td><td><span class="st miss">Needed</span></td><td>Ghosts, Advanced Warfare, Black Ops 3, Infinite Warfare, WWII.</td></tr>
+</tbody>
+</table>
+<div class="note" style="margin-top:22px"><strong>Private by design.</strong> The tools stay internal until they are solid. This page only notes that the work exists. No format details, no methods, no downloads.</div>
 </section>
 <footer class="legal"><div class="kicker">LEGAL</div><h2>FAN PROJECT.</h2>
 <div class="legal-card"><p>mws&box is an independent fan project by jxnplays. It is not affiliated with, endorsed by, or sponsored by Activision, Infinity Ward, Treyarch, Sledgehammer, or Steam. Call of Duty is a trademark of its owners.</p>
