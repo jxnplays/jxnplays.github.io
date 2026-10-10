@@ -224,12 +224,13 @@
 <table class="road" style="margin-top:28px">
 <thead><tr><th>Tool</th><th>Status</th><th>Notes</th></tr></thead>
 <tbody>
-<tr><td>NX1 Reader</td><td><span class="st wire">In development</span></td><td>Private. Format work ongoing. No public release planned yet.</td></tr>
+<tr><td>NX1 Reader</td><td><span class="st wire">~15%</span></td><td>Private. Header and marker documented. No assets extracted yet.</td></tr>
 <tr><td>NX1 Converter</td><td><span class="st miss">Planned</span></td><td>Depends on the reader. Private.</td></tr>
 <tr><td>Other game readers</td><td><span class="st miss">Needed</span></td><td>Ghosts, Advanced Warfare, Black Ops 3, Infinite Warfare, WWII.</td></tr>
 </tbody>
 </table>
 <div class="note" style="margin-top:22px"><strong>Private by design.</strong> The tools stay internal until they are solid. This page only notes that the work exists. No format details, no methods, no downloads.</div>
+<div class="note" style="margin-top:14px"><strong>Current status (2026-10-10).</strong> NX1 header layout and NXffs100 marker location are documented across multiple fastfiles. No weapon models, materials, or images have been recovered from the unpacked blocks. Progress on the reader itself is early (~15%). Next step for the agent: bounded search for the string "viewmodel_scar2" inside files under 8 MB in E:\Call of Duty Future Warfare\NX1\output\unpacked\nx_lunar\, stop after the first 2 hits, report path/size/offset + 120 bytes before and after. Do not scan the full tree, do not call DeflateStream, do not invent structure.</div>
 </section>
 <footer class="legal"><div class="kicker">LEGAL</div><h2>FAN PROJECT.</h2>
 <div class="legal-card"><p>mws&box is an independent fan project by jxnplays. It is not affiliated with, endorsed by, or sponsored by Activision, Infinity Ward, Treyarch, Sledgehammer, or Steam. Call of Duty is a trademark of its owners.</p>
