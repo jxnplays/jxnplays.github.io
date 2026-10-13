@@ -13,14 +13,14 @@
   h1 { color: #fff; margin-bottom: 6px; }
   .meta { color: var(--muted); margin-bottom: 12px; }
   .status { font-size: 0.75rem; font-weight: 700; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; }
-  .base { background: #1e3a2f; color: #4ade80; }
   .progress { background: #3a2e1e; color: #fbbf24; }
   .needed { background: #2a2a2a; color: #aaa; }
-  .research { background: #1e2a3a; color: #60a5fa; }
+  .base { background: #1e3a2f; color: #4ade80; }
   table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.92rem; }
   th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--border); }
   th { background: #1a1a1a; color: #fff; }
   td:first-child { font-weight: 600; }
+  .pct { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--orange); }
   .notes { margin-top: 24px; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
   footer { text-align: center; padding: 24px; color: var(--muted); font-size: 0.8rem; border-top: 1px solid var(--border); }
   @media (max-width: 640px) { table { font-size: 0.82rem; } th, td { padding: 8px 6px; } }
@@ -32,24 +32,27 @@
   <h1>Future Warfare (NX1)</h1>
   <p class="meta">~2011–2013 (canceled) — Neversoft</p>
   <span class="status progress">In progress</span>
-  <p style="margin-top:14px;">Canceled Call of Duty title. Fastfile reader and asset converter are in progress. Higher bone counts (59 vs IW4's 34) and animation differences are the main blockers for native-feeling guns and viewmodels.</p>
+  <p style="margin-top:14px;">NX1 is treated as a namespace and DLC category inside the IW4L client, the same way other titles sit behind their own family IDs. It does not fork the main render path. One weapon (SCAR Mod 2) is currently playable with donor textures; the reusable reader and converter work is further along.</p>
+
   <h2 style="margin-top:28px;font-size:1.25rem;">Progress</h2>
   <table>
-    <tr><th>Category</th><th>Status</th><th>Notes</th></tr>
-    <tr><td>Maps</td><td><span class="status needed">Not started</span></td><td>Map loading not yet wired</td></tr>
-    <tr><td>Weapons</td><td><span class="status progress">In progress</span></td><td>SCAR Mod 2 registered; mesh and stats still donor-based</td></tr>
-    <tr><td>Viewmodels</td><td><span class="status progress">In progress</span></td><td>Cast-to-xmodel path exists; bone translation ongoing</td></tr>
-    <tr><td>Attachments</td><td><span class="status needed">Not started</span></td><td>Attachment system not bound</td></tr>
-    <tr><td>Animations</td><td><span class="status needed">Not started</span></td><td>NX1 clips unbound; donor IW4 clips used</td></tr>
-    <tr><td>Sounds</td><td><span class="status needed">Not started</span></td><td>Zone bank used; NX1 WAVs not yet addressable</td></tr>
-    <tr><td>Camos</td><td><span class="status needed">Not started</span></td><td>Not started</td></tr>
-    <tr><td>Perks</td><td><span class="status needed">Not started</span></td><td>Not started</td></tr>
-    <tr><td>Fastfile Reader</td><td><span class="status progress">In progress</span></td><td>Header and zlib-at-38 work documented</td></tr>
-    <tr><td>Asset Converter</td><td><span class="status progress">In progress</span></td><td>Viewmodels, hands, and animation conversion in progress</td></tr>
+    <tr><th>Component</th><th>%</th><th>Status</th><th>Notes</th></tr>
+    <tr><td>Namespace / DLC plumbing</td><td class="pct">100%</td><td><span class="status base">Done</span></td><td>Top-level NX1 category. SCAR Mod 2 is selectable.</td></tr>
+    <tr><td>.cast mesh reader</td><td class="pct">100%</td><td><span class="status base">Done</span></td><td>CryEngine container, skeleton, geometry, and tags parse.</td></tr>
+    <tr><td>.cast animation reader</td><td class="pct">100%</td><td><span class="status base">Done</span></td><td>All 59 clips for the test weapon parse.</td></tr>
+    <tr><td>.cast material reader</td><td class="pct">100%</td><td><span class="status base">Done</span></td><td>34 surfaces read; 24 real materials plus PNG maps extracted.</td></tr>
+    <tr><td>Animation binding</td><td class="pct">100%</td><td><span class="status base">Done</span></td><td>13 clips bound, including correct idle.</td></tr>
+    <tr><td>Viewmodel rig</td><td class="pct">100%</td><td><span class="status base">Done</span></td><td>NX1 hands placed correctly and present in the draw plan.</td></tr>
+    <tr><td>Playable in game</td><td class="pct">~95%</td><td><span class="status progress">Near done</span></td><td>SCAR Mod 2 renders, aims, fires, reloads, and swaps.</td></tr>
+    <tr><td>NX1 textures on gun</td><td class="pct">~40%</td><td><span class="status progress">In progress</span></td><td>Reader and loader work. Binding still uses donor retail textures.</td></tr>
+    <tr><td>NX1 sounds</td><td class="pct">0%</td><td><span class="status needed">Not started</span></td><td>9 WAVs staged but not yet wired to aliases.</td></tr>
+    <tr><td>Generalise to all guns</td><td class="pct">~10%</td><td><span class="status needed">Not started</span></td><td>Reader is gun-agnostic. Current wiring is still specific to the test weapon.</td></tr>
+    <tr><td>NX1 maps</td><td class="pct">0%</td><td><span class="status needed">Not started</span></td><td>Map loading not started.</td></tr>
   </table>
+
   <div class="notes">
-    <strong>Notes</strong>
-    <p style="margin:8px 0 0;color:var(--muted);font-size:0.92rem;">Canceled Call of Duty title. Fastfile reader and asset converter are in progress. Higher bone counts (59 vs IW4's 34) and animation differences are the main blockers for native-feeling guns and viewmodels.</p>
+    <strong>Current state</strong>
+    <p style="margin:8px 0 0;color:var(--muted);font-size:0.92rem;">One playable weapon is roughly 70% complete. The reusable reader and converter engine is roughly 90% complete. The main open problem is texture binding: materials read and load correctly, but applying them in first-person view still requires further work. Sounds and maps have not been started. The format and reader work is the largest completed piece so far.</p>
   </div>
 </section>
 <footer>MWS&BOX by JXNPLAYS · Test draft</footer>
