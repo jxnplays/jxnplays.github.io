@@ -45,7 +45,7 @@
   .status.research { background: #1e2a3a; color: #60a5fa; }
   .related, .mods, .goals { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
   .related-card, .mod-card, .goal-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; display: flex; flex-direction: column; align-items: center; text-align: center; }
-  .related-card img.logo-img, .mod-card img.logo-img { width: 100%; max-width: 200px; height: 80px; object-fit: contain; margin-bottom: 12px; }
+  .related-card img.logo-img, .mod-card img.logo-img { width: 100%; max-width: 220px; height: 100px; object-fit: contain; }
   .how { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
   .how-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
   .how-card h3 { margin-bottom: 4px; color: var(--orange); font-size: 1rem; }
@@ -152,12 +152,11 @@
   <div class="mods">
     <div class="mod-card">
       <img class="logo-img" src="iw4x-logo.png?v=2" alt="IW4X">
-      <h3>IW4X</h3>
-      <p style="color:var(--muted);font-size:0.88rem;">Full support for IW4X-compatible mods, maps, and scripts.</p>
+      <p style="color:var(--muted);font-size:0.88rem;margin-top:12px;">Full support for IW4X-compatible mods, maps, and scripts.</p>
     </div>
     <div class="mod-card">
-      <h3>Plutonium</h3>
-      <p style="color:var(--muted);font-size:0.88rem;">Plutonium mod formats and loaders are supported where they overlap with the IW4L runtime.</p>
+      <img class="logo-img" src="plutonium-logo.png?v=2" alt="Plutonium">
+      <p style="color:var(--muted);font-size:0.88rem;margin-top:12px;">Plutonium mod formats and loaders are supported where they overlap with the IW4L runtime.</p>
     </div>
   </div>
 </section>
