@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Planned Features — MWS&BOX</title>
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<style>
+  :root { --bg:#0a0a0a; --card:#141414; --border:#2a2a2a; --silver:#e8e8e8; --orange:#ff6b1a; --muted:#888; }
+  body { font-family: system-ui, sans-serif; background: var(--bg); color: var(--silver); margin: 0; line-height: 1.6;
+    background-image: linear-gradient(rgba(255,107,26,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,107,26,0.03) 1px, transparent 1px); background-size: 40px 40px; }
+  nav { background: rgba(17,17,17,0.92); border-bottom: 1px solid var(--border); padding: 12px 16px; position: sticky; top: 0; backdrop-filter: blur(8px); }
+  nav a { color: var(--orange); text-decoration: none; font-weight: 700; }
+  section { max-width: 1000px; margin: 32px auto; padding: 0 16px; }
+  h1 { color: #fff; }
+  h2 { color: #fff; margin-top: 32px; font-size: 1.3rem; }
+  table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 0.9rem; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); }
+  th { background: #1a1a1a; color: #fff; }
+  .status { font-size: 0.7rem; font-weight: 700; padding: 2px 6px; border-radius: 3px; }
+  .planned { background: #2a2a2a; color: #aaa; }
+  .progress { background: #3a2e1e; color: #fbbf24; }
+  footer { text-align: center; padding: 24px; color: var(--muted); font-size: 0.8rem; border-top: 1px solid var(--border); }
+</style>
+</head>
+<body>
+<nav><a href="test.html">← MWS&BOX</a></nav>
+<section>
+  <h1>Planned Features</h1>
+  <p style="color:var(--muted);">Ideas and systems we want in the client. Drawn from the original sandbox notes, game systems, and contributor requests. Status reflects current intent, not implementation.</p>
+
+  <h2>Graphics</h2>
+  <table>
+    <tr><th>Feature</th><th>Status</th><th>Notes</th></tr>
+    <tr><td>Ambient Occlusion</td><td><span class="status planned">Planned</span></td><td>Contact shadows in corners and under cover. Video setting.</td></tr>
+    <tr><td>Water Shader</td><td><span class="status planned">Planned</span></td><td>Reflection and motion for maps with water.</td></tr>
+    <tr><td>Weather</td><td><span class="status planned">Planned</span></td><td>Rain, fog, clear. Options menu support.</td></tr>
+    <tr><td>Light & Shadow</td><td><span class="status planned">Planned</span></td><td>Per-map sun direction, shadow quality, night pass.</td></tr>
+    <tr><td>Anti-Aliasing</td><td><span class="status planned">Planned</span></td><td>FXAA, SMAA, MSAA.</td></tr>
+    <tr><td>Texture Filtering</td><td><span class="status planned">Planned</span></td><td>Anisotropic filtering and texture quality.</td></tr>
+    <tr><td>FSR</td><td><span class="status planned">Planned</span></td><td>FidelityFX Super Resolution upscaling.</td></tr>
+    <tr><td>DLSS / XeSS</td><td><span class="status planned">Planned</span></td><td>Vendor upscaling where hardware supports it.</td></tr>
+    <tr><td>HDR / Tone Mapping</td><td><span class="status planned">Planned</span></td><td>Modern tone mapping options.</td></tr>
+  </table>
+
+  <h2>Movement & Gameplay</h2>
+  <table>
+    <tr><th>Feature</th><th>Status</th><th>Notes</th></tr>
+    <tr><td>Sliding</td><td><span class="status planned">Planned</span></td><td>Slide mechanic from later titles.</td></tr>
+    <tr><td>Diving</td><td><span class="status planned">Planned</span></td><td>Dive to prone / dive movement.</td></tr>
+    <tr><td>Third Person Camera</td><td><span class="status planned">Planned</span></td><td>SOCOM-style third person option.</td></tr>
+    <tr><td>Hardcore Rules</td><td><span class="status planned">Planned</span></td><td>Hardcore mode ruleset.</td></tr>
+    <tr><td>Old School Rules</td><td><span class="status planned">Planned</span></td><td>Old School mode ruleset.</td></tr>
+  </table>
+
+  <h2>Customization</h2>
+  <table>
+    <tr><th>Feature</th><th>Status</th><th>Notes</th></tr>
+    <tr><td>Custom Emblems</td><td><span class="status planned">Planned</span></td><td>Player-created or imported emblems.</td></tr>
+    <tr><td>Custom Camos</td><td><span class="status planned">Planned</span></td><td>User-supplied weapon camos.</td></tr>
+    <tr><td>Player Gloves</td><td><span class="status planned">Planned</span></td><td>Choose first-person glove models.</td></tr>
+    <tr><td>Player Models / Characters</td><td><span class="status planned">Planned</span></td><td>Selectable soldier models where available.</td></tr>
+    <tr><td>Custom Calling Cards</td><td><span class="status planned">Planned</span></td><td>Player-created calling cards.</td></tr>
+  </table>
+
+  <h2>Systems</h2>
+  <table>
+    <tr><th>Feature</th><th>Status</th><th>Notes</th></tr>
+    <tr><td>Full Create-a-Class</td><td><span class="status planned">Planned</span></td><td>Per-game weapons, attachments, perks, streaks.</td></tr>
+    <tr><td>Killstreaks / Scorestreaks / Strike Packages</td><td><span class="status planned">Planned</span></td><td>Correct system per game.</td></tr>
+    <tr><td>Perks</td><td><span class="status planned">Planned</span></td><td>Game-accurate perk lists and effects.</td></tr>
+    <tr><td>Attachments</td><td><span class="status planned">Planned</span></td><td>Visual and stat attachments.</td></tr>
+    <tr><td>Camos</td><td><span class="status planned">Planned</span></td><td>Game-native camo application.</td></tr>
+    <tr><td>Emblems & Calling Cards</td><td><span class="status planned">Planned</span></td><td>Where the game supports them.</td></tr>
+    <tr><td>Custom Maps (IW4X / Plutonium)</td><td><span class="status planned">Planned</span></td><td>Load compatible mod maps and scripts.</td></tr>
+    <tr><td>Match Types</td><td><span class="status planned">Planned</span></td><td>Only modes that game shipped.</td></tr>
+  </table>
+
+  <h2>Client & Tools</h2>
+  <table>
+    <tr><th>Feature</th><th>Status</th><th>Notes</th></tr>
+    <tr><td>NX1 Fastfile Reader</td><td><span class="status progress">In progress</span></td><td>Header and marker work done. Full reader in progress.</td></tr>
+    <tr><td>NX1 Asset Converter</td><td><span class="status progress">In progress</span></td><td>Viewmodels, hands, animations. Bone differences are the blocker.</td></tr>
+    <tr><td>Per-game Readers</td><td><span class="status planned">Planned</span></td><td>Where existing tools (OpenAssetTools, ZoneTool) are insufficient.</td></tr>
+    <tr><td>Open Source Client</td><td><span class="status planned">Planned</span></td><td>Clean latest-upstream IW4L base with per-game trackers.</td></tr>
+  </table>
+</section>
+<footer>MWS&BOX by JXNPLAYS · Test draft</footer>
+</body>
+</html>
