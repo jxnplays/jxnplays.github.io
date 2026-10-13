@@ -71,29 +71,31 @@
   .section-sub { color: var(--muted); margin-bottom: 22px; font-size: 0.95rem; }
   .about-section { text-align: center; }
   .about-section .goals { text-align: left; }
-  .games { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; }
+  .games { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
   .game-card {
     background: var(--card); border: 1px solid var(--border); border-radius: 10px;
-    padding: 16px; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-    text-decoration: none; color: inherit; display: flex; flex-direction: column; min-height: 180px;
+    padding: 18px 16px; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; min-height: 200px;
   }
   .game-card:hover { border-color: var(--orange); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(255,107,26,0.12); }
-  .game-card h3 { font-size: 1.02rem; margin-bottom: 2px; }
-  .year { font-size: 0.78rem; color: var(--muted); margin-bottom: 6px; }
+  .game-card h3 { font-size: 1.05rem; margin-bottom: 2px; }
+  .year { font-size: 0.78rem; color: var(--muted); margin-bottom: 8px; }
   .status {
-    display: inline-block; font-size: 0.7rem; font-weight: 700; padding: 2px 7px;
-    border-radius: 4px; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 8px;
+    display: inline-block; font-size: 0.7rem; font-weight: 700; padding: 3px 8px;
+    border-radius: 4px; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 10px;
+    align-self: flex-start;
   }
   .status.base { background: #1e3a2f; color: #4ade80; }
   .status.progress { background: #3a2e1e; color: #fbbf24; }
   .status.needed { background: #2a2a2a; color: #aaa; }
   .status.research { background: #1e2a3a; color: #60a5fa; }
-  .related, .mods, .goals, .gfx-grid, .mashup { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .related, .mods, .goals, .gfx-grid, .mashup { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
   .related-card, .mod-card, .goal-card, .gfx-card, .mashup-card {
     background: var(--card); border: 1px solid var(--border); border-radius: 10px;
     padding: 18px; display: flex; flex-direction: column; align-items: center; text-align: center;
     transition: border-color 0.2s, transform 0.2s;
   }
+  .goal-card { align-items: flex-start; text-align: left; }
   .related-card { min-height: 220px; justify-content: space-between; }
   .related-card:hover, .mod-card:hover, .gfx-card:hover, .mashup-card:hover { border-color: var(--orange); transform: translateY(-3px); }
   .related-card img.logo-img, .mod-card img.logo-img { width: 100%; max-width: 220px; height: 90px; object-fit: contain; }
@@ -146,12 +148,12 @@
 </head>
 <body>
 
-<audio id="site-audio" loop preload="auto">
+<audio id="site-audio" loop preload="auto" autoplay>
   <source src="audio/new-dawn.mp3" type="audio/mpeg">
 </audio>
 
 <div class="player">
-  <button id="play-pause" aria-label="Play or pause">▶</button>
+  <button id="play-pause" aria-label="Play or pause">⏸</button>
   <span class="track">NEW DAWN — jxnplays</span>
   <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5" aria-label="Volume">
 </div>
@@ -219,18 +221,19 @@
   <p class="section-sub" style="max-width: 720px; margin-left: auto; margin-right: auto;">An open sandbox built on the latest upstream IW4L client. It does not ship or download game files. It reads legitimate installs you already have and adds per-game asset support over time so content from those installs can load and play inside one client. Also includes content from the IW4L mashup fork (Skate 3 and Minecraft).</p>
   <div class="goals">
     <div class="goal-card">
-      <h3 style="color:var(--orange);margin-bottom:6px;">Goals</h3>
-      <ul style="padding-left:18px;color:var(--muted);font-size:0.92rem;">
-        <li>Keep a clean, up-to-date IW4L base as the foundation</li>
-        <li>Build readers and converters so each target game can contribute its maps, guns, attachments, camos, and modes</li>
-        <li>Get content feeling native — correct models, sounds, animations, and stats where possible</li>
-        <li>Support IW4X and Plutonium-compatible mods</li>
-        <li>Open the project so others can claim and work on individual titles</li>
+      <h3 style="color:var(--orange);margin-bottom:8px;">Goals</h3>
+      <ul style="padding-left:18px;color:var(--muted);font-size:0.92rem;line-height:1.7;">
+        <li>Maintain a clean, regularly updated IW4L base as the single foundation for every title</li>
+        <li>Build and maintain readers and converters so each of the 12 target games can contribute its maps, guns, attachments, camos, perks, and modes</li>
+        <li>Make imported content feel native — correct models, viewmodels, sounds, animations, stats, and attachment behavior where the data allows</li>
+        <li>Full support for IW4X and Plutonium-compatible mods so existing community work continues to load</li>
+        <li>Keep the project open so contributors can claim individual titles, readers, or feature areas without overlapping</li>
+        <li>Document progress clearly so anyone can see what is working, what is blocked, and where help is needed</li>
       </ul>
     </div>
     <div class="goal-card">
-      <h3 style="color:var(--orange);margin-bottom:6px;">How it stays focused</h3>
-      <p style="color:var(--muted);font-size:0.92rem;">We are not targeting the entire Call of Duty series. The current list is fixed at 12 titles. New games are only added when the work is realistic and someone is willing to own the reader and asset path for that title.</p>
+      <h3 style="color:var(--orange);margin-bottom:8px;">How it stays focused</h3>
+      <p style="color:var(--muted);font-size:0.92rem;line-height:1.7;">The project is intentionally limited to 12 titles. We are not attempting the entire Call of Duty series. New games are only added when the technical path is realistic and someone is willing to own the reader, converter, and integration work for that title. MW2 remains the required base; everything else is optional and only contributes its own content. Parallel recomp projects (NX1 Reborn, COD3 Reborn, CODOL Reborn) feed assets into the same client without expanding the core scope.</p>
     </div>
   </div>
 </section>
@@ -372,6 +375,16 @@
   const btn = document.getElementById('play-pause');
   const vol = document.getElementById('volume');
   audio.volume = 0.5;
+
+  function tryPlay() {
+    audio.play().then(() => {
+      btn.textContent = '⏸';
+    }).catch(() => {
+      btn.textContent = '▶';
+    });
+  }
+  tryPlay();
+
   btn.addEventListener('click', () => {
     if (audio.paused) {
       audio.play();
@@ -385,7 +398,6 @@
     audio.volume = vol.value;
   });
 
-  // Unique page views via countapi
   fetch('https://api.countapi.xyz/hit/jxnplays.github.io/mws-box')
     .then(r => r.json())
     .then(d => {
