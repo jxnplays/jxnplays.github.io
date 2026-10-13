@@ -13,10 +13,9 @@
   body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background: var(--bg); color: var(--silver); line-height: 1.6; }
   nav {
     background: #111; border-bottom: 1px solid var(--border);
-    padding: 10px 16px; display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 16px; display: flex; justify-content: flex-end; align-items: center;
     position: sticky; top: 0; z-index: 100;
   }
-  nav .brand { font-weight: 700; color: var(--orange); text-decoration: none; font-size: 1rem; }
   nav .links { display: flex; gap: 16px; }
   nav .links a { color: var(--silver); text-decoration: none; font-size: 0.9rem; }
   nav .links a:hover { color: var(--orange); }
@@ -44,9 +43,9 @@
   .status.progress { background: #3a2e1e; color: #fbbf24; }
   .status.needed { background: #2a2a2a; color: #aaa; }
   .status.research { background: #1e2a3a; color: #60a5fa; }
-  .related, .mods, .goals { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
-  .related-card, .mod-card, .goal-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
-  .related-card img.logo-img { max-width: 100%; height: auto; max-height: 110px; margin-bottom: 10px; object-fit: contain; }
+  .related, .mods, .goals { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .related-card, .mod-card, .goal-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .related-card img.logo-img, .mod-card img.logo-img { width: 100%; max-width: 280px; height: 90px; object-fit: contain; margin-bottom: 12px; }
   .how { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
   .how-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
   .how-card h3 { margin-bottom: 4px; color: var(--orange); font-size: 1rem; }
@@ -69,7 +68,6 @@
 <body>
 
 <nav>
-  <a class="brand" href="test.html">MWS&BOX</a>
   <div class="links">
     <a href="#about">About</a>
     <a href="#games">Games</a>
@@ -151,10 +149,12 @@
   <p class="section-sub">IW4X and Plutonium mods are supported. Drop compatible mods into the client the same way those projects expect.</p>
   <div class="mods">
     <div class="mod-card">
+      <img class="logo-img" src="iw4x-logo.png" alt="IW4X">
       <h3>IW4X</h3>
       <p style="color:var(--muted);font-size:0.88rem;">Full support for IW4X-compatible mods, maps, and scripts.</p>
     </div>
     <div class="mod-card">
+      <img class="logo-img" src="plutonium-logo.png" alt="Plutonium">
       <h3>Plutonium</h3>
       <p style="color:var(--muted);font-size:0.88rem;">Plutonium mod formats and loaders are supported where they overlap with the IW4L runtime.</p>
     </div>
