@@ -21,7 +21,6 @@
   nav .links a { color: var(--silver); text-decoration: none; font-size: 0.9rem; }
   nav .links a:hover { color: var(--orange); }
   .hero { text-align: center; padding: 48px 16px 36px; background: radial-gradient(ellipse at center, #1a1008 0%, #0a0a0a 70%); }
-  .project-title { font-size: 1.15rem; color: var(--orange); font-weight: 600; margin-bottom: 12px; letter-spacing: 0.3px; }
   .logo { max-width: 640px; width: 92%; height: auto; filter: drop-shadow(0 0 36px rgba(255, 107, 26, 0.35)); }
   .tagline { font-size: 1.25rem; margin-top: 16px; color: var(--orange); font-weight: 600; }
   .subtitle { max-width: 640px; margin: 12px auto 0; color: var(--muted); font-size: 0.98rem; padding: 0 8px; }
@@ -47,7 +46,7 @@
   .status.research { background: #1e2a3a; color: #60a5fa; }
   .related, .mods, .goals { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
   .related-card, .mod-card, .goal-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
-  .related-card img.logo-img { max-width: 100%; height: auto; max-height: 90px; margin-bottom: 10px; object-fit: contain; }
+  .related-card img.logo-img { max-width: 100%; height: auto; max-height: 110px; margin-bottom: 10px; object-fit: contain; }
   .how { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
   .how-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
   .how-card h3 { margin-bottom: 4px; color: var(--orange); font-size: 1rem; }
@@ -61,7 +60,6 @@
   @media (max-width: 640px) {
     nav .links { display: none; }
     .hero { padding: 36px 12px 28px; }
-    .project-title { font-size: 1rem; }
     .tagline { font-size: 1.1rem; }
     section { padding: 32px 12px; }
     .games { grid-template-columns: 1fr; }
@@ -77,14 +75,13 @@
     <a href="#games">Games</a>
     <a href="tools.html">Tools</a>
     <a href="releases.html">Releases</a>
-    <a href="#related">Projects</a>
+    <a href="#released">Projects</a>
     <a href="#mods">Mods</a>
     <a href="#contribute">Contribute</a>
   </div>
 </nav>
 
 <header class="hero">
-  <div class="project-title">MWS&BOX: An IW4L Sandbox Project</div>
   <img class="logo" src="logo.png?v=3" alt="MWS&BOX by JXNPLAYS">
   <div class="tagline">One client for 12 Call of Duty titles.</div>
   <p class="subtitle">A maintained IW4L-based sandbox that loads maps, weapons, attachments, and modes from the games you already own. Focused on a fixed set of 12 titles from COD3 through Infinite Warfare, plus Future Warfare (NX1) and Call of Duty Online. Modern Warfare 2 is required. Everything else is optional.</p>
@@ -130,33 +127,18 @@
   </div>
 </section>
 
-<section id="related">
-  <h2>Related Projects</h2>
-  <p class="section-sub">Upstream, forks, and community work that feed into the sandbox.</p>
+<section id="released">
+  <h2>Released Projects</h2>
+  <p class="section-sub">Maintained recomp projects that feed into the sandbox.</p>
   <div class="related">
     <div class="related-card">
-      <h3>IW4L</h3>
-      <p style="color:var(--muted);font-size:0.88rem;margin:6px 0;">Upstream client the project is built on. Latest clean base.</p>
-      <a class="btn" href="https://github.com/search?q=IW4L" target="_blank" rel="noopener">View</a>
-    </div>
-    <div class="related-card">
-      <h3>IW4L Mashup (Skate 3 + Minecraft)</h3>
-      <p style="color:var(--muted);font-size:0.88rem;margin:6px 0;">Mashup fork content included in the sandbox direction.</p>
-      <a class="btn" href="https://github.com/jxnplays" target="_blank" rel="noopener">View</a>
-    </div>
-    <div class="related-card">
-      <h3>COD4 Rewrite</h3>
-      <p style="color:var(--muted);font-size:0.88rem;margin:6px 0;">Discord community project. Assets and rewrite work targeted for the client.</p>
-      <a class="btn" href="https://github.com/jxnplays" target="_blank" rel="noopener">View</a>
-    </div>
-    <div class="related-card">
-      <img class="logo-img" src="nx1-reborn-logo.png" alt="NX1 Reborn">
+      <img class="logo-img" src="nx1-reborn-logo.png?v=2" alt="NX1 Reborn">
       <h3>NX1 Reborn</h3>
       <p style="color:var(--muted);font-size:0.88rem;margin:6px 0;">Maintained static recomp of Future Warfare (NX1). Native Windows builds.</p>
       <a class="btn" href="https://github.com/jxnplays/NX1-Reborn" target="_blank" rel="noopener">GitHub</a>
     </div>
     <div class="related-card">
-      <img class="logo-img" src="cod3-reborn-logo.png" alt="COD3 Reborn">
+      <img class="logo-img" src="cod3-reborn-logo.png?v=2" alt="COD3 Reborn">
       <h3>COD3 Reborn</h3>
       <p style="color:var(--muted);font-size:0.88rem;margin:6px 0;">Maintained recomp of Call of Duty 3, being developed as a remastered project. Link coming soon.</p>
       <a class="btn" href="#" style="opacity:0.6;pointer-events:none;">Coming soon</a>
