@@ -7,32 +7,38 @@
 <style>
   :root { --bg:#0a0a0a; --card:#141414; --border:#2a2a2a; --silver:#e8e8e8; --orange:#ff6b1a; --muted:#888; }
   body { font-family: system-ui, sans-serif; background: var(--bg); color: var(--silver); margin: 0; line-height: 1.6; }
-  nav { background: #111; border-bottom: 1px solid var(--border); padding: 12px 24px; }
+  nav { background: #111; border-bottom: 1px solid var(--border); padding: 12px 16px; }
   nav a { color: var(--orange); text-decoration: none; font-weight: 700; }
-  section { max-width: 900px; margin: 40px auto; padding: 0 24px; }
+  section { max-width: 960px; margin: 32px auto; padding: 0 16px; }
   h1 { color: #fff; }
-  .board { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin-bottom: 16px; }
-  .status { display: inline-block; font-size: 0.75rem; font-weight: 700; padding: 3px 8px; border-radius: 4px; background: #1e3a2f; color: #4ade80; }
-  footer { text-align: center; padding: 30px; color: var(--muted); font-size: 0.8rem; border-top: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 0.92rem; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); }
+  th { background: #1a1a1a; color: #fff; }
+  .status { font-size: 0.75rem; font-weight: 700; padding: 2px 6px; border-radius: 3px; }
+  .base { background: #1e3a2f; color: #4ade80; }
+  footer { text-align: center; padding: 24px; color: var(--muted); font-size: 0.8rem; border-top: 1px solid var(--border); }
+  @media (max-width: 640px) { table { font-size: 0.82rem; } th, td { padding: 8px 6px; } }
 </style>
 </head>
 <body>
 <nav><a href="../test.html">← MWS&BOX</a></nav>
 <section>
   <h1>Modern Warfare 2</h1>
-  <p style="color:var(--muted);">2009 — Infinity Ward. Required base game for the client. Maps, guns, and modes already load in upstream IW4L.</p>
-  <span class="status">Base — Required</span>
+  <p style="color:var(--muted);">2009 — Infinity Ward. Required base game. Maps, guns, and modes already load in upstream IW4L.</p>
+  <span class="status base">Base — Required</span>
 
-  <div class="board">
-    <h3>Goal Board</h3>
-    <ul>
-      <li>Maps — load and play</li>
-      <li>Weapons and attachments — functional</li>
-      <li>Modes — TDM, FFA, Dom, S&D, etc.</li>
-      <li>Emblems and calling cards — present</li>
-      <li>Further polish and stability — ongoing with upstream</li>
-    </ul>
-  </div>
+  <h2 style="margin-top:24px;font-size:1.2rem;">Progress Table</h2>
+  <table>
+    <tr><th>Category</th><th>Status</th><th>Notes</th></tr>
+    <tr><td>Maps</td><td><span class="status base">Working</span></td><td>Load and play in upstream</td></tr>
+    <tr><td>Guns / Weapons</td><td><span class="status base">Working</span></td><td>Full weapon set functional</td></tr>
+    <tr><td>Attachments</td><td><span class="status base">Working</span></td><td>Standard attachments load</td></tr>
+    <tr><td>Camos</td><td><span class="status base">Working</span></td><td>Present</td></tr>
+    <tr><td>Modes</td><td><span class="status base">Working</span></td><td>TDM, FFA, Dom, S&D, etc.</td></tr>
+    <tr><td>Emblems / Calling Cards</td><td><span class="status base">Working</span></td><td>Present</td></tr>
+    <tr><td>Sounds</td><td><span class="status base">Working</span></td><td>Zone-resident</td></tr>
+    <tr><td>Materials / Textures</td><td><span class="status base">Working</span></td><td>Load from install</td></tr>
+  </table>
 </section>
 <footer>MWS&BOX by JXNPLAYS · Test draft</footer>
 </body>
