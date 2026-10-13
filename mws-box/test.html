@@ -98,11 +98,11 @@
     transition: border-color 0.2s, transform 0.2s;
   }
   .goal-card { align-items: flex-start; text-align: left; min-height: 320px; }
-  .related-card { min-height: 220px; justify-content: space-between; }
+  .related-card { min-height: 240px; justify-content: space-between; }
   .related-card:hover, .mod-card:hover, .gfx-card:hover, .mashup-card:hover { border-color: var(--orange); transform: translateY(-3px); }
   .related-card img.logo-img, .mod-card img.logo-img { width: 100%; max-width: 220px; height: 90px; object-fit: contain; }
   .related-card .btn { margin-top: auto; }
-  .gfx-card { text-decoration: none; color: inherit; min-height: 140px; justify-content: flex-start; }
+  .gfx-card { text-decoration: none; color: inherit; min-height: 150px; justify-content: flex-start; }
   .gfx-card h3 { color: var(--orange); margin-bottom: 6px; font-size: 1rem; }
   .gfx-card .tag { font-size: 0.65rem; letter-spacing: 0.08em; border: 1px solid var(--orange); color: var(--orange); padding: 1px 6px; border-radius: 3px; margin-left: 6px; }
   .gfx-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
@@ -381,36 +381,48 @@
   const vol = document.getElementById('volume');
   audio.volume = 0.5;
 
-  function tryPlay() {
-    audio.play().then(() => {
-      btn.textContent = '⏸';
-    }).catch(() => {
-      btn.textContent = '▶';
-    });
+  function updateBtn() {
+    btn.textContent = audio.paused ? '\u25b6' : '\u23f8';
   }
+
+  function tryPlay() {
+    audio.muted = false;
+    const p = audio.play();
+    if (p) {
+      p.then(updateBtn).catch(() => {
+        audio.muted = true;
+        audio.play().then(() => {
+          updateBtn();
+          const unmute = () => {
+            audio.muted = false;
+            document.removeEventListener('click', unmute);
+            document.removeEventListener('touchstart', unmute);
+          };
+          document.addEventListener('click', unmute, { once: true });
+          document.addEventListener('touchstart', unmute, { once: true });
+        }).catch(updateBtn);
+      });
+    }
+  }
+
   tryPlay();
+  document.addEventListener('click', () => { if (audio.paused) tryPlay(); }, { once: true });
 
   btn.addEventListener('click', () => {
     if (audio.paused) {
+      audio.muted = false;
       audio.play();
-      btn.textContent = '⏸';
     } else {
       audio.pause();
-      btn.textContent = '▶';
     }
+    updateBtn();
   });
-  vol.addEventListener('input', () => {
-    audio.volume = vol.value;
-  });
+  vol.addEventListener('input', () => { audio.volume = vol.value; });
 
   fetch('https://api.countapi.xyz/hit/jxnplays.github.io/mws-box')
     .then(r => r.json())
-    .then(d => {
-      document.getElementById('views').textContent = d.value.toLocaleString();
-    })
-    .catch(() => {
-      document.getElementById('views').textContent = 'n/a';
-    });
+    .then(d => { document.getElementById('views').textContent = d.value.toLocaleString(); })
+    .catch(() => { document.getElementById('views').textContent = 'n/a'; });
 </script>
 
 </body>
