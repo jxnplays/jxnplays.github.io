@@ -24,7 +24,7 @@
   .project-title { font-size: 1.15rem; color: var(--orange); font-weight: 600; margin-bottom: 12px; letter-spacing: 0.3px; }
   .logo { max-width: 640px; width: 92%; height: auto; filter: drop-shadow(0 0 36px rgba(255, 107, 26, 0.35)); }
   .tagline { font-size: 1.25rem; margin-top: 16px; color: var(--orange); font-weight: 600; }
-  .subtitle { max-width: 620px; margin: 12px auto 0; color: var(--muted); font-size: 0.98rem; padding: 0 8px; }
+  .subtitle { max-width: 640px; margin: 12px auto 0; color: var(--muted); font-size: 0.98rem; padding: 0 8px; }
   section { max-width: 1100px; margin: 0 auto; padding: 40px 16px; }
   h2 { font-size: 1.55rem; margin-bottom: 8px; color: #fff; }
   .section-sub { color: var(--muted); margin-bottom: 22px; font-size: 0.95rem; }
@@ -45,9 +45,8 @@
   .status.progress { background: #3a2e1e; color: #fbbf24; }
   .status.needed { background: #2a2a2a; color: #aaa; }
   .status.research { background: #1e2a3a; color: #60a5fa; }
-  .related, .mods { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
-  .related-card, .mod-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
-  .mod-card img { max-height: 48px; margin-bottom: 8px; }
+  .related, .mods, .goals { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .related-card, .mod-card, .goal-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
   .how { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
   .how-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
   .how-card h3 { margin-bottom: 4px; color: var(--orange); font-size: 1rem; }
@@ -73,6 +72,7 @@
 <nav>
   <a class="brand" href="test.html">MWS&BOX</a>
   <div class="links">
+    <a href="#about">About</a>
     <a href="#games">Games</a>
     <a href="tools.html">Tools</a>
     <a href="releases.html">Releases</a>
@@ -85,9 +85,30 @@
 <header class="hero">
   <div class="project-title">MWS&BOX: An IW4L Sandbox Project</div>
   <img class="logo" src="logo.png?v=3" alt="MWS&BOX by JXNPLAYS">
-  <div class="tagline">One client. Every Call of Duty you own.</div>
-  <p class="subtitle">A maintained IW4L-based runtime that reads the games you already have installed. Modern Warfare 2 is required. Everything else is optional and only adds what that install contains.</p>
+  <div class="tagline">One client for 12 Call of Duty titles.</div>
+  <p class="subtitle">A maintained IW4L-based sandbox that loads maps, weapons, and modes from the games you already own. Focused on a fixed set of titles from COD3 through Infinite Warfare, plus Future Warfare and Call of Duty Online. Modern Warfare 2 is required. Everything else is optional.</p>
 </header>
+
+<section id="about">
+  <h2>What is MWS&BOX?</h2>
+  <p class="section-sub">An open sandbox built on the latest upstream IW4L client. It does not ship or download game files. It reads legitimate installs you already have and adds per-game asset support over time.</p>
+  <div class="goals">
+    <div class="goal-card">
+      <h3 style="color:var(--orange);margin-bottom:6px;">Goals</h3>
+      <ul style="padding-left:18px;color:var(--muted);font-size:0.92rem;">
+        <li>Keep a clean, up-to-date IW4L base</li>
+        <li>Add readers and converters for each target game</li>
+        <li>Load maps, guns, attachments, camos, and modes from owned installs</li>
+        <li>Support IW4X and Plutonium-compatible mods</li>
+        <li>Open the project so others can claim and work on individual titles</li>
+      </ul>
+    </div>
+    <div class="goal-card">
+      <h3 style="color:var(--orange);margin-bottom:6px;">How it stays focused</h3>
+      <p style="color:var(--muted);font-size:0.92rem;">We are not targeting the entire Call of Duty series. The current list is 12 titles. New games are only added when the work is realistic and someone is willing to own the reader and asset path.</p>
+    </div>
+  </div>
+</section>
 
 <section id="games">
   <h2>Target Games</h2>
