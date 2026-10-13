@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MWS&BOX — One Client for Call of Duty</title>
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --card: #141414;
+    --border: #2a2a2a;
+    --silver: #e8e8e8;
+    --orange: #ff6b1a;
+    --orange-glow: #ff8c42;
+    --muted: #888;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--silver);
+    line-height: 1.6;
+  }
+  .hero {
+    text-align: center;
+    padding: 80px 20px 60px;
+    background: radial-gradient(ellipse at center, #1a1008 0%, #0a0a0a 70%);
+  }
+  .logo {
+    max-width: 720px;
+    width: 90%;
+    height: auto;
+    filter: drop-shadow(0 0 40px rgba(255, 107, 26, 0.35));
+  }
+  .tagline {
+    font-size: 1.4rem;
+    margin-top: 24px;
+    color: var(--orange);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .subtitle {
+    max-width: 640px;
+    margin: 16px auto 0;
+    color: var(--muted);
+    font-size: 1.05rem;
+  }
+  section { max-width: 1100px; margin: 0 auto; padding: 60px 24px; }
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+    color: #fff;
+  }
+  .section-sub { color: var(--muted); margin-bottom: 32px; }
+  .games {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .game-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .game-card:hover { border-color: var(--orange); transform: translateY(-2px); }
+  .game-card h3 { font-size: 1.05rem; margin-bottom: 6px; }
+  .status {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  .status.base { background: #1e3a2f; color: #4ade80; }
+  .status.progress { background: #3a2e1e; color: #fbbf24; }
+  .status.needed { background: #2a2a2a; color: #aaa; }
+  .status.research { background: #1e2a3a; color: #60a5fa; }
+  .how { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 16px; }
+  .how-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 24px; }
+  .how-card h3 { margin-bottom: 8px; color: var(--orange); }
+  .contrib {
+    background: linear-gradient(135deg, #1a1208, #141414);
+    border: 1px solid #3a2a18;
+    border-radius: 12px;
+    padding: 32px;
+    text-align: center;
+  }
+  .contrib h2 { margin-bottom: 8px; }
+  .btn {
+    display: inline-block;
+    margin-top: 16px;
+    background: var(--orange);
+    color: #000;
+    font-weight: 700;
+    padding: 12px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .btn:hover { background: var(--orange-glow); }
+  footer {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border);
+  }
+  @media (max-width: 600px) {
+    .hero { padding: 50px 16px 40px; }
+    .tagline { font-size: 1.15rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <img class="logo" src="logo.png" alt="MWS&BOX by JXNPLAYS">
+  <div class="tagline">One client. Every Call of Duty you own.</div>
+  <p class="subtitle">A maintained IW4L-based runtime that reads the games you already have installed. Modern Warfare 2 is required. Everything else is optional and only adds what that install contains.</p>
+</header>
+
+<section>
+  <h2>Games</h2>
+  <p class="section-sub">Status is early and honest. Most titles still need readers or asset work. Pick one and start.</p>
+  <div class="games">
+    <div class="game-card">
+      <h3>Modern Warfare 2</h3>
+      <span class="status base">Base — Required</span>
+      <p style="margin-top:8px;color:var(--muted);font-size:0.9rem;">Maps, guns, and modes load. Primary target.</p>
+    </div>
+    <div class="game-card">
+      <h3>Modern Warfare 3</h3>
+      <span class="status progress">In progress</span>
+      <p style="margin-top:8px;color:var(--muted);font-size:0.9rem;">Maps and weapons partially wired.</p>
+    </div>
+    <div class="game-card">
+      <h3>Black Ops</h3>
+      <span class="status progress">In progress</span>
+      <p style="margin-top:8px;color:var(--muted);font-size:0.9rem;">Maps and guns loading. More work needed.</p>
+    </div>
+    <div class="game-card">
+      <h3>Black Ops 2</h3>
+      <span class="status progress">Partial</span>
+      <p style="margin-top:8px;color:var(--muted);font-size:0.9rem;">Some maps confirmed. Class/weapon path open.</p>
+    </div>
+    <div class="game-card">
+      <h3>Call of Duty 4</h3>
+      <span class="status needed">Needs work</span>
+      <p style="margin-top:8px;color:var(--muted);font-size:0.9rem;">Reader and asset pipeline not started.</p>
+    </div>
+    <div class="game-card">
+      <h3>World at War</h3>
+      <span class="status needed">Needs work</span>
+      <p style="margin-top:8px;color:var(--muted);font-size:0.9rem;">Open for contributors.</p>
+    </div>
+    <div class="game-card">
+      <h3>Future Warfare (NX1)</h3>
+      <span class="status research">Research</span>
+      <p style="margin-top:8px;color:var(--muted);font-size:0.9rem;">Fastfile reader and converter in progress. Bone/animation differences are the main blocker.</p>
+    </div>
+    <div class="game-card">
+      <h3>Call of Duty Online</h3>
+      <span class="status research">Research</span>
+      <p style="margin-top:8px;color:var(--muted);font-size:0.9rem;">Separate offline/English effort. Assets targeted for IW4L.</p>
+    </div>
+    <div class="game-card">
+      <h3>Ghosts / AW / BO3 / IW / WWII</h3>
+      <span class="status needed">Not started</span>
+      <p style="margin-top:8px;color:var(--muted);font-size:0.9rem;">Readers needed. Claim one.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>How it works</h2>
+  <div class="how">
+    <div class="how-card">
+      <h3>1. Own the game</h3>
+      <p>Legal Steam (or equivalent) install. The client does not ship or download game files.</p>
+    </div>
+    <div class="how-card">
+      <h3>2. Point at the folder</h3>
+      <p>Modern Warfare 2 is required. Other games are optional and only contribute their own maps, weapons, and modes.</p>
+    </div>
+    <div class="how-card">
+      <h3>3. Play what loads</h3>
+      <p>Built on the latest upstream IW4L. Asset readers and converters are added per game as work progresses.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="contrib">
+    <h2>Want to help?</h2>
+    <p class="section-sub" style="margin:0 auto 8px;">The main client repo is being restructured around a clean latest-upstream IW4L base with per-game trackers. NX1 work continues in parallel. Other titles are open.</p>
+    <a class="btn" href="https://github.com/jxnplays" target="_blank" rel="noopener">View on GitHub</a>
+    <p style="margin-top:12px;font-size:0.9rem;color:var(--muted);">Open an issue, claim a game, or start a branch. Contributions welcome once the private setup is public.</p>
+  </div>
+</section>
+
+<footer>
+  MWS&BOX by JXNPLAYS · Built on IW4L · No game assets included<br>
+  <span style="font-size:0.75rem;">Test draft — not the final public page</span>
+</footer>
+
+</body>
+</html>
