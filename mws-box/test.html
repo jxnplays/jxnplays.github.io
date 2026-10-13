@@ -22,17 +22,17 @@
   }
   nav {
     background: rgba(17,17,17,0.92); border-bottom: 1px solid var(--border);
-    padding: 10px 16px; display: flex; justify-content: center; align-items: center;
+    padding: 10px 12px; display: flex; justify-content: center; align-items: center;
     position: sticky; top: 0; z-index: 100; backdrop-filter: blur(8px);
   }
-  nav .links { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+  nav .links { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
   nav .links a {
-    color: var(--silver); text-decoration: none; font-size: 0.85rem; white-space: nowrap;
-    position: relative; transition: color 0.2s;
+    color: var(--silver); text-decoration: none; font-size: 0.8rem; white-space: nowrap;
+    position: relative; transition: color 0.2s; padding: 2px 0;
   }
   nav .links a:hover { color: var(--orange); }
   nav .links a::after {
-    content: ""; position: absolute; left: 0; bottom: -3px; width: 100%; height: 1px;
+    content: ""; position: absolute; left: 0; bottom: -2px; width: 100%; height: 1px;
     background: var(--orange); transform: scaleX(0); transform-origin: left; transition: transform 0.25s;
   }
   nav .links a:hover::after { transform: scaleX(1); }
@@ -76,25 +76,25 @@
   .status.progress { background: #3a2e1e; color: #fbbf24; }
   .status.needed { background: #2a2a2a; color: #aaa; }
   .status.research { background: #1e2a3a; color: #60a5fa; }
-  .related, .mods, .goals, .gfx-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
-  .related-card, .mod-card, .goal-card, .gfx-card {
+  .related, .mods, .goals, .gfx-grid, .mashup { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .related-card, .mod-card, .goal-card, .gfx-card, .mashup-card {
     background: var(--card); border: 1px solid var(--border); border-radius: 10px;
     padding: 18px; display: flex; flex-direction: column; align-items: center; text-align: center;
     transition: border-color 0.2s, transform 0.2s;
   }
-  .related-card:hover, .mod-card:hover, .gfx-card:hover { border-color: var(--orange); transform: translateY(-3px); }
+  .related-card { min-height: 220px; justify-content: space-between; }
+  .related-card:hover, .mod-card:hover, .gfx-card:hover, .mashup-card:hover { border-color: var(--orange); transform: translateY(-3px); }
   .related-card img.logo-img, .mod-card img.logo-img { width: 100%; max-width: 220px; height: 90px; object-fit: contain; }
+  .related-card .btn { margin-top: auto; }
+  .gfx-card { text-decoration: none; color: inherit; }
   .gfx-card h3 { color: var(--orange); margin-bottom: 6px; font-size: 1rem; }
   .gfx-card .tag { font-size: 0.65rem; letter-spacing: 0.08em; border: 1px solid var(--orange); color: var(--orange); padding: 1px 6px; border-radius: 3px; margin-left: 6px; }
-  table.gfx { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 0.9rem; }
-  table.gfx th, table.gfx td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); }
-  table.gfx th { background: #1a1a1a; color: #fff; }
   .how { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
   .how-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; transition: border-color 0.2s, transform 0.2s; }
   .how-card:hover { border-color: var(--orange); transform: translateY(-3px); }
   .how-card h3 { margin-bottom: 4px; color: var(--orange); font-size: 1rem; }
   .contrib { background: linear-gradient(135deg, #1a1208, #141414); border: 1px solid #3a2a18; border-radius: 12px; padding: 24px; text-align: center; }
-  .btn { display: inline-block; margin-top: 10px; background: var(--orange); color: #000; font-weight: 700; padding: 10px 22px; border-radius: 8px; text-decoration: none; font-size: 0.95rem; transition: background 0.2s, transform 0.15s; }
+  .btn { display: inline-block; background: var(--orange); color: #000; font-weight: 700; padding: 10px 22px; border-radius: 8px; text-decoration: none; font-size: 0.95rem; transition: background 0.2s, transform 0.15s; }
   .btn:hover { background: var(--orange-glow); transform: translateY(-1px); }
   .credits { display: flex; align-items: center; gap: 16px; justify-content: center; flex-wrap: wrap; margin: 16px 0; }
   .credits img { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; border: 2px solid var(--orange); }
@@ -118,7 +118,7 @@
   @media (max-width: 640px) {
     nav { padding: 8px; }
     nav .links { gap: 8px; }
-    nav .links a { font-size: 0.78rem; }
+    nav .links a { font-size: 0.75rem; }
     .hero { padding: 40px 12px 24px; }
     .tagline { font-size: 1.1rem; }
     section { padding: 36px 12px; }
@@ -134,11 +134,11 @@
     <a href="#about">About</a>
     <a href="#games">Games</a>
     <a href="#graphics">Graphics</a>
+    <a href="features.html">Features</a>
     <a href="tools.html">Tools</a>
     <a href="releases.html">Releases</a>
-    <a href="#released">Projects</a>
+    <a href="#projects">Projects</a>
     <a href="#mods">Mods</a>
-    <a href="#contribute">Contribute</a>
   </div>
 </nav>
 
@@ -189,7 +189,7 @@
 
 <section id="about" class="about-section">
   <h2>What is MWS&BOX?</h2>
-  <p class="section-sub" style="max-width: 720px; margin-left: auto; margin-right: auto;">An open sandbox built on the latest upstream IW4L client. It does not ship or download game files. It reads legitimate installs you already have and adds per-game asset support over time so content from those installs can load and play inside one client.</p>
+  <p class="section-sub" style="max-width: 720px; margin-left: auto; margin-right: auto;">An open sandbox built on the latest upstream IW4L client. It does not ship or download game files. It reads legitimate installs you already have and adds per-game asset support over time so content from those installs can load and play inside one client. Also includes content from the IW4L mashup fork (Skate 3 and Minecraft).</p>
   <div class="goals">
     <div class="goal-card">
       <h3 style="color:var(--orange);margin-bottom:6px;">Goals</h3>
@@ -204,6 +204,21 @@
     <div class="goal-card">
       <h3 style="color:var(--orange);margin-bottom:6px;">How it stays focused</h3>
       <p style="color:var(--muted);font-size:0.92rem;">We are not targeting the entire Call of Duty series. The current list is fixed at 12 titles. New games are only added when the work is realistic and someone is willing to own the reader and asset path for that title.</p>
+    </div>
+  </div>
+</section>
+
+<section id="mashup">
+  <h2>Mashup Content</h2>
+  <p class="section-sub">Included from the IW4L mashup fork.</p>
+  <div class="mashup">
+    <div class="mashup-card">
+      <h3 style="color:var(--orange);">Skate 3</h3>
+      <p style="color:var(--muted);font-size:0.88rem;">Maps, props, and gameplay elements from the Skate 3 mashup. Part of the base client experience.</p>
+    </div>
+    <div class="mashup-card">
+      <h3 style="color:var(--orange);">Minecraft</h3>
+      <p style="color:var(--muted);font-size:0.88rem;">Minecraft-style content and maps from the mashup fork. Loads alongside the Call of Duty titles.</p>
     </div>
   </div>
 </section>
@@ -229,46 +244,35 @@
 
 <section id="graphics">
   <h2>Planned Graphics Features</h2>
-  <p class="section-sub">Graphics improvements aimed at Modern Warfare 2 Remastered parity. None of these are in a match yet.</p>
+  <p class="section-sub">Click a card for its detail table. Aimed at Modern Warfare 2 Remastered parity. None of these are in a match yet.</p>
   <div class="gfx-grid">
-    <div class="gfx-card"><h3>Ambient Occlusion <span class="tag">PLANNED</span></h3><p style="color:var(--muted);font-size:0.88rem;">Contact shadow in corners and under cover. A video setting, not a baked look.</p></div>
-    <div class="gfx-card"><h3>Water <span class="tag">PLANNED</span></h3><p style="color:var(--muted);font-size:0.88rem;">A new water shader for maps that have it. Reflection and motion, not the flat retail sheet.</p></div>
-    <div class="gfx-card"><h3>Weather <span class="tag">PLANNED</span></h3><p style="color:var(--muted);font-size:0.88rem;">Rain, fog, and clear. Options menu can list them. World effect still to be wired.</p></div>
-    <div class="gfx-card"><h3>Light & Shadow <span class="tag">PLANNED</span></h3><p style="color:var(--muted);font-size:0.88rem;">Sun direction, shadow quality, and a night pass. Per map, not one global grade.</p></div>
-    <div class="gfx-card"><h3>Anti-Aliasing <span class="tag">PLANNED</span></h3><p style="color:var(--muted);font-size:0.88rem;">FXAA, SMAA, and MSAA. A modern edge pass, not the retail jaggies.</p></div>
-    <div class="gfx-card"><h3>Filtering <span class="tag">PLANNED</span></h3><p style="color:var(--muted);font-size:0.88rem;">Anisotropic filtering and texture quality. Ground and walls stay sharp at an angle.</p></div>
+    <a class="gfx-card" href="graphics/ao.html"><h3>Ambient Occlusion <span class="tag">PLANNED</span></h3><p style="color:var(--muted);font-size:0.88rem;">Contact shadow in corners and under cover.</p></a>
+    <a class="gfx-card" href="graphics/water.html"><h3>Water <span class="tag">PLANNED</span></h3><p style="color:var(--muted);font-size:0.88rem;">Reflection and motion for maps with water.</p></a>
+    <a class="gfx-card" href="features.html#graphics"><h3>Weather <span class="tag">PLANNED</span></h3><p style="color:var(--muted);font-size:0.88rem;">Rain, fog, and clear.</p></a>
+    <a class="gfx-card" href="features.html#graphics"><h3>Light & Shadow <span class="tag">PLANNED</span></h3><p style="color:var(--muted);font-size:0.88rem;">Per-map sun and shadow quality.</p></a>
+    <a class="gfx-card" href="features.html#graphics"><h3>Anti-Aliasing <span class="tag">PLANNED</span></h3><p style="color:var(--muted);font-size:0.88rem;">FXAA, SMAA, and MSAA.</p></a>
+    <a class="gfx-card" href="features.html#graphics"><h3>Filtering <span class="tag">PLANNED</span></h3><p style="color:var(--muted);font-size:0.88rem;">Anisotropic filtering and texture quality.</p></a>
+    <a class="gfx-card" href="graphics/fsr.html"><h3>FSR <span class="tag">PLANNED</span></h3><p style="color:var(--muted);font-size:0.88rem;">FidelityFX Super Resolution upscaling.</p></a>
   </div>
-  <table class="gfx">
-    <tr><th>Feature</th><th>Status</th><th>Notes</th></tr>
-    <tr><td>Ambient Occlusion</td><td><span class="status needed">Planned</span></td><td>Contact shadows</td></tr>
-    <tr><td>Water Shader</td><td><span class="status needed">Planned</span></td><td>Reflection + motion</td></tr>
-    <tr><td>Weather</td><td><span class="status needed">Planned</span></td><td>Rain, fog, clear</td></tr>
-    <tr><td>Light & Shadow</td><td><span class="status needed">Planned</span></td><td>Per-map sun + shadows</td></tr>
-    <tr><td>Anti-Aliasing</td><td><span class="status needed">Planned</span></td><td>FXAA / SMAA / MSAA</td></tr>
-    <tr><td>Texture Filtering</td><td><span class="status needed">Planned</span></td><td>Anisotropic + quality</td></tr>
-  </table>
 </section>
 
-<section id="released">
-  <h2>Released Projects</h2>
+<section id="projects">
+  <h2>Projects In-Development</h2>
   <p class="section-sub">Maintained recomp projects that feed into the sandbox.</p>
   <div class="related">
     <div class="related-card">
       <img class="logo-img" src="nx1-reborn-logo.png?v=2" alt="NX1 Reborn">
-      <h3>NX1 Reborn</h3>
-      <p style="color:var(--muted);font-size:0.88rem;margin:6px 0;">Maintained static recomp of Future Warfare (NX1). Native Windows builds.</p>
+      <p style="color:var(--muted);font-size:0.88rem;margin:8px 0;">Maintained static recomp of Future Warfare (NX1). Native Windows builds.</p>
       <a class="btn" href="https://github.com/jxnplays/NX1-Reborn" target="_blank" rel="noopener">GitHub</a>
     </div>
     <div class="related-card">
       <img class="logo-img" src="cod3-reborn-logo.png?v=2" alt="COD3 Reborn">
-      <h3>COD3 Reborn</h3>
-      <p style="color:var(--muted);font-size:0.88rem;margin:6px 0;">Maintained recomp of Call of Duty 3, being developed as a remastered project. Link coming soon.</p>
+      <p style="color:var(--muted);font-size:0.88rem;margin:8px 0;">Maintained recomp of Call of Duty 3, being developed as a remastered project.</p>
       <a class="btn" href="#" style="opacity:0.6;pointer-events:none;">Coming soon</a>
     </div>
     <div class="related-card">
       <img class="logo-img" src="codol-reborn-logo.png?v=1" alt="CODOL Reborn">
-      <h3>CODOL Reborn</h3>
-      <p style="color:var(--muted);font-size:0.88rem;margin:6px 0;">Offline English version of Call of Duty Online by Pteryla. Campaign, Multiplayer, and Zombies fully working.</p>
+      <p style="color:var(--muted);font-size:0.88rem;margin:8px 0;">Offline English version of Call of Duty Online by Pteryla. Campaign, Multiplayer, and Zombies fully working.</p>
       <a class="btn" href="#" style="opacity:0.6;pointer-events:none;">Coming soon</a>
     </div>
   </div>
