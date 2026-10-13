@@ -26,6 +26,8 @@
   section { max-width: 1100px; margin: 0 auto; padding: 40px 16px; }
   h2 { font-size: 1.55rem; margin-bottom: 8px; color: #fff; }
   .section-sub { color: var(--muted); margin-bottom: 22px; font-size: 0.95rem; }
+  .about-section { text-align: center; }
+  .about-section .goals { text-align: left; }
   .games { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; }
   .game-card {
     background: var(--card); border: 1px solid var(--border); border-radius: 10px;
@@ -45,7 +47,7 @@
   .status.research { background: #1e2a3a; color: #60a5fa; }
   .related, .mods, .goals { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
   .related-card, .mod-card, .goal-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; display: flex; flex-direction: column; align-items: center; text-align: center; }
-  .related-card img.logo-img, .mod-card img.logo-img { width: 100%; max-width: 220px; height: 100px; object-fit: contain; }
+  .related-card img.logo-img, .mod-card img.logo-img { width: 100%; max-width: 240px; height: 100px; object-fit: contain; }
   .how { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
   .how-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
   .how-card h3 { margin-bottom: 4px; color: var(--orange); font-size: 1rem; }
@@ -87,9 +89,9 @@
   <p class="subtitle">A maintained IW4L-based sandbox that loads maps, weapons, attachments, and modes from the games you already own. Focused on a fixed set of 12 titles from COD3 through Infinite Warfare, plus Future Warfare (NX1) and Call of Duty Online. Modern Warfare 2 is required. Everything else is optional.</p>
 </header>
 
-<section id="about">
+<section id="about" class="about-section">
   <h2>What is MWS&BOX?</h2>
-  <p class="section-sub">An open sandbox built on the latest upstream IW4L client. It does not ship or download game files. It reads legitimate installs you already have and adds per-game asset support over time so content from those installs can load and play inside one client.</p>
+  <p class="section-sub" style="max-width: 720px; margin-left: auto; margin-right: auto;">An open sandbox built on the latest upstream IW4L client. It does not ship or download game files. It reads legitimate installs you already have and adds per-game asset support over time so content from those installs can load and play inside one client.</p>
   <div class="goals">
     <div class="goal-card">
       <h3 style="color:var(--orange);margin-bottom:6px;">Goals</h3>
@@ -143,6 +145,12 @@
       <p style="color:var(--muted);font-size:0.88rem;margin:6px 0;">Maintained recomp of Call of Duty 3, being developed as a remastered project. Link coming soon.</p>
       <a class="btn" href="#" style="opacity:0.6;pointer-events:none;">Coming soon</a>
     </div>
+    <div class="related-card">
+      <img class="logo-img" src="codol-reborn-logo.png?v=1" alt="CODL Reborn">
+      <h3>CODL Reborn</h3>
+      <p style="color:var(--muted);font-size:0.88rem;margin:6px 0;">Call of Duty Online recomp by Pteryla. Offline/English reverse-engineering feeding into the sandbox.</p>
+      <a class="btn" href="#" style="opacity:0.6;pointer-events:none;">Coming soon</a>
+    </div>
   </div>
 </section>
 
@@ -188,7 +196,7 @@
   </div>
   MWS&BOX by JXNPLAYS · Built on IW4L · No game assets included<br>
   <div class="disclaimer">
-    <strong>Legal Disclaimer:</strong> MWS&BOX is an independent open-source project. It does not include, distribute, or provide any copyrighted Call of Duty game files, assets, or code. Users must own legitimate copies of the games they wish to load. All trademarks and copyrights belong to their respective owners (Activision, Infinity Ward, Treyarch, Sledgehammer Games, etc.). This project is not affiliated with or endorsed by Activision or any official Call of Duty developer. IW4X and Plutonium are independent projects; support is for compatible mod formats only.
+    <strong>Legal Disclaimer:</strong> MWS&BOX is an independent open-source project. It does not include, distribute, or provide any copyrighted Call of Duty game files, assets, or code. Users must own legitimate copies of the games they wish to load. All trademarks and copyrights belong to their respective owners (Activision, Infinity Ward, Treyarch, Sledgehammer Games, etc.). This project is not affiliated with or endorsed by Activision or any official Call of Duty developer. IW4X and Plutonium are independent projects; support is for compatible mod formats only. Recomp projects (NX1 Reborn, COD3 Reborn, CODL Reborn) are maintained separately.
   </div>
   <span style="font-size:0.7rem;display:block;margin-top:8px;">Test draft — not the final public page</span>
 </footer>
