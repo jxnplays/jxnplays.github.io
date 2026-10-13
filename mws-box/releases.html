@@ -12,9 +12,9 @@
   section { max-width: 960px; margin: 40px auto; padding: 0 24px; }
   h1 { color: #fff; }
   .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin-top: 20px; }
-  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; display: flex; flex-direction: column; min-height: 280px; }
   .card img { width: 100%; max-width: 220px; height: 90px; object-fit: contain; margin-bottom: 12px; }
-  .btn { display: inline-block; margin-top: 10px; background: var(--orange); color: #000; font-weight: 700; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-size: 0.9rem; }
+  .btn { display: inline-block; margin-top: auto; background: var(--orange); color: #000; font-weight: 700; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-size: 0.9rem; }
   footer { text-align: center; padding: 30px; color: var(--muted); font-size: 0.8rem; border-top: 1px solid var(--border); }
 </style>
 </head>
@@ -28,7 +28,7 @@
       <img src="logo.png?v=4" alt="MWS&BOX">
       <h3>MWS&BOX</h3>
       <p style="color:var(--muted);font-size:0.88rem;">Main open source IW4L sandbox client. Per-game asset support for the 12 target titles.</p>
-      <a class="btn" href="https://github.com/jxnplays" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="https://github.com/jxnplays/mws-box" target="_blank" rel="noopener">GitHub</a>
     </div>
     <div class="card">
       <img src="nx1-reborn-logo.png?v=2" alt="NX1 Reborn">
@@ -40,7 +40,7 @@
       <img src="cod3-reborn-logo.png?v=2" alt="COD3 Reborn">
       <h3>COD3 Reborn</h3>
       <p style="color:var(--muted);font-size:0.88rem;">Maintained recomp of Call of Duty 3, being developed as a remastered project.</p>
-      <a class="btn" href="#" style="opacity:0.55;pointer-events:none;">Coming soon</a>
+      <a class="btn" href="https://github.com/jxnplays/cod3-recomp" target="_blank" rel="noopener">GitHub</a>
     </div>
   </div>
 </section>
