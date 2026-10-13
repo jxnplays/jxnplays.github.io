@@ -13,7 +13,6 @@
   h1 { color: #fff; }
   .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; margin-bottom: 14px; }
   .soon { display: inline-block; font-size: 0.75rem; font-weight: 700; padding: 3px 8px; border-radius: 4px; background: #2a2a2a; color: #aaa; }
-  .exist { display: inline-block; font-size: 0.75rem; font-weight: 700; padding: 3px 8px; border-radius: 4px; background: #1e3a2f; color: #4ade80; }
   footer { text-align: center; padding: 24px; color: var(--muted); font-size: 0.8rem; border-top: 1px solid var(--border); }
 </style>
 </head>
@@ -21,19 +20,7 @@
 <nav><a href="test.html">← MWS&BOX</a></nav>
 <section>
   <h1>Tools</h1>
-  <p style="color:var(--muted);">Existing community tools plus project-specific readers and converters. Some games already have usable fastfile readers available outside this project.</p>
-
-  <div class="card">
-    <h3>OpenAssetTools</h3>
-    <p>Existing community tool for reading and extracting assets from multiple Call of Duty titles. Useful starting point for several of the target games.</p>
-    <span class="exist">Exists</span>
-  </div>
-
-  <div class="card">
-    <h3>ZoneTool (x64)</h3>
-    <p>x64 variant of ZoneTool. Used for fastfile and zone work on supported titles.</p>
-    <span class="exist">Exists</span>
-  </div>
+  <p style="color:var(--muted);">Custom tools built for this project. Some target games already have usable community readers or converters available elsewhere; those are not listed here.</p>
 
   <div class="card">
     <h3>NX1 Fastfile Reader</h3>
@@ -43,13 +30,13 @@
 
   <div class="card">
     <h3>NX1 Asset Converter</h3>
-    <p>Converts extracted NX1 viewmodels, hands, and animations into formats usable by the IW4L client. Bone count differences are the main challenge.</p>
+    <p>Converts extracted NX1 viewmodels, hands, and animations into formats usable by the IW4L client. Bone count differences (NX1 has 59 vs IW4's 34) are the main challenge.</p>
     <span class="soon">Coming soon</span>
   </div>
 
   <div class="card">
-    <h3>Per-game Readers (COD4 / WaW / AW / BO3 / IW / others)</h3>
-    <p>Additional readers and converters where existing tools are incomplete or missing. Open for contributors.</p>
+    <h3>Per-game Asset Readers & Converters</h3>
+    <p>Additional readers and converters for titles where existing community tools are incomplete or missing the pieces we need for the client. Open for contributors.</p>
     <span class="soon">Coming soon</span>
   </div>
 </section>
