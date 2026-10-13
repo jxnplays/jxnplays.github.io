@@ -75,14 +75,14 @@
   .game-card {
     background: var(--card); border: 1px solid var(--border); border-radius: 10px;
     padding: 16px; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-    text-decoration: none; color: inherit; display: block;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; min-height: 180px;
   }
   .game-card:hover { border-color: var(--orange); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(255,107,26,0.12); }
   .game-card h3 { font-size: 1.02rem; margin-bottom: 2px; }
   .year { font-size: 0.78rem; color: var(--muted); margin-bottom: 6px; }
   .status {
     display: inline-block; font-size: 0.7rem; font-weight: 700; padding: 2px 7px;
-    border-radius: 4px; text-transform: uppercase; letter-spacing: 0.3px;
+    border-radius: 4px; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 8px;
   }
   .status.base { background: #1e3a2f; color: #4ade80; }
   .status.progress { background: #3a2e1e; color: #fbbf24; }
@@ -98,9 +98,13 @@
   .related-card:hover, .mod-card:hover, .gfx-card:hover, .mashup-card:hover { border-color: var(--orange); transform: translateY(-3px); }
   .related-card img.logo-img, .mod-card img.logo-img { width: 100%; max-width: 220px; height: 90px; object-fit: contain; }
   .related-card .btn { margin-top: auto; }
-  .gfx-card { text-decoration: none; color: inherit; }
+  .gfx-card { text-decoration: none; color: inherit; min-height: 140px; justify-content: flex-start; }
   .gfx-card h3 { color: var(--orange); margin-bottom: 6px; font-size: 1rem; }
   .gfx-card .tag { font-size: 0.65rem; letter-spacing: 0.08em; border: 1px solid var(--orange); color: var(--orange); padding: 1px 6px; border-radius: 3px; margin-left: 6px; }
+  .gfx-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+  .music-embed { max-width: 560px; margin: 0 auto; aspect-ratio: 16/9; }
+  .music-embed iframe { width: 100%; height: 100%; border: 0; border-radius: 10px; }
+  .visitor { text-align: center; margin-top: 12px; font-size: 0.8rem; color: var(--muted); }
   .how { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
   .how-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; transition: border-color 0.2s, transform 0.2s; }
   .how-card:hover { border-color: var(--orange); transform: translateY(-3px); }
@@ -250,18 +254,18 @@
   <h2>Target Games</h2>
   <p class="section-sub">MW2 is required and listed first. Other titles sorted by release date. Click any game for its detailed progress table. 12 titles.</p>
   <div class="games">
-    <a class="game-card" href="games/mw2.html"><h3>Modern Warfare 2</h3><div class="year">2009</div><span class="status base">Base — Required</span><p style="margin-top:6px;color:var(--muted);font-size:0.85rem;">Maps, guns, and modes load. Primary base for the client.</p></a>
-    <a class="game-card" href="games/cod3.html"><h3>Call of Duty 3</h3><div class="year">2006</div><span class="status progress">In progress</span><p style="margin-top:6px;color:var(--muted);font-size:0.85rem;">COD3 Reborn recomp in progress. Assets targeted for the client.</p></a>
-    <a class="game-card" href="games/cod4.html"><h3>Call of Duty 4: Modern Warfare</h3><div class="year">2007</div><span class="status needed">Needs work</span><p style="margin-top:6px;color:var(--muted);font-size:0.85rem;">Reader and asset pipeline open for contributors.</p></a>
-    <a class="game-card" href="games/waw.html"><h3>World at War</h3><div class="year">2008</div><span class="status needed">Needs work</span><p style="margin-top:6px;color:var(--muted);font-size:0.85rem;">Open for contributors. Reader needed.</p></a>
-    <a class="game-card" href="games/bo1.html"><h3>Black Ops</h3><div class="year">2010</div><span class="status progress">In progress</span><p style="margin-top:6px;color:var(--muted);font-size:0.85rem;">Maps and guns loading. More work needed.</p></a>
-    <a class="game-card" href="games/mw3.html"><h3>Modern Warfare 3</h3><div class="year">2011</div><span class="status progress">In progress</span><p style="margin-top:6px;color:var(--muted);font-size:0.85rem;">Maps and weapons partially wired.</p></a>
-    <a class="game-card" href="games/bo2.html"><h3>Black Ops 2</h3><div class="year">2012</div><span class="status progress">Partial</span><p style="margin-top:6px;color:var(--muted);font-size:0.85rem;">Some maps confirmed. Class/weapon path open.</p></a>
-    <a class="game-card" href="games/aw.html"><h3>Advanced Warfare</h3><div class="year">2014</div><span class="status needed">Needs work</span><p style="margin-top:6px;color:var(--muted);font-size:0.85rem;">Reader and asset pipeline not started.</p></a>
-    <a class="game-card" href="games/codo.html"><h3>Call of Duty Online</h3><div class="year">2015</div><span class="status research">Research</span><p style="margin-top:6px;color:var(--muted);font-size:0.85rem;">CODOL Reborn by Pteryla. Offline English version with Campaign, Multiplayer, and Zombies.</p></a>
-    <a class="game-card" href="games/bo3.html"><h3>Black Ops 3</h3><div class="year">2015</div><span class="status needed">Needs work</span><p style="margin-top:6px;color:var(--muted);font-size:0.85rem;">Reader and asset pipeline not started.</p></a>
-    <a class="game-card" href="games/iw.html"><h3>Infinite Warfare</h3><div class="year">2016</div><span class="status needed">Needs work</span><p style="margin-top:6px;color:var(--muted);font-size:0.85rem;">Reader and asset pipeline not started.</p></a>
-    <a class="game-card" href="games/nx1.html"><h3>Future Warfare (NX1)</h3><div class="year">~2011–2013 (canceled)</div><span class="status progress">In progress</span><p style="margin-top:6px;color:var(--muted);font-size:0.85rem;">Fastfile reader and converter in progress. Bone/animation differences are the main blocker.</p></a>
+    <a class="game-card" href="games/mw2.html"><h3>Modern Warfare 2</h3><div class="year">2009</div><span class="status base">Base — Required</span><p style="margin-top:auto;color:var(--muted);font-size:0.85rem;">Maps, guns, and modes load. Primary base for the client.</p></a>
+    <a class="game-card" href="games/cod3.html"><h3>Call of Duty 3</h3><div class="year">2006</div><span class="status progress">In progress</span><p style="margin-top:auto;color:var(--muted);font-size:0.85rem;">COD3 Reborn recomp in progress. Assets targeted for the client.</p></a>
+    <a class="game-card" href="games/cod4.html"><h3>Call of Duty 4: Modern Warfare</h3><div class="year">2007</div><span class="status needed">Needs work</span><p style="margin-top:auto;color:var(--muted);font-size:0.85rem;">Reader and asset pipeline open for contributors.</p></a>
+    <a class="game-card" href="games/waw.html"><h3>World at War</h3><div class="year">2008</div><span class="status needed">Needs work</span><p style="margin-top:auto;color:var(--muted);font-size:0.85rem;">Open for contributors. Reader needed.</p></a>
+    <a class="game-card" href="games/bo1.html"><h3>Black Ops</h3><div class="year">2010</div><span class="status progress">In progress</span><p style="margin-top:auto;color:var(--muted);font-size:0.85rem;">Maps and guns loading. More work needed.</p></a>
+    <a class="game-card" href="games/mw3.html"><h3>Modern Warfare 3</h3><div class="year">2011</div><span class="status progress">In progress</span><p style="margin-top:auto;color:var(--muted);font-size:0.85rem;">Maps and weapons partially wired.</p></a>
+    <a class="game-card" href="games/bo2.html"><h3>Black Ops 2</h3><div class="year">2012</div><span class="status progress">Partial</span><p style="margin-top:auto;color:var(--muted);font-size:0.85rem;">Some maps confirmed. Class/weapon path open.</p></a>
+    <a class="game-card" href="games/aw.html"><h3>Advanced Warfare</h3><div class="year">2014</div><span class="status needed">Needs work</span><p style="margin-top:auto;color:var(--muted);font-size:0.85rem;">Reader and asset pipeline not started.</p></a>
+    <a class="game-card" href="games/codo.html"><h3>Call of Duty Online</h3><div class="year">2015</div><span class="status research">Research</span><p style="margin-top:auto;color:var(--muted);font-size:0.85rem;">CODOL Reborn by Pteryla. Offline English version with Campaign, Multiplayer, and Zombies.</p></a>
+    <a class="game-card" href="games/bo3.html"><h3>Black Ops 3</h3><div class="year">2015</div><span class="status needed">Needs work</span><p style="margin-top:auto;color:var(--muted);font-size:0.85rem;">Reader and asset pipeline not started.</p></a>
+    <a class="game-card" href="games/iw.html"><h3>Infinite Warfare</h3><div class="year">2016</div><span class="status needed">Needs work</span><p style="margin-top:auto;color:var(--muted);font-size:0.85rem;">Reader and asset pipeline not started.</p></a>
+    <a class="game-card" href="games/nx1.html"><h3>Future Warfare (NX1)</h3><div class="year">~2011–2013 (canceled)</div><span class="status progress">In progress</span><p style="margin-top:auto;color:var(--muted);font-size:0.85rem;">Fastfile reader and converter in progress. Bone/animation differences are the main blocker.</p></a>
   </div>
 </section>
 
@@ -273,10 +277,20 @@
     <a class="gfx-card" href="graphics/water.html"><h3>Water <span class="tag">PLANNED</span></h3><p style="color:var(--muted);font-size:0.88rem;">Reflection and motion for maps with water.</p></a>
     <a class="gfx-card" href="features.html#graphics"><h3>Weather <span class="tag">PLANNED</span></h3><p style="color:var(--muted);font-size:0.88rem;">Rain, fog, and clear.</p></a>
     <a class="gfx-card" href="features.html#graphics"><h3>Light & Shadow <span class="tag">PLANNED</span></h3><p style="color:var(--muted);font-size:0.88rem;">Per-map sun and shadow quality.</p></a>
+    <a class="gfx-card" href="features.html#graphics"><h3>Volumetric Lighting <span class="tag">PLANNED</span></h3><p style="color:var(--muted);font-size:0.88rem;">God rays and volumetric fog for atmosphere.</p></a>
     <a class="gfx-card" href="features.html#graphics"><h3>Anti-Aliasing <span class="tag">PLANNED</span></h3><p style="color:var(--muted);font-size:0.88rem;">FXAA, SMAA, and MSAA.</p></a>
     <a class="gfx-card" href="features.html#graphics"><h3>Filtering <span class="tag">PLANNED</span></h3><p style="color:var(--muted);font-size:0.88rem;">Anisotropic filtering and texture quality.</p></a>
     <a class="gfx-card" href="graphics/fsr.html"><h3>FSR <span class="tag">PLANNED</span></h3><p style="color:var(--muted);font-size:0.88rem;">FidelityFX Super Resolution upscaling.</p></a>
   </div>
+</section>
+
+<section id="music">
+  <h2>Project Music</h2>
+  <p class="section-sub">Custom MWS&BOX soundtrack being made as new easter egg songs for the Zombies mode.</p>
+  <div class="music-embed">
+    <iframe src="https://www.youtube.com/embed/OcNv5ugzDKc" title="NEW DAWN by jxnplays" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <p style="text-align:center;color:var(--muted);font-size:0.9rem;margin-top:12px;">NEW DAWN by jxnplays — part of the ongoing custom soundtrack.</p>
 </section>
 
 <section id="projects">
@@ -342,6 +356,7 @@
       Project lead · MWS&BOX
     </div>
   </div>
+  <div class="visitor">Unique page views: <span id="views">—</span></div>
   <div class="legal">
     <div style="color:var(--orange);letter-spacing:.12em;font-size:0.75rem;margin-bottom:6px;">— LEGAL</div>
     <h2>FAN PROJECT.</h2>
@@ -369,6 +384,16 @@
   vol.addEventListener('input', () => {
     audio.volume = vol.value;
   });
+
+  // Unique page views via countapi
+  fetch('https://api.countapi.xyz/hit/jxnplays.github.io/mws-box')
+    .then(r => r.json())
+    .then(d => {
+      document.getElementById('views').textContent = d.value.toLocaleString();
+    })
+    .catch(() => {
+      document.getElementById('views').textContent = 'n/a';
+    });
 </script>
 
 </body>
