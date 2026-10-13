@@ -9,14 +9,19 @@
   body { font-family: system-ui, sans-serif; background: var(--bg); color: var(--silver); margin: 0; line-height: 1.6; }
   nav { background: #111; border-bottom: 1px solid var(--border); padding: 12px 16px; }
   nav a { color: var(--orange); text-decoration: none; font-weight: 700; }
-  section { max-width: 960px; margin: 32px auto; padding: 0 16px; }
-  h1 { color: #fff; }
-  table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 0.92rem; }
-  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); }
-  th { background: #1a1a1a; color: #fff; }
-  .status { font-size: 0.75rem; font-weight: 700; padding: 2px 6px; border-radius: 3px; }
+  section { max-width: 1000px; margin: 32px auto; padding: 0 16px; }
+  h1 { color: #fff; margin-bottom: 6px; }
+  .meta { color: var(--muted); margin-bottom: 12px; }
+  .status { font-size: 0.75rem; font-weight: 700; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; }
+  .base { background: #1e3a2f; color: #4ade80; }
   .progress { background: #3a2e1e; color: #fbbf24; }
   .needed { background: #2a2a2a; color: #aaa; }
+  .research { background: #1e2a3a; color: #60a5fa; }
+  table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.92rem; }
+  th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--border); }
+  th { background: #1a1a1a; color: #fff; }
+  td:first-child { font-weight: 600; }
+  .notes { margin-top: 24px; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
   footer { text-align: center; padding: 24px; color: var(--muted); font-size: 0.8rem; border-top: 1px solid var(--border); }
   @media (max-width: 640px) { table { font-size: 0.82rem; } th, td { padding: 8px 6px; } }
 </style>
@@ -25,24 +30,27 @@
 <nav><a href="../test.html">← MWS&BOX</a></nav>
 <section>
   <h1>Future Warfare (NX1)</h1>
-  <p style="color:var(--muted);">Canceled Xbox 360 title (Neversoft, ~2011–2013). Bone count and animation differences from IW4 are the main technical challenge.</p>
+  <p class="meta">~2011–2013 (canceled) — Neversoft</p>
   <span class="status progress">In progress</span>
-
-  <h2 style="margin-top:24px;font-size:1.2rem;">Progress Table</h2>
+  <p style="margin-top:14px;">Canceled Call of Duty title. Fastfile reader and asset converter are in progress. Higher bone counts (59 vs IW4's 34) and animation differences are the main blockers for native-feeling guns and viewmodels.</p>
+  <h2 style="margin-top:28px;font-size:1.25rem;">Progress</h2>
   <table>
     <tr><th>Category</th><th>Status</th><th>Notes</th></tr>
-    <tr><td>Maps</td><td><span class="status needed">Not started</span></td><td>No zones loaded yet</td></tr>
-    <tr><td>Guns / Weapons</td><td><span class="status progress">In progress</span></td><td>Viewmodels and attachments partially extracted; not 1:1 in client</td></tr>
-    <tr><td>Attachments</td><td><span class="status progress">Partial</span></td><td>Early converter work</td></tr>
-    <tr><td>Camos</td><td><span class="status needed">Not started</span></td><td>—</td></tr>
-    <tr><td>Hands / Viewmodels</td><td><span class="status progress">In progress</span></td><td>Bone translation (IW4 34 vs NX1 59) is the blocker</td></tr>
-    <tr><td>Animations</td><td><span class="status progress">In progress</span></td><td>Converter in development</td></tr>
-    <tr><td>Sounds</td><td><span class="status needed">Partial</span></td><td>Some identified, not fully bound</td></tr>
-    <tr><td>Materials / Textures</td><td><span class="status progress">Partial</span></td><td>Early extraction</td></tr>
-    <tr><td>Fastfile Reader</td><td><span class="status progress">In progress</span></td><td>Headers documented; full reader coming soon</td></tr>
+    <tr><td>Maps</td><td><span class="status needed">Not started</span></td><td>Map loading not yet wired</td></tr>
+    <tr><td>Weapons</td><td><span class="status progress">In progress</span></td><td>SCAR Mod 2 registered; mesh and stats still donor-based</td></tr>
+    <tr><td>Viewmodels</td><td><span class="status progress">In progress</span></td><td>Cast-to-xmodel path exists; bone translation ongoing</td></tr>
+    <tr><td>Attachments</td><td><span class="status needed">Not started</span></td><td>Attachment system not bound</td></tr>
+    <tr><td>Animations</td><td><span class="status needed">Not started</span></td><td>NX1 clips unbound; donor IW4 clips used</td></tr>
+    <tr><td>Sounds</td><td><span class="status needed">Not started</span></td><td>Zone bank used; NX1 WAVs not yet addressable</td></tr>
+    <tr><td>Camos</td><td><span class="status needed">Not started</span></td><td>Not started</td></tr>
+    <tr><td>Perks</td><td><span class="status needed">Not started</span></td><td>Not started</td></tr>
+    <tr><td>Fastfile Reader</td><td><span class="status progress">In progress</span></td><td>Header and zlib-at-38 work documented</td></tr>
+    <tr><td>Asset Converter</td><td><span class="status progress">In progress</span></td><td>Viewmodels, hands, and animation conversion in progress</td></tr>
   </table>
-
-  <p style="margin-top:20px;"><a href="https://github.com/jxnplays/NX1-Reborn" style="color:var(--orange);">NX1 Reborn repo →</a></p>
+  <div class="notes">
+    <strong>Notes</strong>
+    <p style="margin:8px 0 0;color:var(--muted);font-size:0.92rem;">Canceled Call of Duty title. Fastfile reader and asset converter are in progress. Higher bone counts (59 vs IW4's 34) and animation differences are the main blockers for native-feeling guns and viewmodels.</p>
+  </div>
 </section>
 <footer>MWS&BOX by JXNPLAYS · Test draft</footer>
 </body>
