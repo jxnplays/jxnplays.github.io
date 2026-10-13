@@ -9,9 +9,12 @@
   body { font-family: system-ui, sans-serif; background: var(--bg); color: var(--silver); margin: 0; line-height: 1.6; }
   nav { background: #111; border-bottom: 1px solid var(--border); padding: 12px 24px; }
   nav a { color: var(--orange); text-decoration: none; font-weight: 700; }
-  section { max-width: 900px; margin: 40px auto; padding: 0 24px; }
+  section { max-width: 960px; margin: 40px auto; padding: 0 24px; }
   h1 { color: #fff; }
-  .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin-bottom: 16px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin-top: 20px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; }
+  .card img { width: 100%; max-width: 220px; height: 90px; object-fit: contain; margin-bottom: 12px; }
+  .btn { display: inline-block; margin-top: 10px; background: var(--orange); color: #000; font-weight: 700; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-size: 0.9rem; }
   footer { text-align: center; padding: 30px; color: var(--muted); font-size: 0.8rem; border-top: 1px solid var(--border); }
 </style>
 </head>
@@ -19,19 +22,26 @@
 <nav><a href="test.html">← MWS&BOX</a></nav>
 <section>
   <h1>Releases</h1>
-  <p style="color:var(--muted);">No public client builds yet. The main repo is still private while structure and upstream sync are finalized.</p>
-  <div class="card">
-    <h3>Main Client</h3>
-    <p>Based on latest upstream IW4L. Private for now. Will be opened once the per-game tracker and contribution flow are ready.</p>
-  </div>
-  <div class="card">
-    <h3>NX1 Reborn</h3>
-    <p>Public recomp releases available on the NX1-Reborn GitHub. See the related projects section on the main page.</p>
-    <a href="https://github.com/jxnplays/NX1-Reborn" style="color:var(--orange);">NX1-Reborn repo</a>
-  </div>
-  <div class="card">
-    <h3>COD3 Recomp</h3>
-    <p>In development as a remastered project. Assets will feed into the main client.</p>
+  <p style="color:var(--muted);">Open source repositories and maintained recomp projects.</p>
+  <div class="grid">
+    <div class="card">
+      <img src="logo.png?v=4" alt="MWS&BOX">
+      <h3>MWS&BOX</h3>
+      <p style="color:var(--muted);font-size:0.88rem;">Main open source IW4L sandbox client. Per-game asset support for the 12 target titles.</p>
+      <a class="btn" href="https://github.com/jxnplays" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <div class="card">
+      <img src="nx1-reborn-logo.png?v=2" alt="NX1 Reborn">
+      <h3>NX1 Reborn</h3>
+      <p style="color:var(--muted);font-size:0.88rem;">Maintained static recomp of Future Warfare (NX1). Native Windows builds.</p>
+      <a class="btn" href="https://github.com/jxnplays/NX1-Reborn" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <div class="card">
+      <img src="cod3-reborn-logo.png?v=2" alt="COD3 Reborn">
+      <h3>COD3 Reborn</h3>
+      <p style="color:var(--muted);font-size:0.88rem;">Maintained recomp of Call of Duty 3, being developed as a remastered project.</p>
+      <a class="btn" href="#" style="opacity:0.55;pointer-events:none;">Coming soon</a>
+    </div>
   </div>
 </section>
 <footer>MWS&BOX by JXNPLAYS · Test draft</footer>
