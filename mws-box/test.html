@@ -94,13 +94,13 @@
   .status.progress { background: #3a2e1e; color: #fbbf24; }
   .status.needed { background: #2a2a2a; color: #aaa; }
   .status.research { background: #1e2a3a; color: #60a5fa; }
-  .related, .mods, .goals, .gfx-grid, .mashup { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .related, .mods, .goals, .gfx-grid, .mashup { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; align-items: stretch; }
   .related-card, .mod-card, .goal-card, .gfx-card, .mashup-card {
     background: var(--card); border: 1px solid var(--border); border-radius: 10px;
     padding: 18px; display: flex; flex-direction: column; align-items: center; text-align: center;
     transition: border-color 0.2s, transform 0.2s;
   }
-  .goal-card { align-items: flex-start; text-align: left; min-height: 320px; }
+  .goal-card { align-items: flex-start; text-align: left; height: 100%; }
   .related-card { min-height: 240px; justify-content: space-between; }
   .related-card:hover, .mod-card:hover, .gfx-card:hover, .mashup-card:hover { border-color: var(--orange); transform: translateY(-3px); }
   .related-card img.logo-img, .mod-card img.logo-img { width: 100%; max-width: 220px; height: 90px; object-fit: contain; }
@@ -227,19 +227,20 @@
   <div class="goals">
     <div class="goal-card">
       <h3 style="color:var(--orange);margin-bottom:8px;">Goals</h3>
-      <ul style="padding-left:18px;color:var(--muted);font-size:0.92rem;line-height:1.7;">
-        <li>Maintain a clean, regularly updated IW4L base as the single foundation for every title</li>
-        <li>Build and maintain readers and converters so each of the 12 target games can contribute its maps, guns, attachments, camos, perks, and modes</li>
-        <li>Make imported content feel native — correct models, viewmodels, sounds, animations, stats, and attachment behavior where the data allows</li>
-        <li>Full support for IW4X and Plutonium-compatible mods so existing community work continues to load</li>
-        <li>Keep the project open so contributors can claim individual titles, readers, or feature areas without overlapping</li>
-        <li>Document progress clearly so anyone can see what is working, what is blocked, and where help is needed</li>
-        <li>Ship a single client that can load content from any of the 12 titles you own</li>
+      <ul style="padding-left:18px;color:var(--muted);font-size:0.92rem;line-height:1.65;">
+        <li>Maintain a clean, regularly updated IW4L base as the single foundation</li>
+        <li>Build readers and converters so each of the 12 titles can contribute its maps, guns, attachments, camos, perks, and modes</li>
+        <li>Make imported content feel native — correct models, viewmodels, sounds, animations, and stats where the data allows</li>
+        <li>Full support for IW4X and Plutonium-compatible mods</li>
+        <li>Keep the project open so contributors can claim titles or feature areas</li>
+        <li>Document progress clearly so anyone can see what works, what is blocked, and where help is needed</li>
       </ul>
     </div>
     <div class="goal-card">
       <h3 style="color:var(--orange);margin-bottom:8px;">How it stays focused</h3>
-      <p style="color:var(--muted);font-size:0.92rem;line-height:1.7;">The project is intentionally limited to 12 titles. We are not attempting the entire Call of Duty series. New games are only added when the technical path is realistic and someone is willing to own the reader, converter, and integration work for that title. MW2 remains the required base; everything else is optional and only contributes its own content. Parallel recomp projects (NX1 Reborn, COD3 Reborn, CODOL Reborn) feed assets into the same client without expanding the core scope.</p>
+      <p style="color:var(--muted);font-size:0.92rem;line-height:1.7;">The project is intentionally limited to 12 titles. We are not attempting the entire Call of Duty series. New games are only added when the technical path is realistic and someone is willing to own the reader, converter, and integration work for that title.</p>
+      <p style="color:var(--muted);font-size:0.92rem;line-height:1.7;margin-top:12px;">MW2 remains the required base. Everything else is optional and only contributes its own content. Parallel recomp projects (NX1 Reborn, COD3 Reborn, CODOL Reborn) feed assets into the same client without expanding the core scope.</p>
+      <p style="color:var(--muted);font-size:0.92rem;line-height:1.7;margin-top:12px;">Progress is tracked per title so anyone can see what is working and where help is needed.</p>
     </div>
   </div>
 </section>
