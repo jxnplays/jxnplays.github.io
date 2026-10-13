@@ -11,8 +11,9 @@
   nav a { color: var(--orange); text-decoration: none; font-weight: 700; }
   section { max-width: 900px; margin: 32px auto; padding: 0 16px; }
   h1 { color: #fff; }
-  .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; margin-bottom: 14px; }
-  .soon { display: inline-block; font-size: 0.75rem; font-weight: 700; padding: 3px 8px; border-radius: 4px; background: #2a2a2a; color: #aaa; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; margin-bottom: 18px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .card img { width: 100%; max-width: 420px; height: auto; margin-bottom: 12px; }
+  .soon { display: inline-block; font-size: 0.75rem; font-weight: 700; padding: 3px 8px; border-radius: 4px; background: #2a2a2a; color: #aaa; margin-top: 8px; }
   footer { text-align: center; padding: 24px; color: var(--muted); font-size: 0.8rem; border-top: 1px solid var(--border); }
 </style>
 </head>
@@ -20,23 +21,23 @@
 <nav><a href="test.html">← MWS&BOX</a></nav>
 <section>
   <h1>Tools</h1>
-  <p style="color:var(--muted);">Custom tools built for this project. Some target games already have usable community readers or converters available elsewhere; those are not listed here.</p>
+  <p style="color:var(--muted);">Custom tools built for this project.</p>
 
   <div class="card">
-    <h3>NX1 Fastfile Reader</h3>
+    <img src="nx1-reader-logo.png?v=1" alt="NX1 Reader">
     <p>Project-specific reader for Future Warfare (NX1) fastfiles. Header and marker work documented. In progress.</p>
     <span class="soon">Coming soon</span>
   </div>
 
   <div class="card">
-    <h3>NX1 Asset Converter</h3>
+    <img src="nx1-converter-logo.png?v=1" alt="NX1 Converter">
     <p>Converts extracted NX1 viewmodels, hands, and animations into formats usable by the IW4L client. Bone count differences (NX1 has 59 vs IW4's 34) are the main challenge.</p>
     <span class="soon">Coming soon</span>
   </div>
 
   <div class="card">
-    <h3>Per-game Asset Readers & Converters</h3>
-    <p>Additional readers and converters for titles where existing community tools are incomplete or missing the pieces we need for the client. Open for contributors.</p>
+    <img src="nx1-animation-reader-logo.png?v=1" alt="NX1 Animation Reader">
+    <p>Reads and extracts NX1 animation data for conversion into the IW4L client. Handles the higher bone counts used by Future Warfare.</p>
     <span class="soon">Coming soon</span>
   </div>
 </section>
