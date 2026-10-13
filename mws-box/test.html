@@ -247,7 +247,6 @@
 
 
 
-<div class="visitor">UNIQUE PAGE VIEWS · <span id="views">—</span></div>
 <section id="games">
   <h2>Target Games</h2>
   <p class="section-sub">MW2 is required and listed first. Other titles sorted by release date. Click any game for its detailed progress table. 12 titles.</p>
@@ -436,10 +435,7 @@
   });
   vol.addEventListener('input', () => { audio.volume = vol.value; });
 
-  fetch('https://api.countapi.xyz/hit/jxnplays.github.io/mws-box')
-    .then(r => r.json())
-    .then(d => { document.getElementById('views').textContent = (d.value || 0).toLocaleString(); })
-    .catch(() => { document.getElementById('views').textContent = '—'; });
+
 </script>
 
 </body>
