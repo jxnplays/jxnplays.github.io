@@ -75,13 +75,14 @@
   .about-section .goals { text-align: left; }
   .games { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
   .game-card {
-    background: var(--card); border: 1px solid var(--border); border-radius: 10px;
-    padding: 16px; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-    text-decoration: none; color: inherit; display: flex; flex-direction: column; min-height: 190px;
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 20px 18px; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column;
+    min-height: 210px; text-align: left;
   }
   .game-card:hover { border-color: var(--orange); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(255,107,26,0.12); }
   .game-card h3 { font-size: 1.05rem; margin-bottom: 2px; }
-  .year { font-size: 0.78rem; color: var(--muted); margin-bottom: 8px; }
+  .year { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px; }
   .status {
     display: inline-block; font-size: 0.7rem; font-weight: 700; padding: 3px 8px;
     border-radius: 4px; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 10px;
@@ -299,7 +300,6 @@
   <div class="music-embed">
     <iframe src="https://www.youtube.com/embed/OcNv5ugzDKc" title="NEW DAWN by jxnplays" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
-  <p style="text-align:center;color:var(--muted);font-size:0.9rem;margin-top:12px;">NEW DAWN by jxnplays — part of the ongoing custom soundtrack.</p>
 </section>
 
 <section id="projects">
