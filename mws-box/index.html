@@ -1,1 +1,446 @@
-$(cat /tmp/index.html)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MWS&BOX — An IW4L Sandbox Project</title>
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<style>
+  :root {
+    --bg: #0a0a0a; --card: #141414; --border: #2a2a2a;
+    --silver: #e8e8e8; --orange: #ff6b1a; --orange-glow: #ff8c42; --muted: #888;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    background: var(--bg); color: var(--silver); line-height: 1.65; font-size: 16.5px;
+    background-image:
+      linear-gradient(rgba(255,107,26,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,107,26,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  nav {
+    background: rgba(17,17,17,0.92); border-bottom: 1px solid var(--border);
+    padding: 10px 12px; display: flex; justify-content: center; align-items: center;
+    position: sticky; top: 0; z-index: 100; backdrop-filter: blur(8px);
+  }
+  nav .links { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  nav .links a {
+    color: var(--silver); text-decoration: none; font-size: 0.8rem; white-space: nowrap;
+    position: relative; transition: color 0.2s; padding: 2px 0;
+  }
+  nav .links a:hover { color: var(--orange); }
+  nav .links a::after {
+    content: ""; position: absolute; left: 0; bottom: -2px; width: 100%; height: 1px;
+    background: var(--orange); transform: scaleX(0); transform-origin: left; transition: transform 0.25s;
+  }
+  nav .links a:hover::after { transform: scaleX(1); }
+  .player { box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    position: fixed; bottom: 12px; right: 12px; background: rgba(20,20,20,0.92);
+    border: 1px solid var(--border); border-radius: 10px; padding: 8px 12px;
+    display: flex; align-items: center; gap: 10px; z-index: 200;
+    backdrop-filter: blur(6px); font-size: 0.8rem;
+  }
+  .player button {
+    background: var(--orange); border: none; color: #000; font-weight: 700;
+    width: 28px; height: 28px; border-radius: 6px; cursor: pointer;
+  }
+  .player input[type=range] { width: 80px; accent-color: var(--orange); }
+  .player .track { color: var(--muted); }
+  .hero { text-align: center; padding: 56px 16px 32px; background: radial-gradient(ellipse at center, #1a1008 0%, #0a0a0a 70%); }
+  .logo { max-width: 560px; width: 88%; height: auto; filter: drop-shadow(0 0 32px rgba(255, 107, 26, 0.3)); animation: fadeUp 0.8s ease; }
+  .tagline { font-size: 1.3rem; margin-top: 18px; color: var(--orange); font-weight: 600; animation: fadeUp 0.8s 0.1s both; }
+  .subtitle { max-width: 680px; margin: 12px auto 0; color: var(--muted); font-size: 0.98rem; padding: 0 8px; animation: fadeUp 0.8s 0.2s both; }
+  .stats {
+    display: grid; grid-template-columns: repeat(7, 1fr);
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    background: rgba(20,20,20,0.6); margin-top: 28px;
+  }
+  .stats div { padding: 18px 6px; text-align: center; }
+  .stats b { display: block; color: var(--orange); font-size: 1.6rem; font-weight: 700; line-height: 1; }
+  .stats span { color: var(--muted); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .ticker { overflow: hidden; border-bottom: 1px solid var(--border); background: #111; }
+  .ticker-track { display: flex; width: max-content; padding: 12px 0; animation: marquee 36s linear infinite; }
+  .ticker-track:hover { animation-play-state: paused; }
+  .ticker .item { display: flex; align-items: center; }
+  .ticker b { font-weight: 600; letter-spacing: 0.12em; color: var(--orange); font-size: 0.95rem; padding: 0 22px; }
+  .ticker i { color: #444; font-style: normal; }
+  section { max-width: 1180px; margin: 0 auto; padding: 42px 20px; text-align: center; }
+  h2 { font-size: 1.55rem; margin-bottom: 8px; color: #fff; }
+  .section-sub { color: var(--muted); margin-bottom: 22px; font-size: 0.95rem; max-width: 720px; margin-left: auto; margin-right: auto; }
+  .about-section { text-align: center; }
+  .goals, .mashup, .games, .gfx-grid, .related, .mods, .how { margin-left: auto; margin-right: auto; }
+  .music-embed { margin-left: auto; margin-right: auto; }
+  .about-section .goals { text-align: left; }
+  .games { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+  .game-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 22px 20px; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column;
+    min-height: 230px; text-align: left; justify-content: flex-start;
+  }
+  .game-card h3 { font-size: 1.15rem; margin-bottom: 4px; color: #fff; }
+  .game-card p { margin-top: 12px; line-height: 1.55; }
+  .game-card:hover { border-color: var(--orange); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(255,107,26,0.12); }
+  .game-card h3 { font-size: 1.05rem; margin-bottom: 2px; }
+  .year { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px; }
+  .status {
+    display: inline-block; font-size: 0.7rem; font-weight: 700; padding: 3px 8px;
+    border-radius: 4px; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 10px;
+    align-self: flex-start;
+  }
+  .status.base { background: #1e3a2f; color: #4ade80; }
+  .status.progress { background: #3a2e1e; color: #fbbf24; }
+  .status.needed { background: #2a2a2a; color: #aaa; }
+  .status.research { background: #1e2a3a; color: #60a5fa; }
+  .related, .mods, .goals, .gfx-grid, .mashup { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; align-items: stretch; }
+  .related-card, .mod-card, .goal-card, .gfx-card, .mashup-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+    padding: 18px; display: flex; flex-direction: column; align-items: center; text-align: center;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .goal-card { align-items: flex-start; text-align: left; height: 100%; }
+  .related-card { min-height: 240px; justify-content: space-between; }
+  .related-card:hover, .mod-card:hover, .gfx-card:hover, .mashup-card:hover { border-color: var(--orange); transform: translateY(-3px); }
+  .related-card img.logo-img, .mod-card img.logo-img { width: 100%; max-width: 220px; height: 90px; object-fit: contain; }
+  .related-card .btn { margin-top: auto; }
+  .gfx-card { text-decoration: none; color: inherit; min-height: 150px; justify-content: flex-start; }
+  .gfx-card h3 { color: var(--orange); margin-bottom: 6px; font-size: 1rem; }
+  .gfx-card .tag { font-size: 0.65rem; letter-spacing: 0.08em; border: 1px solid var(--orange); color: var(--orange); padding: 1px 6px; border-radius: 3px; margin-left: 6px; }
+  .gfx-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+  .music-embed { max-width: 640px; margin: 0 auto; aspect-ratio: 16/9; }
+  .music-embed iframe { width: 100%; height: 100%; border: 0; border-radius: 10px; }
+  .visitor { text-align: center; margin: 20px auto 16px; font-size: 1rem; color: var(--orange); font-weight: 700; letter-spacing: 0.04em; }
+  .how { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .how-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; transition: border-color 0.2s, transform 0.2s; }
+  .how-card:hover { border-color: var(--orange); transform: translateY(-3px); }
+  .how-card h3 { margin-bottom: 4px; color: var(--orange); font-size: 1rem; }
+  .contrib { background: linear-gradient(135deg, #1a1208, #141414); border: 1px solid #3a2a18; border-radius: 12px; padding: 28px 32px; text-align: center; max-width: 980px; margin: 0 auto; }
+  .btn { display: inline-block; background: var(--orange); color: #000; font-weight: 700; padding: 10px 22px; border-radius: 8px; text-decoration: none; font-size: 0.95rem; transition: background 0.2s, transform 0.15s; }
+  .btn:hover { background: var(--orange-glow); transform: translateY(-1px); }
+  .credits { display: flex; align-items: center; gap: 16px; justify-content: center; flex-wrap: wrap; margin: 16px 0; }
+  .credits img { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; border: 2px solid var(--orange); }
+  .legal {
+    max-width: 980px; margin: 24px auto 0; padding: 28px 32px;
+    border: 1px solid var(--border); border-left: 3px solid var(--orange);
+    background: rgba(20,20,20,0.8); border-radius: 8px; text-align: left;
+  }
+  .legal h2 { font-size: 1.4rem; margin-bottom: 10px; }
+  .legal p { color: var(--muted); font-size: 0.88rem; margin: 0 0 10px; }
+  .legal p:last-child { margin: 0; }
+  .legal strong { color: var(--silver); }
+  footer { text-align: center; padding: 36px 16px; color: var(--muted); font-size: 0.8rem; border-top: 1px solid var(--border); }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+  @media (max-width: 700px) {
+    .stats { grid-template-columns: repeat(4, 1fr); }
+    .stats div:nth-child(n+5) { border-top: 1px solid var(--border); }
+  }
+  @media (max-width: 640px) {
+    nav { padding: 8px; }
+    nav .links { gap: 8px; }
+    nav .links a { font-size: 0.75rem; }
+    .hero { padding: 40px 12px 24px; }
+    .tagline { font-size: 1.1rem; }
+    section { padding: 36px 12px; }
+    .games { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .player { box-shadow: 0 4px 16px rgba(0,0,0,0.4); bottom: 8px; right: 8px; padding: 6px 8px; }
+  }
+</style>
+</head>
+<body>
+
+<audio id="site-audio" loop preload="auto" autoplay>
+  <source src="audio/new-dawn.mp3" type="audio/mpeg">
+</audio>
+
+<div class="player">
+  <button id="play-pause" aria-label="Play or pause">⏸</button>
+  <span class="track">NEW DAWN — jxnplays</span>
+  <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5" aria-label="Volume">
+</div>
+
+<nav>
+  <div class="links">
+    <a href="#about">About</a>
+    <a href="#games">Games</a>
+    <a href="#graphics">Graphics</a>
+    <a href="features.html">Features</a>
+    <a href="tools.html">Tools</a>
+    <a href="releases.html">Releases</a>
+    <a href="#projects">Projects</a>
+    <a href="#mods">Mods</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <img class="logo" src="logo.png?v=4" alt="MWS&BOX by JXNPLAYS">
+  <div class="tagline">One client for 13 Call of Duty titles.</div>
+  <p class="subtitle">An IW4L-based sandbox that loads maps, weapons, attachments, and modes from the games you already own. Modern Warfare 2 is required. Everything else is optional.</p>
+</header>
+
+<div class="stats">
+  <div><b>300+</b><span>Maps</span></div>
+  <div><b>400+</b><span>Guns</span></div>
+  <div><b>250+</b><span>Attachments</span></div>
+  <div><b>150+</b><span>Perks</span></div>
+  <div><b>200+</b><span>Camos</span></div>
+  <div><b>1,000+</b><span>Emblems</span></div>
+  <div><b>1,000+</b><span>Calling Cards</span></div>
+</div>
+
+<div class="ticker" aria-label="Target games">
+  <div class="ticker-track">
+    <div class="item"><b>MODERN WARFARE 2</b><i>/</i></div>
+    <div class="item"><b>CALL OF DUTY 3</b><i>/</i></div>
+    <div class="item"><b>CALL OF DUTY 4</b><i>/</i></div>
+    <div class="item"><b>WORLD AT WAR</b><i>/</i></div>
+    <div class="item"><b>BLACK OPS</b><i>/</i></div>
+    <div class="item"><b>MODERN WARFARE 3</b><i>/</i></div>
+    <div class="item"><b>BLACK OPS 2</b><i>/</i></div>
+    <div class="item"><b>ADVANCED WARFARE</b><i>/</i></div>
+    <div class="item"><b>GHOSTS</b><i>/</i></div>
+    <div class="item"><b>CALL OF DUTY ONLINE</b><i>/</i></div>
+    <div class="item"><b>BLACK OPS 3</b><i>/</i></div>
+    <div class="item"><b>INFINITE WARFARE</b><i>/</i></div>
+    <div class="item"><b>FUTURE WARFARE</b><i>/</i></div>
+    <div class="item"><b>MODERN WARFARE 2</b><i>/</i></div>
+    <div class="item"><b>CALL OF DUTY 3</b><i>/</i></div>
+    <div class="item"><b>CALL OF DUTY 4</b><i>/</i></div>
+    <div class="item"><b>WORLD AT WAR</b><i>/</i></div>
+    <div class="item"><b>BLACK OPS</b><i>/</i></div>
+    <div class="item"><b>MODERN WARFARE 3</b><i>/</i></div>
+    <div class="item"><b>BLACK OPS 2</b><i>/</i></div>
+    <div class="item"><b>ADVANCED WARFARE</b><i>/</i></div>
+    <div class="item"><b>GHOSTS</b><i>/</i></div>
+    <div class="item"><b>CALL OF DUTY ONLINE</b><i>/</i></div>
+    <div class="item"><b>BLACK OPS 3</b><i>/</i></div>
+    <div class="item"><b>INFINITE WARFARE</b><i>/</i></div>
+    <div class="item"><b>FUTURE WARFARE</b><i>/</i></div>
+  </div>
+</div>
+
+<section id="about" class="about-section">
+  <div style="text-align:center;margin:20px 0 16px;"><img src="what-is.png" alt="What is MWS&BOX?" style="max-width:420px;height:auto;"></div>
+  <p class="section-sub" style="max-width: 720px; margin-left: auto; margin-right: auto;">An open sandbox built on the latest upstream IW4L client. It does not ship or download game files. It reads legitimate installs you already have and adds per-game asset support over time so content from those installs can load and play inside one client. Also includes content from the IW4L mashup fork (Skate 3 and Minecraft).</p>
+  <div class="goals">
+    <div class="goal-card">
+      <h3 style="color:var(--orange);margin-bottom:8px;">Goals</h3>
+      <ul style="padding-left:18px;color:var(--muted);font-size:0.92rem;line-height:1.65;">
+        <li>Maintain a clean, regularly updated IW4L base as the single foundation</li>
+        <li>Build readers and converters so each of the 13 titles can contribute its maps, guns, attachments, camos, perks, and modes</li>
+        <li>Make imported content feel native — correct models, viewmodels, sounds, animations, and stats where the data allows</li>
+        <li>Full support for IW4X and Plutonium-compatible mods</li>
+        <li>Keep the project open so contributors can claim titles or feature areas</li>
+        <li>Document progress clearly so anyone can see what works, what is blocked, and where help is needed</li>
+      </ul>
+    </div>
+    <div class="goal-card">
+      <h3 style="color:var(--orange);margin-bottom:8px;">How it stays focused</h3>
+      <p style="color:var(--muted);font-size:0.92rem;line-height:1.7;">The project is intentionally limited to 13 titles. We are not attempting the entire Call of Duty series. New games are only added when the technical path is realistic and someone is willing to own the reader, converter, and integration work for that title.</p>
+      <p style="color:var(--muted);font-size:0.92rem;line-height:1.7;margin-top:12px;">MW2 remains the required base. Everything else is optional and only contributes its own content. Parallel recomp projects (NX1 Reborn, COD3 Reborn, CODOL Reborn) feed assets into the same client without expanding the core scope.</p>
+      <p style="color:var(--muted);font-size:0.92rem;line-height:1.7;margin-top:12px;">Progress is tracked per title so anyone can see what is working and where help is needed.</p>
+    </div>
+  </div>
+</section>
+
+
+
+<section id="games">
+  <div style="text-align:center;margin:20px 0 16px;"><img src="target-games.png" alt="Target Games" style="max-width:380px;height:auto;"></div>
+  <p class="section-sub">MW2 is required and listed first. Other titles sorted by release date. Click any game for its detailed progress table. 13 titles.</p>
+  <div class="games">
+    <a class="game-card" href="games/mw2.html"><h3>Modern Warfare 2</h3><div class="year">2009</div><span class="status base">Base — Required</span><p style="margin-top:auto;color:var(--muted);font-size:0.85rem;">Maps, guns, and modes load. Primary base for the client.</p></a>
+    <a class="game-card" href="games/cod3.html"><h3>Call of Duty 3</h3><div class="year">2006</div><span class="status progress">In progress</span><p style="margin-top:auto;color:var(--muted);font-size:0.85rem;">COD3 Reborn recomp in progress. Assets targeted for the client.</p></a>
+    <a class="game-card" href="games/cod4.html"><h3>Call of Duty 4: Modern Warfare</h3><div class="year">2007</div><span class="status needed">Needs work</span><p style="margin-top:auto;color:var(--muted);font-size:0.85rem;">Reader and asset pipeline open for contributors.</p></a>
+    <a class="game-card" href="games/waw.html"><h3>World at War</h3><div class="year">2008</div><span class="status needed">Needs work</span><p style="margin-top:auto;color:var(--muted);font-size:0.85rem;">Open for contributors. Reader needed.</p></a>
+    <a class="game-card" href="games/bo1.html"><h3>Black Ops</h3><div class="year">2010</div><span class="status progress">In progress</span><p style="margin-top:auto;color:var(--muted);font-size:0.85rem;">Maps and guns loading. More work needed.</p></a>
+    <a class="game-card" href="games/mw3.html"><h3>Modern Warfare 3</h3><div class="year">2011</div><span class="status progress">In progress</span><p style="margin-top:auto;color:var(--muted);font-size:0.85rem;">Maps and weapons partially wired.</p></a>
+    <a class="game-card" href="games/bo2.html"><h3>Black Ops 2</h3><div class="year">2012</div><span class="status progress">In progress</span><p style="margin-top:auto;color:var(--muted);font-size:0.85rem;">Some maps confirmed. Weapon and class path open.</p></a>
+    <a class="game-card" href="games/ghosts.html"><h3>Call of Duty: Ghosts</h3><div class="year">2013</div><span class="status needed">Needs work</span><p style="margin-top:auto;color:var(--muted);font-size:0.85rem;">Reader and asset pipeline not started. Maps, weapons (Marksman Rifles), Extinction, Create-A-Soldier.</p></a>
+    <a class="game-card" href="games/aw.html"><h3>Advanced Warfare</h3><div class="year">2014</div><span class="status needed">Needs work</span><p style="margin-top:auto;color:var(--muted);font-size:0.85rem;">Reader and asset pipeline not started.</p></a>
+    <a class="game-card" href="games/codo.html"><h3>Call of Duty Online</h3><div class="year">2015</div><span class="status research">Research</span><p style="margin-top:auto;color:var(--muted);font-size:0.85rem;">CODOL Reborn by Pteryla. Offline English version with Campaign, Multiplayer, and Zombies.</p></a>
+    <a class="game-card" href="games/bo3.html"><h3>Black Ops 3</h3><div class="year">2015</div><span class="status needed">Needs work</span><p style="margin-top:auto;color:var(--muted);font-size:0.85rem;">Reader and asset pipeline not started.</p></a>
+    <a class="game-card" href="games/iw.html"><h3>Infinite Warfare</h3><div class="year">2016</div><span class="status needed">Needs work</span><p style="margin-top:auto;color:var(--muted);font-size:0.85rem;">Reader and asset pipeline not started.</p></a>
+    <a class="game-card" href="games/nx1.html"><h3>Future Warfare (NX1)</h3><div class="year">~2011–2013 (canceled)</div><span class="status progress">In progress</span><p style="margin-top:auto;color:var(--muted);font-size:0.85rem;">Fastfile reader and converter in progress. Bone/animation differences are the main blocker.</p></a>
+  </div>
+</section>
+
+<section id="mashup">
+  <div style="text-align:center;margin:20px 0 16px;"><img src="mashup-content.png" alt="Mashup Content" style="max-width:380px;height:auto;"></div>
+  <p class="section-sub">Included from the IW4L mashup fork.</p>
+  <div class="mashup">
+    <div class="mashup-card">
+      <h3 style="color:var(--orange);">Skate 3</h3>
+      <p style="color:var(--muted);font-size:0.88rem;">Maps, props, and gameplay elements from the Skate 3 mashup. Part of the base client experience.</p>
+    </div>
+    <div class="mashup-card">
+      <h3 style="color:var(--orange);">Minecraft</h3>
+      <p style="color:var(--muted);font-size:0.88rem;">Minecraft-style content and maps from the mashup fork. Loads alongside the Call of Duty titles.</p>
+    </div>
+  </div>
+</section>
+
+
+<section id="graphics">
+  <div style="text-align:center;margin:20px 0 16px;"><img src="planned-graphics.png" alt="Planned Graphics Features" style="max-width:520px;height:auto;"></div>
+  <p class="section-sub">Click a card for its detail table. Aimed at Modern Warfare 2 Remastered parity. None of these are in a match yet.</p>
+  <div class="gfx-grid">
+    <a class="gfx-card" href="graphics/ao.html"><h3>Ambient Occlusion <span class="tag">PLANNED</span></h3><p style="color:var(--muted);font-size:0.88rem;">Contact shadow in corners and under cover.</p></a>
+    <a class="gfx-card" href="graphics/water.html"><h3>Water <span class="tag">PLANNED</span></h3><p style="color:var(--muted);font-size:0.88rem;">Reflection and motion for maps with water.</p></a>
+    <a class="gfx-card" href="graphics/weather.html"><h3>Weather <span class="tag">PLANNED</span></h3><p style="color:var(--muted);font-size:0.88rem;">Rain, fog, and clear.</p></a>
+    <a class="gfx-card" href="graphics/light-shadow.html"><h3>Light & Shadow <span class="tag">PLANNED</span></h3><p style="color:var(--muted);font-size:0.88rem;">Per-map sun and shadow quality.</p></a>
+    <a class="gfx-card" href="graphics/volumetric.html"><h3>Volumetric Lighting <span class="tag">PLANNED</span></h3><p style="color:var(--muted);font-size:0.88rem;">God rays and volumetric fog for atmosphere.</p></a>
+    <a class="gfx-card" href="graphics/aa.html"><h3>Anti-Aliasing <span class="tag">PLANNED</span></h3><p style="color:var(--muted);font-size:0.88rem;">FXAA, SMAA, and MSAA.</p></a>
+    <a class="gfx-card" href="graphics/filtering.html"><h3>Filtering <span class="tag">PLANNED</span></h3><p style="color:var(--muted);font-size:0.88rem;">Anisotropic filtering and texture quality.</p></a>
+    <a class="gfx-card" href="graphics/fsr.html"><h3>FSR <span class="tag">PLANNED</span></h3><p style="color:var(--muted);font-size:0.88rem;">FidelityFX Super Resolution upscaling.</p></a>
+  </div>
+</section>
+
+<section id="music">
+  <div style="text-align:center;margin:20px 0 16px;"><img src="project-music.png" alt="Project Music" style="max-width:360px;height:auto;"></div>
+  <p class="section-sub">Custom MWS&BOX soundtrack being made as new easter egg songs for the Zombies mode.</p>
+  <div class="music-embed">
+    <iframe src="https://www.youtube.com/embed/OcNv5ugzDKc" title="NEW DAWN by jxnplays" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</section>
+
+<section id="projects">
+  <div style="text-align:center;margin:20px 0 16px;"><img src="projects-in-dev.png" alt="Projects In-Development" style="max-width:480px;height:auto;"></div>
+  <p class="section-sub">Maintained recomp projects that feed into the sandbox.</p>
+  <div class="related">
+    <div class="related-card">
+      <img class="logo-img" src="nx1-reborn-logo.png?v=2" alt="NX1 Reborn">
+      <p style="color:var(--muted);font-size:0.88rem;margin:8px 0;">Maintained static recomp of Future Warfare (NX1). Native Windows builds.</p>
+      <a class="btn" href="https://github.com/jxnplays/NX1-Reborn" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <div class="related-card">
+      <img class="logo-img" src="cod3-reborn-logo.png?v=2" alt="COD3 Reborn">
+      <p style="color:var(--muted);font-size:0.88rem;margin:8px 0;">Maintained recomp of Call of Duty 3, being developed as a remastered project.</p>
+      <a class="btn" href="https://github.com/jxnplays/cod3-recomp" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <div class="related-card">
+      <img class="logo-img" src="codol-reborn-logo.png?v=1" alt="CODOL Reborn">
+      <p style="color:var(--muted);font-size:0.88rem;margin:8px 0;">Offline English version of Call of Duty Online by Pteryla. Campaign, Multiplayer, and Zombies fully working.</p>
+      <a class="btn" href="#" style="opacity:0.6;pointer-events:none;">Coming soon</a>
+    </div>
+  </div>
+</section>
+
+<section id="mods">
+  <div style="text-align:center;margin:20px 0 16px;"><img src="mod-support.png" alt="Mod Support" style="max-width:340px;height:auto;"></div>
+  <p class="section-sub">IW4X and Plutonium mods are supported. Drop compatible mods into the client the same way those projects expect.</p>
+  <div class="mods">
+    <div class="mod-card">
+      <img class="logo-img" src="iw4x-logo.png?v=2" alt="IW4X">
+      <p style="color:var(--muted);font-size:0.88rem;margin-top:12px;">Full support for IW4X-compatible mods, maps, and scripts.</p>
+    </div>
+    <div class="mod-card">
+      <img class="logo-img" src="plutonium-logo.png?v=3" alt="Plutonium">
+      <p style="color:var(--muted);font-size:0.88rem;margin-top:12px;">Plutonium mod formats and loaders are supported where they overlap with the IW4L runtime.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div style="text-align:center;margin:20px 0 16px;"><img src="how-it-works.png" alt="How it works" style="max-width:340px;height:auto;"></div>
+  <div class="how">
+    <div class="how-card"><h3>1. Own the game</h3><p>Legal Steam (or equivalent) install. The client does not ship or download game files.</p></div>
+    <div class="how-card"><h3>2. Point at the folder</h3><p>Modern Warfare 2 is required. Other games are optional and only contribute their own maps, weapons, and modes.</p></div>
+    <div class="how-card"><h3>3. Play what loads</h3><p>Built on the latest upstream IW4L. Asset readers and converters are added per game as work progresses.</p></div>
+  </div>
+</section>
+
+<section id="contribute">
+  <div class="contrib">
+    <div style="text-align:center;margin:20px 0 16px;"><img src="want-to-help.png" alt="Want to help?" style="max-width:340px;height:auto;"></div>
+    <p class="section-sub" style="margin:0 auto 12px;max-width:680px;">The main client is built on a clean, regularly updated IW4L base. Additional titles are handled as optional DLC-style namespaces so each game can be worked on without risking the core client. NX1, COD3, and Call of Duty Online work continue in parallel. Other titles are open for contributors.</p>
+    <p style="color:var(--muted);font-size:0.92rem;max-width:680px;margin:0 auto 8px;line-height:1.65;">Readers, converters, and integration work for individual titles are the highest-value contributions right now. Graphics features, tooling, and documentation are also open. Progress is tracked per title so it is clear what is working and where help is needed.</p>
+    <p style="color:var(--muted);font-size:0.92rem;max-width:680px;margin:12px auto 0;line-height:1.65;">The client is always built from source. No prebuilt binaries are distributed. Clone the repository and follow the upstream IW4L build instructions. This keeps the project transparent and ensures you are running code you can inspect.</p>
+    <p style="color:var(--muted);font-size:0.92rem;max-width:680px;margin:12px auto 0;line-height:1.65;">MWS&BOX is licensed under the MIT License, matching the approach used in NX1 Reborn. The recompilation harness and local modifications are MIT. Vendored third-party components retain their original licenses. Game code and assets are not included and are not licensed by this project.</p>
+    <a class="btn" href="https://github.com/jxnplays/mws-box" target="_blank" rel="noopener" style="margin-top:28px;">View on GitHub</a>
+  </div>
+</section>
+
+<footer>
+  <div style="text-align:center;margin:28px 0 12px;"><img src="developers.png" alt="DEVELOPERS" style="max-width:340px;height:auto;"></div>
+  <div class="credits" style="gap:32px;">
+    <div style="display:flex;align-items:center;gap:16px;">
+      <img src="profile.jpg" alt="JXNPLAYS">
+      <div style="text-align:left;">
+        <strong>JXNPLAYS</strong><br>
+        Project lead · MWS&BOX · NX1 Reborn · COD3 Reborn
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <img src="pteryla.jpg" alt="Pteryla" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div style="width:72px;height:72px;border-radius:50%;background:#1a1a1a;border:2px solid var(--orange);display:none;align-items:center;justify-content:center;font-weight:700;color:var(--orange);font-size:0.85rem;">PT</div>
+      <div style="text-align:left;">
+        <strong>Pteryla</strong><br>
+        Project lead · CODOL Reborn
+      </div>
+    </div>
+  </div>
+  <div class="legal">
+    <div style="color:var(--orange);letter-spacing:.12em;font-size:0.75rem;margin-bottom:6px;">— LEGAL</div>
+    <h2>FAN PROJECT.</h2>
+    <p>mws&box is an independent fan project by jxnplays. It is not affiliated with, endorsed by, or sponsored by Activision, Infinity Ward, Treyarch, Sledgehammer, Neversoft, or Steam. Call of Duty is a trademark of its owners. Future Warfare (NX1) related work references Neversoft as the original developer.</p>
+    <p>This site contains <strong>no game data</strong>. No maps, models, textures, sounds, or fonts. You must own a legitimate copy. The client reads that install. It does not download or replace the Steam files. The client is always built from source; no prebuilt binaries are distributed.</p>
+    <p>The recompilation harness and local modifications in related projects (including NX1 Reborn) are licensed under the MIT License. Vendored third-party components retain their original licenses. Game code and assets are not included.</p>
+  </div>
+  
+</footer>
+
+<script>
+  const audio = document.getElementById('site-audio');
+  const btn = document.getElementById('play-pause');
+  const vol = document.getElementById('volume');
+  audio.volume = 0.5;
+
+  function updateBtn() {
+    btn.textContent = audio.paused ? '\u25b6' : '\u23f8';
+  }
+
+  function tryPlay() {
+    audio.muted = false;
+    const p = audio.play();
+    if (p) {
+      p.then(updateBtn).catch(() => {
+        audio.muted = true;
+        audio.play().then(() => {
+          updateBtn();
+          const unmute = () => {
+            audio.muted = false;
+            document.removeEventListener('click', unmute);
+            document.removeEventListener('touchstart', unmute);
+          };
+          document.addEventListener('click', unmute, { once: true });
+          document.addEventListener('touchstart', unmute, { once: true });
+        }).catch(updateBtn);
+      });
+    }
+  }
+
+  tryPlay();
+  document.addEventListener('click', () => { if (audio.paused) tryPlay(); }, { once: true });
+
+  btn.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.muted = false;
+      audio.play();
+    } else {
+      audio.pause();
+    }
+    updateBtn();
+  });
+  vol.addEventListener('input', () => { audio.volume = vol.value; });
+
+
+</script>
+
+</body>
+</html>
+
